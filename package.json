@@ -1,0 +1,22 @@
+{
+  "name": "imageprocessingwrapper",
+  "version": "1.0.0",
+  "description": "A light weight image processing wrapper tool",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/souravsekhar/imageprocessingwrapper.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/souravsekhar/imageprocessingwrapper/issues"
+  },
+  "homepage": "https://github.com/souravsekhar/imageprocessingwrapper#readme",
+  "dependencies": {
+    "hapi": "^16.5.2"
+  }
+}

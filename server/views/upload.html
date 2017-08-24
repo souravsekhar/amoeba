@@ -8,8 +8,8 @@
 <body>
 	<div class="login-page">
 	  <div class="form">	    
-	    <form class="login-form" action="/upload" method="POST">
-	      <input type="file"/>
+	    <form class="login-form" enctype='multipart/form-data' action="/image/upload" method="POST">
+	      <input type="file" name="imageFile"/>
 	      <button type="submit" value="Submit">Upload</button>     
 	    </form>
 	  </div>

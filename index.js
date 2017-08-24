@@ -3,6 +3,8 @@
 import hapi from 'hapi';
 import routes from './routes';
 import vision from 'vision';
+import chalk from 'chalk';
+import inert from 'inert';
 
 // Instatiating hapi server
 const server = new hapi.Server();
@@ -13,9 +15,9 @@ server.connection({
 	host: "localhost"
 });
 
-server.register([vision], (err) => {
+server.register([vision, inert], (err) => {
     if (err) {
-       console.log("Failed to load vision.");
+       console.log("Failed to register.", err);
     }
 });
 
@@ -34,4 +36,4 @@ server.views({
 server.route(routes);
 
 // starting server
-server.start(() => {console.log("Server running at port", 8000)});
+server.start(() => {console.log(chalk.green('✓'), "Server running at port", 8000)});

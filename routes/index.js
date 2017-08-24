@@ -1,20 +1,21 @@
 'use strict';
 
+import UploadHandler from '../server/handlers/uploadHandler.js';
+
 const routes = [  
 {
-	method: 'GET',
-	path: '/index',
-	handler: function(request, reply) {
-        // Render the view with the custom greeting
-        var data = {
-        	title: 'This is Index!',
-        	message: 'Hello, World. You crazy handlebars layout',
-        	user: {
-        		role: 'user'
-        	}
-        };
-
-        reply.view('layout', {data});
+	method: 'POST',
+	path: '/upload',
+	handler: function(request, reply) {        
+        reply.view('upload', {data});
+    }
+},
+{
+    method: 'GET',
+    path: '/show',
+    handler: function(request, reply) {
+        // Render the view with the custom greeting    
+        reply.view('show', {});
     }
 },
 {  

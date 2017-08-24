@@ -27,9 +27,9 @@ server.views({
         html: require('handlebars')
     },
     relativeTo: __dirname,
-    path: 'views',
-    partialsPath: 'views/partials',
-    helpersPath: 'views/helpers'
+    path: 'server/views',
+    partialsPath: 'server/views/partials',
+    helpersPath: 'server/views/helpers'
 });
 
 // handling routes

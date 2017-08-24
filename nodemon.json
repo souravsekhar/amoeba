@@ -9,7 +9,7 @@
     "js": "node --harmony"
   },
   "watch": [
-   "controllers", "models", "public", "routes", "views"
+    "**/*.*"
   ],
   "env": {
     "NODE_ENV": "development"

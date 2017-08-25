@@ -39,6 +39,16 @@ const routes = [
                 listing: true
             }
     	}
+    },
+    {// serve js files
+        method: 'GET',
+        path: '/js/{file*}',
+        handler: {
+            directory: {
+                path: 'public/lib/js',
+                listing: true
+            }
+        }
     }
 ];
 

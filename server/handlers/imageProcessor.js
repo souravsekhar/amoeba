@@ -47,10 +47,7 @@ import fs from 'fs';
 
 const imageProcessor = (imagePath) => {
   Jimp.read(imagePath, function (err, image) {
-      console.log("image === ", JSON.stringify(image));
-      if (err) throw err;
-      var ratio=parseInt(image.imageSize.height)/parseInt(image.imageSize.width);
-      console.log("ratio",ratio);
+      if (err) throw err;            
       image.resize(256, 256)            // resize
            .quality(60)                // set greyscale
            .write("./processedImages/processed_image.png"); // save

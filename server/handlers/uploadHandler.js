@@ -19,7 +19,7 @@ const uploadHandler = (req, reply) => {// uploads the received image to disk cur
 		});
 	});
 
-	//reply("Uploaded");
+	reply("Uploaded");
 }
 
 module.exports = {

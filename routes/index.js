@@ -2,7 +2,6 @@
 
 import UploadHandler from '../server/handlers/uploadHandler.js';
 import SearchHandler from '../server/handlers/searchHandler.js';
-import ImageSearchHandler from '../server/handlers/imageSearchHandler.js';
 
 const routes = [
     {// serve css files
@@ -56,11 +55,6 @@ const routes = [
         method: 'GET',
         path: '/search',
         handler: SearchHandler.searchHandler
-    },
-    {// show processed images
-        method: 'GET',
-        path: '/image/search',
-        handler: ImageSearchHandler.imageSearchHandler
     }
 ];
 

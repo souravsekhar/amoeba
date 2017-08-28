@@ -16,7 +16,7 @@ const uploadHandler = (req, reply) => {// uploads the received image to disk cur
 				let newPath = "./uploads/originals/" + files.imageFile[0].originalFilename; //TODO: create unique file names
 				fs.writeFile(newPath, data, (error) => {// creates a new file if doesn't exist and overwrites the existing one if exists
 					if (error) return error;
-					ImageProcessor.imageProcessor(newPath);
+					ImageProcessor.imageProcessor(newPath, files.imageFile[0].originalFilename);
 					reply('Uploaded');
 				});
 			}else {

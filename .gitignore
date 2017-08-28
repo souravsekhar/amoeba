@@ -1,3 +1,6 @@
 node_modules
 npm-debug.log
 .DS_Store
+public/lib/css/jquery-ui.css
+public/lib/js/jquery-ui.js
+public/lib/js/jquery-ui.min.js

@@ -2,31 +2,34 @@ $('.message a').click(function(){
    $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
 });
 
-$('#resize').change(function () {	   
-    if($(this).is(':checked')) {
-       $("#dimensions").show();        
-    }
-    else {
-       $("#dimensions").hide();
-    }    
-});
+$('#crop,#format,#resize').change(function () {
+	
+	if ($(this).attr('id') === 'crop') {
+		if ($(this).is(':checked')) {
+			$(".cropdimensions").show();
+		}
+		else {
+			$(".cropdimensions").hide();
+		}	
+	}	
 
-$('#format').change(function () {	   
-    if($(this).is(':checked')) {
-       $("#formats").show();        
-    }
-    else {
-       $("#formats").hide();
-    }    
-});
+    if ($(this).attr('id') === 'format') {
+		if ($(this).is(':checked')) {
+			$("#formats").show();
+		}
+		else {
+			$("#formats").hide();
+		}	
+	}	
 
-$('#crop').change(function () {	   
-    if($(this).is(':checked')) {
-       $(".cropdimensions").show();        
-    }
-    else {
-       $(".cropdimensions").hide();
-    }    
+	if ($(this).attr('id') === 'resize') {
+		if ($(this).is(':checked')) {
+			$("#dimensions").show();
+		}
+		else {
+			$("#dimensions").hide();
+		}	
+	}	
 });
 
 $(document).ready(function(){

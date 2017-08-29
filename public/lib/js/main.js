@@ -20,9 +20,19 @@ $('#format').change(function () {
     }    
 });
 
+$('#crop').change(function () {	   
+    if($(this).is(':checked')) {
+       $(".cropdimensions").show();        
+    }
+    else {
+       $(".cropdimensions").hide();
+    }    
+});
+
 $(document).ready(function(){
 	$('#dimensions').hide();
 	$('#formats').hide();
+	$(".cropdimensions").hide();
 	$('#searchText').autocomplete({
 		source: function (request, response) {
 			$.ajax({

@@ -11,7 +11,13 @@
 	    <form class="login-form" enctype='multipart/form-data' action="/image/upload" method="POST">
 	      <input type="file" name="imageFile"/>
 	      <p>What you want to do with the image?</p>
-	      <input class="check" type=checkbox name="operations" value="crop"><span>Crop</span></br>
+	      <input id="crop" class="check" type=checkbox name="operations" value="crop"><span>Crop</span></br>
+	      <div class="cropdimensions">
+	      <p>Width</p>
+      	  <input type=text placeholder="Enter width of the cropped image"></br>
+      	  <p>Height</p>
+      	  <input type=text placeholder="Enter height of the cropped image"></br>
+      	  </div>
 	      <input id="resize" class="check" type=checkbox name="operations" value="resize"><span>Resize</span></br>
 	      <select id="dimensions">
 			  <option value="xl">800 x 800</option>
@@ -25,7 +31,7 @@
 			  <option value="png">png</option>
 			  <option value="gif">gif</option>			  
 		  </select>
-		  <p>Do you want all the generated images? <i>(if, you want the processed image only, please select YES)</i></p>
+		  <p>Do you want all the generated images? <i>(if, you want the processed image only, please select NO)</i></p>
 		  <select id="generateall">
 			  <option value="yes">YES</option>
 			  <option value="no">NO</option>			  			 

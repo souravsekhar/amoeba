@@ -2,7 +2,8 @@
 
 import fs from 'fs';
 import multiparty from 'multiparty';
-import ImageProcessor from './imageProcessor'
+import ImageProcessor from './imageProcessor';
+import ImageCropper from './imageCropper';
 import path from 'path';
 
 const uploadHandler = (req, reply) => {// uploads the received image to disk currently
@@ -17,6 +18,7 @@ const uploadHandler = (req, reply) => {// uploads the received image to disk cur
 				fs.writeFile(newPath, data, (error) => {// creates a new file if doesn't exist and overwrites the existing one if exists
 					if (error) return error;
 					ImageProcessor.imageProcessor(newPath, files.imageFile[0].originalFilename);
+					ImageCropper.imageCropper(newPath); // temporary for testing
 					reply('Uploaded');
 				});
 			}else {

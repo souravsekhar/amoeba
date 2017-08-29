@@ -4,3 +4,4 @@ npm-debug.log
 public/lib/css/jquery-ui.css
 public/lib/js/jquery-ui.js
 public/lib/js/jquery-ui.min.js
+public/lib/js/jquery-3.2.1.min.js

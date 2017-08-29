@@ -24,13 +24,6 @@ const routes = [
             }
         }
     },
-    {// homepage of the app
-    	method: 'GET',
-    	path: '/upload',
-    	handler: function (request, reply) {
-            reply.view('upload', {});
-        }
-    },
     {// show processed images
         method: 'GET',
         path: '/show',
@@ -55,6 +48,13 @@ const routes = [
         method: 'GET',
         path: '/search',
         handler: SearchHandler.searchHandler
+    },
+    {// homepage of the app
+        method: 'GET',
+        path: '/process',
+        handler: function (request, reply) {
+            reply.view('process', {});
+        }
     }
 ];
 

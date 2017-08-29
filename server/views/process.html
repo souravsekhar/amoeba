@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Image upload</title>
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
+</head>
+<body>
+	<div class="login-page">
+	  <div class="form">	    
+	    <form class="login-form" enctype='multipart/form-data' action="/image/upload" method="POST">
+	      <input type="file" name="imageFile"/>
+	      <p>What you want to do with the image?</p>
+	      <input class="check" type=checkbox name="operations" value="crop"><span>Crop</span></br>
+	      <input id="resize" class="check" type=checkbox name="operations" value="resize"><span>Resize</span></br>
+	      <select id="dimensions">
+			  <option value="xl">800 x 800</option>
+			  <option value="l">500 x 500</option>
+			  <option value="s">300 x 300</option>
+			  <option value="xs">150 x 150</option>
+		  </select>
+		  <input id="format" class="check" type=checkbox name="operations" value="format"><span>Convert</span></br>
+		  <select id="formats">
+			  <option value="jpg">jpg</option>
+			  <option value="png">png</option>
+			  <option value="gif">gif</option>			  
+		  </select>
+		  <p>Do you want all the generated images? <i>(if, you want the processed image only, please select YES)</i></p>
+		  <select id="generateall">
+			  <option value="yes">YES</option>
+			  <option value="no">NO</option>			  			 
+		  </select>
+	      <button type="submit" value="Submit">Upload</button>     
+	    </form>
+	  </div>
+	</div>
+<script type="text/javascript" src='/js/jquery-3.2.1.min.js'></script>
+<script type="text/javascript" src="/js/jquery-ui.js"></script>
+<script type="text/javascript" src="/js/main.js"></script>
+</body>
+</html>

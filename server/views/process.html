@@ -14,28 +14,37 @@
 	      <input id="crop" class="check" type=checkbox name="crop-operation" value="crop"><span>Crop</span></br>
 	      <div class="cropdimensions">
 	      <p>Width</p>
-      	  <input type=text placeholder="Enter width of the cropped image" name="crop-width"></br>
-      	  <p>Height</p>
-      	  <input type=text placeholder="Enter height of the cropped image" name="crop-height"></br>
+      	  <input type=text placeholder="Enter width of the cropped image" name="cropWidth"></br>
+      	  <p>Height</p>      	  
+      	  <input type=text placeholder="Enter height of the cropped image" name="cropHeight"></br>
       	  </div>
 	      <input id="resize" class="check" type=checkbox name="resize-operation" value="resize"><span>Resize</span></br>
-	      <select id="dimensions">
-			  <option value="xl">800 x 800</option>
-			  <option value="l">500 x 500</option>
-			  <option value="s">300 x 300</option>
-			  <option value="xs">150 x 150</option>
-		  </select>
+	      <div id="dimensions">
+		      <select>		      	  
+				  <option value="xl">800 x 800</option>
+				  <option value="l">500 x 500</option>
+				  <option value="s">300 x 300</option>
+				  <option value="xs">150 x 150</option>
+			  </select>
+			  <p></p>
+		  </div>		  
 		  <input id="format" class="check" type=checkbox name="format-operation" value="format"><span>Convert</span></br>
-		  <select id="formats">
-			  <option value="jpg">jpg</option>
-			  <option value="png">png</option>
-			  <option value="gif">gif</option>			  
-		  </select>
-		  <p>Do you want all the generated images? <i>(if, you want the processed image only, please select NO)</i></p>
+		  <div id="formats">
+			  <select>
+				  <option value="jpg">jpg</option>
+				  <option value="png">png</option>
+				  <option value="gif">gif</option>			  
+			  </select>
+		  </div>
+		  <p>Do you want all the generated images? <i>(if, you want the processed image only, please select <b>NO</b>)</i></p>
 		  <select>
 			  <option value="yes">YES</option>
 			  <option value="no">NO</option>			  			 
 		  </select>
+		  <p>Select the order in which you want your file to be processed</p>
+		  <div class="ulSection">
+		  	<ul class="operation-section"></ul>
+		  </div>
 	      <button type="submit" value="Submit" name="submit-form">Upload</button>     
 	    </form>
 	  </div>

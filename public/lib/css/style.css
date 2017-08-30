@@ -91,7 +91,7 @@
 .container .info span .fa {
   color: #EF3B3A;
 }
-ul {
+/*ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -113,8 +113,27 @@ li a:hover {
     background-color: #111;
 }
 .ulSection {
-  border: 9px solid;
+  border: 1px solid;
+  margin-bottom: 20px;
+}*/
+
+ul {
+    border:1px solid black;
+    padding: 0;
+    display:table;
+    width:100%;
+    box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    -webkit-box-sizing:border-box;
 }
+li {
+    background-color: #39A2C1;
+    display:table-cell;
+    text-align: center;
+    border: 2px solid #fff;
+    color: #fff;   
+}
+
 body {
   background: #76b852; /* fallback for old browsers */
   background: -webkit-linear-gradient(right, #76b852, #8DC26F);

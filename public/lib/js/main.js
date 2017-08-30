@@ -3,7 +3,7 @@ $('.message a').click(function(){
 });
 
 $('#crop,#format,#resize').change(function () {
-	
+
 	if ($(this).attr('id') === 'crop') {
 		if ($(this).is(':checked')) {
 			$(".cropdimensions").show();
@@ -50,6 +50,42 @@ $(document).ready(function(){
 			});
 		}
 	});
+	// $("#uploadFormSubmit").submit(function(e) {
+	// 	console.log("form submitting", $('#imageInput')[0].files[0]);
+	// 	e.preventDefault();
+	// 	var url = "/image/upload";
+	// 	// var $copy = $(this).clone();
+	// 	// console.log("$copy.get(0)", $copy.get(0));
+	// 	var formData = new FormData();
+	// 	formData.append('imageFile', $('#imageInput')[0].files[0]);
+	//     $.ajax({
+	//            type: "POST",
+	//            url: url,
+	//            data: formData,
+	//            contentType: 'multipart/form-data',
+	//            dataType: 'json',
+	//            processData: false,
+	//            success: function(data){
+	//                console.log(data);
+	//            }
+	//          });
+	// 	});
+	$("#uploadFormSubmit").submit(function(e) {
+		e.preventDefault();		
+
+		var formElement = document.querySelector("form");
+		var request = new XMLHttpRequest();		
+
+		request.open("POST", "/image/upload");			
+		request.send(new FormData(formElement));
+
+		request.onreadystatechange = function () {
+			if (this.readyState === 4 && this.status === 200) {
+				window.location.href = "/show";
+			}
+		}
+	});
 });
+
 	
 

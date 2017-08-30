@@ -52,7 +52,7 @@ const routes = [
     {// homepage of the app
         method: 'GET',
         path: '/process',
-        handler: function (request, reply) {
+        handler: function (request, reply) {            
             reply.view('process', {});
         }
     }

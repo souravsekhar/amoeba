@@ -8,35 +8,35 @@
 <body>
 	<div class="login-page">
 	  <div class="form">	    
-	    <form class="login-form" enctype='multipart/form-data' action="/image/upload" method="POST">
-	      <input type="file" name="imageFile"/>
+	    <form id="uploadFormSubmit" class="login-form" name="uploadForm" enctype="multipart/form-data">
+	      <input id="imageInput" type="file" name="imageFile"/>
 	      <p>What you want to do with the image?</p>
-	      <input id="crop" class="check" type=checkbox name="operations" value="crop"><span>Crop</span></br>
+	      <input id="crop" class="check" type=checkbox name="crop-operation" value="crop"><span>Crop</span></br>
 	      <div class="cropdimensions">
 	      <p>Width</p>
-      	  <input type=text placeholder="Enter width of the cropped image"></br>
+      	  <input type=text placeholder="Enter width of the cropped image" name="crop-width"></br>
       	  <p>Height</p>
-      	  <input type=text placeholder="Enter height of the cropped image"></br>
+      	  <input type=text placeholder="Enter height of the cropped image" name="crop-height"></br>
       	  </div>
-	      <input id="resize" class="check" type=checkbox name="operations" value="resize"><span>Resize</span></br>
+	      <input id="resize" class="check" type=checkbox name="resize-operation" value="resize"><span>Resize</span></br>
 	      <select id="dimensions">
 			  <option value="xl">800 x 800</option>
 			  <option value="l">500 x 500</option>
 			  <option value="s">300 x 300</option>
 			  <option value="xs">150 x 150</option>
 		  </select>
-		  <input id="format" class="check" type=checkbox name="operations" value="format"><span>Convert</span></br>
+		  <input id="format" class="check" type=checkbox name="format-operation" value="format"><span>Convert</span></br>
 		  <select id="formats">
 			  <option value="jpg">jpg</option>
 			  <option value="png">png</option>
 			  <option value="gif">gif</option>			  
 		  </select>
 		  <p>Do you want all the generated images? <i>(if, you want the processed image only, please select NO)</i></p>
-		  <select id="generateall">
+		  <select>
 			  <option value="yes">YES</option>
 			  <option value="no">NO</option>			  			 
 		  </select>
-	      <button type="submit" value="Submit">Upload</button>     
+	      <button type="submit" value="Submit" name="submit-form">Upload</button>     
 	    </form>
 	  </div>
 	</div>

@@ -4,6 +4,7 @@ import fs from 'fs';
 import multiparty from 'multiparty';
 import ImageProcessor from './imageProcessor';
 import ImageCropper from './imageCropper';
+import FormatHandler from './formatHandler';
 import path from 'path';
 import async from 'async';
 
@@ -11,10 +12,11 @@ const uploadHandler = (req, reply) => {// uploads the received image to disk cur
 	let form = new multiparty.Form(),
 		allowedImageTypes = ['.png', '.jpg'],
 		asyncArr = [];
-	form.parse(req.payload, (error, fields, files) => {		
+	form.parse(req.payload, (error, fields, files) => {				
 		if (error) return error;
 		fs.readFile(files.imageFile[0].path, (error, data) => {			
 			if (error) return error;
+			
 			if (allowedImageTypes.indexOf(path.extname(files.imageFile[0].path)) > -1){// validates the file extension
 				let newPath = "./uploads/originals/" + files.imageFile[0].originalFilename; //TODO: create unique file names
 				fs.writeFile(newPath, data, (error) => {// creates a new file if doesn't exist and overwrites the existing one if exists										
@@ -30,12 +32,18 @@ const uploadHandler = (req, reply) => {// uploads the received image to disk cur
 		});				
 	});
 
-	const processImagesSync = (newPath, fields, files) => {		
-		fields.order.forEach((operation) => {			
+	const processImagesSync = (newPath, fields, files) => {
+		let imageName = files.imageFile[0].originalFilename;
+
+		fields.order.forEach((operation) => {						
 			switch(operation) {
 				case 'Crop':					
-					asyncArr.push(function (callback) {						
-						ImageCropper.imageCropper(newPath, fields, callback);
+					asyncArr.push((callback) => {						
+						ImageCropper.imageCropper(newPath, imageName, fields, callback);
+					});
+				case 'Format':
+					asyncArr.push((callback) => {
+						FormatHandler.formatHandler(newPath, imageName, fields, callback);
 					});
 			}
 		});

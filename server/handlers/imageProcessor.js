@@ -67,13 +67,13 @@ const imageProcessor = (imagePath, imageName) => {
 
         imageConfig[size].formats.forEach((format) => {          
           switch (format.type) {
-            case 'png':            
+            case 'png':
               image.resize(height, width)
                    .rgba(true) 
                    .filterType( Jimp.PNG_FILTER_AUTO )
                    .write(`./uploads/${size}/PNG/processed_image_${fileName}_png_${size}.png`);
               break;
-            case 'jpg':           
+            case 'jpg':
               image.resize(height, width)
                    .quality(format.quality)
                    .write(`./uploads/${size}/JPG/processed_image_${fileName}_jpg_${size}.jpg`);

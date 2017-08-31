@@ -91,48 +91,28 @@ $(document).ready(function(){
 			});
 		}
 	});
-	// $("#uploadFormSubmit").submit(function(e) {
-	// 	console.log("form submitting", $('#imageInput')[0].files[0]);
-	// 	e.preventDefault();
-	// 	var url = "/image/upload";
-	// 	// var $copy = $(this).clone();
-	// 	// console.log("$copy.get(0)", $copy.get(0));
-	// 	var formData = new FormData();
-	// 	formData.append('imageFile', $('#imageInput')[0].files[0]);
-	//     $.ajax({
-	//            type: "POST",
-	//            url: url,
-	//            data: formData,
-	//            contentType: 'multipart/form-data',
-	//            dataType: 'json',
-	//            processData: false,
-	//            success: function(data){
-	//                console.log(data);
-	//            }
-	//          });
-	// 	});
+	
 	$("#uploadFormSubmit").submit(function(e) {
 		e.preventDefault();		
 
 		var formElement = document.querySelector("form");
 		var request = new XMLHttpRequest();
 		var operationArr = $('.operation-section > li');
-		
 		var operationOrder = [];
-		
-		operationArr.each(function(li, liValue){			
+
+		operationArr.each(function(li, liValue){						
 			operationOrder.push($(liValue).text());
-		});
+		});		
 		
 		var formData = new FormData(formElement);
+
 		formData.append('order', operationOrder);		
-		
 		request.open("POST", "/image/upload");			
 		request.send(formData);
 
 		request.onreadystatechange = function () {
 			if (this.readyState === 4 && this.status === 200) {
-				window.location.href = "/show";
+				window.alert('Your image has been processed');				
 			}
 		}
 	});

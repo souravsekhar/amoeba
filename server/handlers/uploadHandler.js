@@ -8,7 +8,7 @@ import FormatHandler from './formatHandler';
 import path from 'path';
 import async from 'async';
 
-const uploadHandler = (req, reply) => {// uploads the received image to disk currently	
+const uploadHandler = (req, reply) => {// uploads the received image to disk currently		
 	let form = new multiparty.Form(),
 		allowedImageTypes = ['.png', '.jpg'];		
 	form.parse(req.payload, (error, fields, files) => {			
@@ -47,6 +47,9 @@ const uploadHandler = (req, reply) => {// uploads the received image to disk cur
 					asyncArr.push((callback) => {
 						FormatHandler.formatHandler(newPath, imageName, fields, callback);
 					});
+					break;
+				// case 'Resize':
+					
 			}
 		});
 				

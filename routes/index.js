@@ -2,6 +2,7 @@
 
 import UploadHandler from '../server/handlers/uploadHandler.js';
 import SearchHandler from '../server/handlers/searchHandler.js';
+import ImageUploadHandler from '../server/handlers/imageUploadHandler.js'
 
 const routes = [
     {// serve css files
@@ -20,6 +21,36 @@ const routes = [
         handler: {
             directory: {
                 path: 'public/lib/js',
+                listing: true
+            }
+        }
+    },
+    {// serve bootstrap js files
+        method: 'GET',
+        path: '/bootstrap/js/{file*}',
+        handler: {
+            directory: {
+                path: 'public/lib/bootstrap/js',
+                listing: true
+            }
+        }
+    },
+    {// serve bootstrap css files
+        method: 'GET',
+        path: '/bootstrap/css/{file*}',
+        handler: {
+            directory: {
+                path: 'public/lib/bootstrap/css',
+                listing: true
+            }
+        }
+    },
+    {// serve bootstrap js files
+        method: 'GET',
+        path: '/bootstrap/fonts/{file*}',
+        handler: {
+            directory: {
+                path: 'public/lib/bootstrap/fonts',
                 listing: true
             }
         }
@@ -44,6 +75,19 @@ const routes = [
         },
         handler: UploadHandler.uploadHandler
     },
+    {// upload images
+        method: 'POST',
+        path: '/upload',
+        config: {
+            payload: {
+                maxBytes: 209715200,
+                output: 'stream',
+                parse: false,
+                allow: 'multipart/form-data'
+            }
+        },
+        handler: ImageUploadHandler.imageUploadHandler
+    },
     {// show processed images
         method: 'GET',
         path: '/search',
@@ -54,6 +98,23 @@ const routes = [
         path: '/process',
         handler: function (request, reply) {            
             reply.view('process', {});
+        }
+    },
+    {// homepage of the app
+        method: 'GET',
+        path: '/',
+        handler: function (request, reply) {            
+            reply.view('index', {});
+        }
+    },
+   {// serve uploaded image files
+        method: 'GET',
+        path: '/uploads/originals/{file*}',
+        handler: {
+            directory: {
+                path: 'uploads/originals',
+                listing: true
+            }
         }
     }
 ];

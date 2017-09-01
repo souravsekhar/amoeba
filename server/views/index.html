@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	  <title>Image processor</title>
+	  <meta charset="utf-8">
+	  <meta name="viewport" content="width=device-width, initial-scale=1">
+	  <!-- <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.css"> -->
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+	  <link rel="stylesheet" type="text/css" href="/css/main.css">
+	  <link rel="stylesheet" type="text/css" href="/css/build.css">
+
+	  
+	  <style>
+	    
+	  </style>
+	</head>
+	<body>
+		<header>
+			<!--  -->
+		</header>
+		
+			<div class="container-fluid sidePannel">
+			  <div class="row content">
+			    <div class="col-sm-4 col-md-4 sidenav">
+			    <form id="imageUploadForm" name="uploadForm" enctype="multipart/form-data">
+			    	<input id="selectedImage" type="file" name="imageFile">
+			      	<button type="submit" class="btn btn-primary">Primary</button>
+			    </form>
+			      <div class="container-fluid imageContainer" id="imageContainer">			      
+						<div class="layer"></div>
+						<div class="croppedImg">
+							
+						</div>
+			      </div>
+			    </div>
+
+			    <div class="col-sm-8 col-md-8">
+					<div id="cropPanel">
+						<!-- <button type="button" class="btn btn-primary btn-sm" 
+						        data-toggle="toggle" data-target="#cropSlider">
+						    <i class="glyphicon glyphicon-plus"></i>
+						</button> -->
+						<div class="checkbox checkbox-primary" >
+						  <input id="checkbox2" type="checkbox" >
+						  <label for="checkbox2" data-toggle="toggle" data-target="#cropSlider">
+	                            Primary
+	                        </label>
+						</div>
+						<div id="cropSlider" class="buttonPanel">
+						    <div class="btn-group testing" data-toggle="buttons">
+						      <label class="btn btn-secondary active cropLbl">
+						        <input type="radio" name="options" id="option1" autocomplete="off" value="200"> 200 x 200
+						      </label>
+						      <label class="btn btn-secondary cropLbl">
+						        <input type="radio" name="options" id="option2" autocomplete="off" value="150"> 150 x 150
+						      </label>
+						      <label class="btn btn-secondary cropLbl">
+						        <input type="radio" name="options" id="option3" autocomplete="off" value="100"> 100 x 100
+						      </label>
+						      <label class="btn btn-secondary cropLbl">
+						        <input type="radio" name="options" id="option4" autocomplete="off" value="50"> 50 x 50
+						      </label>
+						    </div>
+						</div>
+					</div>
+					<div id="resizePanel">
+						<button type="button" class="btn btn-primary btn-sm" 
+						        data-toggle="toggle" data-target="#resizeSlider">
+						    <i class="glyphicon glyphicon-plus"></i>
+						</button>
+
+						<div id="resizeSlider" class="buttonPanel">
+						   <div class="btn-group" role="group" aria-label="Basic example">
+						     <button type="button" class="btn btn-secondary">Left</button>
+						     <button type="button" class="btn btn-secondary">Middle</button>
+						     <button type="button" class="btn btn-secondary">Right</button>
+						   </div>
+						</div>
+					</div>
+					<div id="formatPanel">
+						<button type="button" class="btn btn-primary btn-sm" 
+						        data-toggle="toggle" data-target="#formatSlider">
+						    <i class="glyphicon glyphicon-plus"></i>
+						</button>
+
+						<div id="formatSlider" class="buttonPanel">
+						    <div class="btn-group" role="group" aria-label="Basic example">
+						      <button type="button" class="btn btn-secondary">Left</button>
+						      <button type="button" class="btn btn-secondary">Middle</button>
+						      <button type="button" class="btn btn-secondary">Right</button>
+						    </div>
+						</div>
+					</div>
+			    </div>
+			  </div>
+			</div>		
+		<footer class="container-fluid">
+		  <p>Footer Text</p>
+		</footer>
+			
+		<script type="text/javascript" src='/js/jquery-3.2.1.min.js'></script>
+		<!-- <script type="text/javascript" src="/js/jquery-ui.js"></script> -->
+		<!-- <script type="text/javascript" src='/bootstrap/js/bootstrap.js'</script> -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+		<script type="text/javascript" src="/js/main1.js"></script>
+	</body>
+</html>

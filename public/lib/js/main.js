@@ -92,8 +92,7 @@ $(document).ready(function(){
 		}
 	});
 	
-	$("#uploadFormSubmit").submit(function(e) {
-		e.preventDefault();		
+	$("#uploadFormSubmit").submit(function(e) {		
 
 		var formElement = document.querySelector("form");
 		var request = new XMLHttpRequest();
@@ -102,7 +101,7 @@ $(document).ready(function(){
 
 		operationArr.each(function(li, liValue){						
 			operationOrder.push($(liValue).text());
-		});		
+		});
 		
 		var formData = new FormData(formElement);
 

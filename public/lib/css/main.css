@@ -1,0 +1,80 @@
+.buttonPanel {
+    -webkit-transition: width 0.1s ease;
+    -moz-transition: width 2s ease;
+    -o-transition: width 2s ease;
+    transition: width 0.5s ease;
+    
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    vertical-align: middle;
+    line-height: 30px;
+    height: 30px;
+
+    width: 0px;
+}
+
+div.container-fluid.sidePannel{
+  min-height: calc(100vh - 60px);
+}
+
+.buttonPanel.in {
+  width: 60%;
+}
+
+.imageContainer{
+  width: 300px;
+  margin:0 auto;
+  border: 1px solid;
+  position: relative;
+}
+
+.imageContainer > img{
+  width: 100%;
+}
+
+.imageContainer .layer{
+  height: 100%;
+  width: 100%;
+  background-color: #111;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0.5;
+}
+
+.imageContainer .croppedImg{  
+  position: absolute;
+  overflow: hidden;
+  opacity: 1 !important;
+  transition: all 0.5s ease-in-out;
+}
+
+#imageContainer{
+  padding: 0;
+}
+
+/* Set height of the grid so .sidenav can be 100% (adjust if needed) */
+.row.content {height: 1500px}
+
+/* Set gray background color and 100% height */
+.sidenav {
+  background-color: #f1f1f1;
+  height: 100%;
+}
+
+/* Set black background color, white text and some padding */
+footer {
+  background-color: #555;
+  color: white;
+  padding: 15px;
+}
+
+/* On small screens, set height to 'auto' for sidenav and grid */
+@media screen and (max-width: 767px) {
+  .sidenav {
+    height: auto;
+    padding: 15px;
+  }
+  .row.content {height: auto;} 
+}

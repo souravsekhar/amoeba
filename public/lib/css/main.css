@@ -1,3 +1,19 @@
+header {
+  height: 50px;
+  background-color: #0471af;
+  text-align: center;    
+  color: #fff;
+  font-size: 25px;
+  line-height: 50px;
+}
+
+form > p {
+  font-size: 16px;
+}
+
+span {
+  font-size: 16px;
+}
 .buttonPanel {
     -webkit-transition: width 0.1s ease;
     -moz-transition: width 2s ease;
@@ -24,7 +40,7 @@ div.container-fluid.sidePannel{
 
 .imageContainer{
   width: 300px;
-  margin:0 auto;
+  margin:10px auto;
   border: 1px solid;
   position: relative;
 }
@@ -78,3 +94,258 @@ footer {
   }
   .row.content {height: auto;} 
 }
+/*start*/
+input[type="file"] {
+    display: none;
+}
+
+.uploadButton {
+  display: block;
+  width: 100%;
+  margin-top: 5px;
+}
+
+.progress {
+  margin-top: 10px;
+  display: none;
+}
+
+.progressBar {
+  width: 0%;
+  display: none;
+}
+
+.btnSize {
+  font-size: 16px;
+  width: 15%;
+  text-align: left;
+  margin: 2px auto;
+}
+
+label.active {
+  background-color: #0471af;
+  color: #fff;
+}
+
+div.btn-group .btn-secondary > input:hover {
+  background-color: red !important;
+}
+
+.operationsOrder {
+  border: 2px dashed;
+  margin: 5px auto;
+  padding: 5px;
+  display: table;
+  box-sizing:border-box;
+  width: 100%;
+  -moz-box-sizing:border-box;
+  -webkit-box-sizing:border-box;
+  text-align: center;
+}
+
+li {
+  display: table-cell;
+  text-align: center;
+  /*background-color: red;*/
+  list-style-type: none;
+}
+
+.liButton {
+  height: 32px;  
+}
+
+.liButton:after {
+  margin-right: 2px; 
+}
+
+
+.dragIcon {
+  width: 36px;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+.dragIconHolder {
+  font-size: 16px;
+}
+
+
+/*checkbox styles*/
+/*arrow buttons css*/
+.btn-arrow-right{
+   position: relative;
+   padding-left: 18px;
+   padding-right: 18px;
+   width: -webkit-fill-available;
+   margin: 2px;
+   /*width: 50%;*/
+   /*display: table-cell;*/
+   /*float: left;*/
+}
+
+.btn-arrow-right {
+   padding-left: 36px;   
+}
+
+.btn-arrow-right:before,
+.btn-arrow-right:after {
+   /* make two squares (before and after), looking similar to the button */
+   
+   content: "";
+   position: absolute;
+   top: 5px;
+   /* move it down because of rounded corners */
+   
+   width: 22px;
+   /* same as height */
+   
+   height: 22px;
+   /* button_outer_height / sqrt(2) */
+   
+   background: inherit;
+   /* use parent background */
+   
+   border: inherit;
+   /* use parent border */
+   
+   border-left-color: transparent;
+   /* hide left border */
+   
+   border-bottom-color: transparent;
+   /* hide bottom border */
+   
+   border-radius: 0px 4px 0px 0px;
+   /* round arrow corner, the shorthand property doesn't accept "inherit" so it is set to 4px */
+   
+   -webkit-border-radius: 0px 4px 0px 0px;
+   -moz-border-radius: 0px 4px 0px 0px;
+}
+
+.btn-arrow-right:before,
+.btn-arrow-right:after {
+   transform: rotate(45deg);
+   /* rotate right arrow squares 45 deg to point right */
+   
+   -webkit-transform: rotate(45deg);
+   -moz-transform: rotate(45deg);
+   -o-transform: rotate(45deg);
+   -ms-transform: rotate(45deg);
+}
+
+.btn-arrow-right:before {
+   /* align the "before" square to the left */
+   
+   left: -11px;
+}
+
+.btn-arrow-right:after {
+   /* align the "after" square to the right */
+   
+   right: -11px;
+}
+
+.btn-arrow-right:after {
+   /* bring arrow pointers to front */
+   
+   z-index: 1;
+}
+
+.btn-arrow-right:before {
+   /* hide arrow tails background */
+   
+   background-color: white;
+}
+
+/*arrow buttons css*/
+
+
+#invertCheckBoxInput, #flipCheckBoxInput, #greyScaleCheckBoxInput {
+  visibility: hidden;
+}
+
+/**
+ * Create the slider bar
+ */
+.sliderCheckBox {
+  width: 120px;
+  height: 40px;
+  background: #333;
+  margin: 20px 60px;
+  border-radius: 50px;
+  position: relative;
+  display: inline-block;
+}
+
+.sliderCheckBox:before {
+  content: '';
+  position: absolute;
+  top: 19px;
+  left: 14px;
+  height: 2px;
+  width: 90px;
+  background: #111;
+}
+
+/**
+ * Create the slider from the label
+ */
+.sliderCheckBox label {
+  display: block;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  transition: all .5s ease;
+  cursor: pointer;
+  position: absolute;
+  top: 9px;
+  z-index: 1;
+  left: 12px;
+  background: #ddd;
+}
+
+/**
+ * Move the slider in the correct position if the checkbox is clicked
+ */
+.sliderCheckBox input[type=checkbox]:checked + label {
+  left: 84px;
+  background: #2592d0;
+}
+
+.submitChanges {
+    width: 100%;
+    height: 50px;
+}
+
+/*li {
+    height: 31px;
+    width: 300px;
+    background-color: blue;
+    display: inline-block;
+    margin-top: 10px;
+    margin-left: 11px;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+}
+
+.afterLi {
+  border: 11px solid blue;
+    transform: rotate(-45deg);
+    position: absolute;
+    left: 300px;
+    top: 14px;
+    border-bottom-left-radius: -1px;
+    border-top-right-radius: 2px;
+}
+
+.beforeLi {
+  border: 11px solid blue;
+    transform: rotate(-45deg);
+    position: absolute;
+    left: 0;
+    top: 14px;
+    border-bottom-left-radius: -1px;
+    border-top-right-radius: 2px;
+    border-color: white;
+}
+
+*/

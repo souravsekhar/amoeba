@@ -107,7 +107,7 @@ const routes = [
             reply.view('index', {});
         }
     },
-   {// serve uploaded image files
+    {// serve uploaded image files
         method: 'GET',
         path: '/uploads/originals/{file*}',
         handler: {
@@ -115,6 +115,13 @@ const routes = [
                 path: 'uploads/originals',
                 listing: true
             }
+        }
+    },
+    {
+        method: "POST",
+        path: '/image/process',
+        handler: function(request, reply) {
+            console.log('inside handler', request.payload);
         }
     }
 ];

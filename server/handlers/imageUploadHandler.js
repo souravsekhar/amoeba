@@ -11,7 +11,7 @@ import async from 'async';
 const imageUploadHandler = (req, reply) => {// uploads the received image to disk currently	
 	let form = new multiparty.Form(),
 		allowedImageTypes = ['.png', '.jpg'];		
-	form.parse(req.payload, (error, fields, files) => {			
+	form.parse(req.payload, (error, fields, files) => {	
 		if (error) return error;
 		fs.readFile(files.imageFile[0].path, (error, data) => {			
 			if (error) return error;

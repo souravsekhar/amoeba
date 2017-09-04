@@ -2,7 +2,8 @@
 
 import UploadHandler from '../server/handlers/uploadHandler.js';
 import SearchHandler from '../server/handlers/searchHandler.js';
-import ImageUploadHandler from '../server/handlers/imageUploadHandler.js'
+import ImageUploadHandler from '../server/handlers/imageUploadHandler.js';
+import OperationsHandler from '../server/handlers/operationsHandler.js'
 
 const routes = [
     {// serve css files
@@ -120,9 +121,7 @@ const routes = [
     {
         method: "POST",
         path: '/image/process',
-        handler: function(request, reply) {
-            console.log('inside handler', request.payload);
-        }
+        handler: OperationsHandler.operationsHandler
     }
 ];
 

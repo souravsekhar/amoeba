@@ -2,14 +2,14 @@
 
 import Jimp from 'jimp';
 
-const imageCropper = (imagePath, imageName, fields, callback) => {	
+const imageCropper = (imagePath, imageName, size, callback) => {	
 	Jimp.read(imagePath, (err, image) => {			
 		if (err) return err;		
 
 		let centerX = Number(image.bitmap.width)/2,
 			centerY = Number(image.bitmap.height)/2,
-			cropWidth = Number(fields.cropWidth[0]),
-			cropHeight = Number(fields.cropHeight[0]),
+			cropWidth = size.width,
+			cropHeight = size.height,
 			cropX = centerX - (cropWidth/2),
 			cropY = centerY - (cropHeight/2),
 			fileName = imageName.substring(0, imageName.indexOf('.')),

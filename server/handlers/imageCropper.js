@@ -2,7 +2,14 @@
 
 import Jimp from 'jimp';
 
-const imageCropper = (imagePath, imageName, size, callback) => {	
+const imageCropper = (req, callback) => {
+	let imagePath = '.' + req.imagePath,
+		size = {
+			height: req && req.crop && req.crop.size,
+			width: req && req.crop && req.crop.size
+		},
+		imageName = req && req.imageFileName;
+	
 	Jimp.read(imagePath, (err, image) => {			
 		if (err) return err;		
 
@@ -14,12 +21,14 @@ const imageCropper = (imagePath, imageName, size, callback) => {
 			cropY = centerY - (cropHeight/2),
 			fileName = imageName.substring(0, imageName.indexOf('.')),
 			fileExtn = imageName.substring(imageName.indexOf('.')),
-			filePath = `./uploads/cropped/cropped_image_${fileName}${fileExtn}`;
+			uploadPath = `./uploads/cropped/cropped_image_${fileName}${fileExtn}`;		
 		
+		req.intermediateImagePath.push(uploadPath);
+
 		image.crop(cropX, cropY, cropWidth, cropHeight)
-			 .write(filePath);
+			 .write(uploadPath);
 		
-		callback(null, filePath);
+		callback(null, uploadPath);
 	});
 }
 

@@ -2,21 +2,33 @@
 
 import Jimp from 'jimp';
 
-const imageResizer = (imagePath, imageName, fields, callback) => {
-	console.log('inside imageResizer', fields);
+const imageResizer = (req, callback) => {
+	
+	let imagePath = '.' + req.imagePath,
+		imageName = req && req.imageFileName,
+		dimensions = {
+			width: req && req.resize && req.resize.dimension,
+			height: req && req.resize && req.resize.dimension
+		};
+
 	Jimp.read(imagePath, (err, image) => {		
 		if (err) return err;
 		
-		let dimensions = fields.imageDimensions[0].split(' x '),
-			height = dimensions[0],
-			width = dimensions[1],
+		let height = dimensions.height,
+			width = dimensions.width,
 			fileExtn = imageName.substring(imageName.indexOf('.')),
 			fileName = imageName.substring(0, imageName.indexOf('.')),
-			uploadPath = `./uploads/resized/resized_images_${fileName}.${fileExtn}`;
+			uploadPath = `./uploads/resized/resized_images_${fileName}${fileExtn}`;
+
+		req.intermediateImagePath.push(uploadPath);
 
 		image.resize(height, width)
 			 .write(uploadPath);
 		
 		callback(null, uploadPath);
 	});
+}
+
+module.exports = {
+	imageResizer: imageResizer
 }

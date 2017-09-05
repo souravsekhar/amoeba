@@ -232,4 +232,11 @@ $(document).ready(function() {
 			});
 		});
 	});
+
+	$('input[name=multiGenerate]').change(function() {
+		console.log('input clicked');
+		if($(this).is(':checked')){
+			requestPayload.multiGenerate = true;
+		}
+	});
 });

@@ -2,13 +2,19 @@
 
 import Jimp from 'jimp';
 
-function formatHandler (imagePath, imageName, fields, callback) {	
+function formatHandler (req, callback) {	
+	
+	let imagePath = '.' + req.imagePath,
+		imageName = req && req.imageFileName,
+		fileFormat = req && req.formats && req.formats.format;
+
 	Jimp.read(imagePath, (err, image) => {		
 		if (err) return err;
-		
-		let fileExtn = fields.formatsSelect[0],
-			fileName = imageName.substring(0, imageName.indexOf('.')),
-			uploadPath = `./uploads/formatted/formatted_images_${fileName}.${fileExtn}`;
+				
+		let fileName = imageName.substring(0, imageName.indexOf('.')),
+			uploadPath = `./uploads/formatted/formatted_images_${fileName}.${fileFormat}`;
+
+		req.intermediateImagePath.push(uploadPath);
 
 		image.write(uploadPath);
 		

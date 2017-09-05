@@ -16,7 +16,7 @@
 		<header>Amoeba <i></i></header>
 		
 			<div class="container-fluid sidePannel">
-			  <div class="row content">
+			  <div class="row content customContainer">
 			    <div class="col-sm-4 col-md-4 sidenav">
 			    <form class="container-fluid" id="imageUploadForm" name="uploadForm" enctype="multipart/form-data">	    
 				   <!-- <input id="selectedImage" type="file" name="imageFile"> -->
@@ -62,13 +62,14 @@
 			      </div>
 			    </div>
 
-			    <div class="col-sm-8 col-md-8">	
+			    <div class="col-sm-8 col-md-8 rightPanel">				    	
 			    	<div class="reorderSection">
 				    	<div class="dragIconHolder">
 				    		<img class="dragIcon" src="./uploads/originals/drag.png">Drag to re-order the operations the way you want your image to be processed.
 				    	</div>		    	
 				    	<ul class="operationsOrder"></ul>
 			    	</div>
+			    	<div><span>After you upload your image, choose operations to be done with it:</span></div>
 					<div id="cropPanel">						
 						<label class="btn btn-primary btn-sm btnSize">
 							<input id="cropCheck" type="checkbox" data-toggle="toggle" data-target="#cropSlider"> Crop
@@ -131,8 +132,23 @@
 							  </label>
 							</div>
 						</div>
+					</div>						
+					<div>
+					<div class="multiGenerateCheckBox">
+						<input type="checkbox" name="multiGenerate" id="multiGenerateCheckBoxInput" value="1">
+						<label for="multiGenerateCheckBoxInput"></label>
+						
 					</div>
-					<button type='button' class="btn btn-primary submitChanges">PROCESS</button>
+					<span>Do you want the images generated at each step? <i>(Keep unchecked, if you want the final processed image only)</i></span>
+					</div>
+
+					<!-- <label class="btn btn-primary btn-sm btnSize">
+						<input id="cropCheck" type="checkbox" data-toggle="toggle" data-target="#cropSlider"> Crop
+					</label> -->
+					<div class="submitBtnContainer submitChanges">
+						<button type='button' class="btn  btn-block btn-primary">PROCESS</button>
+					</div>		
+					
 
 			    </div>
 			  </div>

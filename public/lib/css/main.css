@@ -63,7 +63,7 @@ header {
     top: 0;
     z-index: 10;
     transition: 0.5s;
-    display: none;
+    display: block;
     bottom: -13px;
 }
 
@@ -77,6 +77,10 @@ header {
 
 .operationsPanelOverlay.fadeout{
   transform: scale(0);
+}
+
+.operationsPanelOverlay.fadein{
+  transform: scale(1);
 }
 
 .nav > li {

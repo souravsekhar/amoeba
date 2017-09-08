@@ -17,7 +17,7 @@ const formatHandler = (req, callback) => {
 		req.intermediateImagePath.push(uploadPath);
 
 		image.write(uploadPath, (err) => {
-			if (err) return err;			
+			if (err) return err;				
 			callback(null, uploadPath);
 		});
 	});

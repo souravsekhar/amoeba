@@ -10,7 +10,8 @@ const multipleUploadsHandler = (request, reply) => {
 
 	let files = fs.readdirSync(sourcePath);
 
-	files.splice(0, 1);
+	files.splice(0, 2);
+	console.log('file', files);
 
 	files.forEach((file) => {
 		imagePathArr.push('/uploads/batch_src/' + file);
@@ -22,7 +23,10 @@ const multipleUploadsHandler = (request, reply) => {
 
 	// it iterates the collection and calls the iteratee passing each 
 	// item as first param to it. And waits until the iteratee resolves.
-	async.eachSeries(imagePathArr, operationsIteratee);
+	async.eachSeries(imagePathArr, operationsIteratee, (err) => {
+		if(err) return err;
+		// reply('series done');
+	});
 }
 
 module.exports = {

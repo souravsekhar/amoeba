@@ -15,7 +15,7 @@ const generateProcessedImage = (req, callback) => {
 		
 		image.write(uploadPath, (err) => {			
 			if (err) return err;
-			
+
 			req.intermediateImagePath.map((path) => {								
 				fs.unlink(path, (err) => {				
 					if (err) return err;						

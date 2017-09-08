@@ -10,7 +10,7 @@ const imageCropper = (req, callback) => {
 		imageName = req && req.imageFileName,
 		imagePath = req.imagePath;
 	
-	Jimp.read(imagePath, (err, image) => {			
+	Jimp.read(imagePath, (err, image) => {		
 		if (err) return err;		
 
 		let centerX = Number(image.bitmap.width)/2,

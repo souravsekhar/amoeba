@@ -59,7 +59,7 @@ const operationsHandler = (imageInfo, request, cb) => {
 			cb(null);
 		});
 	}
-	else {// handles operations sequentially, however stores only the final output	
+	else {// handles operations sequentially, however stores only the final output
 		orderArr.forEach((operation) => {			
 			switch(operation) {
 				case 'Crop':				
@@ -146,7 +146,7 @@ const operationsHandler = (imageInfo, request, cb) => {
 		asyncArr.push((imagePath, callback) => {
 			req.imagePath = imagePath;
 			GenerateProcessedImage.generateProcessedImage(req, callback);			
-		});		
+		});	
 		
 		async.waterfall(asyncArr, (err, results) => {			
 			if (err) return err;

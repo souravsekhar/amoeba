@@ -21,7 +21,7 @@ $(document).ready(function() {
 
 	$(".operationsOrder").sortable();
 
-	$('.singleUpload, .multiUpload').click(function() {
+	$('.singleUpload, .multiUpload').click(function() {// for overlay buttons
 
 		$('.homeOverlay').css({top:"-100vh"});
 
@@ -37,17 +37,23 @@ $(document).ready(function() {
 			$('.nav-tabs > li:nth-child(2)').addClass('active');
 			url = '/image/multipleUpload';
 			$('.submitBtnContainer > button').text('PROCESS MULTIPLE');
+			$('.operationsPanelOverlay').css('display', 'none');
 		}	
 	});
 
-	$('.nav-tabs > li:nth-child(1)').click(function() {
+	$('.nav-tabs > li:first-child').click(function() {// for nav tabs
 		url = '/image/process';
 		$('.submitBtnContainer > button').text('PROCESS SINGLE');
+		if($('.imageContainer > img').attr('src') === './uploads/originals/placeholder.png'){
+			$('.operationsPanelOverlay').css('display','block');		
+			
+		}
 	});
 
-	$('.nav-tabs > li:nth-child(2)').click(function() {
+	$('.nav-tabs > li:last-child').click(function() {
 		url = '/image/multipleUpload';
 		$('.submitBtnContainer > button').text('PROCESS MULTIPLE');
+		$('.operationsPanelOverlay').css('display','none');
 	});
 		
 	$("#imageUploadForm").submit(function(e) {
@@ -167,7 +173,6 @@ $(document).ready(function() {
 	$('.submitChanges').click(function() {		
 		requestPayload.operationOrder = reorder(); // sending operation order to server based on user's choice
 
-		console.log('requestPayload', requestPayload);
 		$.ajax({
 			type: 'POST',
 			url: url,

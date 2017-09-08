@@ -34,7 +34,7 @@ const operationsHandler = (imageInfo, request, cb) => {
 					asyncArr.push((callback) => {					
 						ImageResizer.imageResizer(req, callback);					
 					});
-					break;	
+					break;
 			}
 		});
 

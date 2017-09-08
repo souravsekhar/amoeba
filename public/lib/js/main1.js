@@ -29,20 +29,25 @@ $(document).ready(function() {
 			$('.singleUploadContainer').addClass('active');
 			$('.nav-tabs > li:nth-child(1)').addClass('active');
 			url = '/image/process';
+			$('.submitBtnContainer > button').text('PROCESS SINGLE');
+			$('.operationsPanelOverlay').css('display', 'block');
 		}
 		else {			
 			$('.multipleUploadContainer').addClass('active');
 			$('.nav-tabs > li:nth-child(2)').addClass('active');
 			url = '/image/multipleUpload';
+			$('.submitBtnContainer > button').text('PROCESS MULTIPLE');
 		}	
 	});
 
 	$('.nav-tabs > li:nth-child(1)').click(function() {
 		url = '/image/process';
+		$('.submitBtnContainer > button').text('PROCESS SINGLE');
 	});
 
 	$('.nav-tabs > li:nth-child(2)').click(function() {
 		url = '/image/multipleUpload';
+		$('.submitBtnContainer > button').text('PROCESS MULTIPLE');
 	});
 		
 	$("#imageUploadForm").submit(function(e) {
@@ -92,8 +97,10 @@ $(document).ready(function() {
 							'left':0,
 							'background': 'url('+path+') no-repeat -0px -0px',
 							'background-size': $('.imageContainer')[0].clientWidth + 'px'
-						});												
+						});
 
+						$('.operationsPanelOverlay').addClass('fadeout');	
+						
 						clearInterval(showImage);
 					}			
 				}, 30);			

@@ -76,12 +76,18 @@
 					      </div>
 				      </div>
 				      <div class="multipleUploadContainer tab-pane" id="multiTab" role="tabpanel">
-				      	<!--  -->
+				      	<h5>Put all your images at the source path shown below and you will get your processed images at the destination shown:</h5>
+				      	<h5>Source</h5>
+				      	<input type="text" name="sourcePath" value="/uploads/batch_src" disabled>
+				      	<h5>Destination</h5><input type="text" name="destPath" value="/uploads/processed" disabled>				
 				      </div>
 				      </div>
-			    </div>
+			    </div>			    
 
-			    <div class="col-sm-8 col-md-8 rightPanel">			    	
+			    <div class="col-sm-8 col-md-8 rightPanel">	
+			    	<div class="operationsPanelOverlay">
+			    		<h2>Please upload to begin...</h2>
+			    	</div>		    	
 			    	<div class="reorderSection">
 				    	<div class="dragIconHolder">
 				    		<img class="dragIcon" src="./uploads/originals/drag.png">Drag to re-order the operations the way you want your image to be processed.
@@ -181,7 +187,7 @@
 						<input id="cropCheck" type="checkbox" data-toggle="toggle" data-target="#cropSlider"> Crop
 					</label> -->
 					<div class="submitBtnContainer submitChanges">
-						<button type='button' class="btn  btn-block btn-primary">PROCESS</button>
+						<button type='button' class="btn  btn-block btn-primary"></button>
 					</div>		
 					
 

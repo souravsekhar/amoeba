@@ -7,6 +7,10 @@ header {
   line-height: 50px;
 }
 
+.multipleUploadContainer > h5:nth-child(1) {
+  margin-bottom: 25px;
+}
+
 .homeOverlay > h1 {
     margin: 0 auto;
     font-size: 95px;
@@ -49,6 +53,30 @@ header {
   left: 50%;
   top:50%;
   transform: translate(-50%,-50%);
+}
+
+.operationsPanelOverlay {
+    width: 100%;
+    background-color: black;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 10;
+    transition: 0.5s;
+    display: none;
+    bottom: -13px;
+}
+
+.operationsPanelOverlay > h2 {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  color: #888;
+}
+
+.operationsPanelOverlay.fadeout{
+  transform: scale(0);
 }
 
 .nav > li {
@@ -364,4 +392,16 @@ li {
 
 .multiGenerateCheckBox input[type=checkbox]:checked + label {
   background: #0471af;
+}
+input[name="sourcePath"], input[name="destPath"] {
+    width: 100%;
+    padding: 8px;
+    border: solid 1px #fff;
+    box-shadow: inset 1px 1px 2px 0 #707070;
+    transition: box-shadow 0.3s;
+}
+
+input[name="sourcePath"]:focus, input[name="destPath"]:focus,
+input[name="sourcePath"].focus, input[name="destPath"].focus {
+    box-shadow: inset 1px 1px 2px 0 #c9c9c9;
 }

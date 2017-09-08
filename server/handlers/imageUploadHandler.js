@@ -8,7 +8,7 @@ import FormatHandler from './formatHandler';
 import path from 'path';
 import async from 'async';
 
-const imageUploadHandler = (req, reply) => {// uploads the received image to disk currently	
+const imageUploadHandler = (req, reply) => {// uploads the received image to disk currently
 	let form = new multiparty.Form(),
 		allowedImageTypes = ['.png', '.jpg'];		
 	form.parse(req.payload, (error, fields, files) => {	

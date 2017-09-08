@@ -7,6 +7,54 @@ header {
   line-height: 50px;
 }
 
+.homeOverlay > h1 {
+    margin: 0 auto;
+    font-size: 95px;
+    color: #fff;
+    text-align: center;
+    margin-top: 12%;
+}
+
+.homeOverlay {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #0471af;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 100;
+    transition: 0.5s;
+}
+
+.homeOverlay > .btnContainer > .btn-primary {
+  color: #0471af;
+  background-color: #fff;
+  box-shadow: 5px 5px 5px -1px #3e3e3e;
+  width: 200px;
+  height: 50px;
+  margin-right: 10px;
+}
+
+.homeOverlay > .btnContainer > .btn-primary:hover, 
+.homeOverlay > .btnContainer > .btn-primary:active {
+    color: #fff;
+    background-color: #48535d;
+    border-color: #3e3e3e;
+}
+
+
+
+.homeOverlay .btnContainer {
+  position: absolute;
+  left: 50%;
+  top:50%;
+  transform: translate(-50%,-50%);
+}
+
+.nav > li {
+  width: 50%;
+}
+
 form > p {
   font-size: 16px;
 }
@@ -102,7 +150,7 @@ footer {
   .row.content {height: auto;} 
 }
 /*start*/
-input[type="file"] {
+#selectedImage {
     display: none;
 }
 

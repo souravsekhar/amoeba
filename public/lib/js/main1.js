@@ -7,6 +7,7 @@ $(document).ready(function() {
 
 	var requestPayload = {};
 	var operationsArr = [];
+	var url;
 
 	var reorder = function() {
 		var operationArray = $('.operationsOrder > li');
@@ -19,9 +20,33 @@ $(document).ready(function() {
 	};
 
 	$(".operationsOrder").sortable();
+
+	$('.singleUpload, .multiUpload').click(function() {
+
+		$('.homeOverlay').css({top:"-100vh"});
+
+		if($(this).attr('class').indexOf('singleUpload') !== -1) {
+			$('.singleUploadContainer').addClass('active');
+			$('.nav-tabs > li:nth-child(1)').addClass('active');
+			url = '/image/process';
+		}
+		else {			
+			$('.multipleUploadContainer').addClass('active');
+			$('.nav-tabs > li:nth-child(2)').addClass('active');
+			url = '/image/multipleUpload';
+		}	
+	});
+
+	$('.nav-tabs > li:nth-child(1)').click(function() {
+		url = '/image/process';
+	});
+
+	$('.nav-tabs > li:nth-child(2)').click(function() {
+		url = '/image/multipleUpload';
+	});
 		
 	$("#imageUploadForm").submit(function(e) {
-		e.preventDefault();		
+		e.preventDefault();
 
 		var formElement = document.querySelector("#imageUploadForm");
 		var request = new XMLHttpRequest();		
@@ -137,7 +162,7 @@ $(document).ready(function() {
 
 		$.ajax({
 			type: 'POST',
-			url: '/image/process',
+			url: url,
 			data: JSON.stringify(requestPayload),
 			dataType: "json",
 			contentType: 'application/json',
@@ -233,10 +258,36 @@ $(document).ready(function() {
 		});
 	});
 
-	$('input[name=multiGenerate]').change(function() {
-		console.log('input clicked');
+	$('input[name=multiGenerate]').change(function() {		
 		if($(this).is(':checked')){
 			requestPayload.multiGenerate = true;
+		}
+	});
+
+	$('#flipCheckBoxInput').change(function () {
+		if($(this).is(':checked')) {
+			$('.croppedImg').css('transform', 'scaleX(-1)');
+		}
+		else{
+			$('.croppedImg').css('transform', '');
+		}
+	});
+
+	$('#greyScaleCheckBoxInput').change(function() {
+		if($(this).is(':checked')) {
+			$('.croppedImg').css('filter', 'grayscale(100%)');
+		}
+		else {
+			$('.croppedImg').css('filter', '');
+		}
+	});
+
+	$('#invertCheckBoxInput').change(function() {
+		if($(this).is(':checked')) {
+			$('.croppedImg').css('filter', 'invert(100%)');
+		}
+		else {
+			$('.croppedImg').css('filter', '');
 		}
 	});
 });

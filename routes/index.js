@@ -3,7 +3,8 @@
 import UploadHandler from '../server/handlers/uploadHandler.js';
 import SearchHandler from '../server/handlers/searchHandler.js';
 import ImageUploadHandler from '../server/handlers/imageUploadHandler.js';
-import OperationsHandler from '../server/handlers/operationsHandler.js'
+import RequestHandler from '../server/handlers/requestHandler.js';
+import MultipleUploadsHandler from '../server/handlers/multipleUploadsHandler.js';
 
 const routes = [
     {// serve css files
@@ -89,6 +90,11 @@ const routes = [
         },
         handler: ImageUploadHandler.imageUploadHandler
     },
+    {// upload images
+        method: 'POST',
+        path: '/image/multipleUpload',
+        handler: MultipleUploadsHandler.multipleUploadsHandler
+    },
     {// show processed images
         method: 'GET',
         path: '/search',
@@ -121,7 +127,7 @@ const routes = [
     {
         method: "POST",
         path: '/image/process',
-        handler: OperationsHandler.operationsHandler
+        handler: RequestHandler.requestHandler
     }
 ];
 

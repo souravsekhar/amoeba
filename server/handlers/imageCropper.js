@@ -3,12 +3,12 @@
 import Jimp from 'jimp';
 
 const imageCropper = (req, callback) => {
-	let imagePath = '.' + req.imagePath,
-		size = {
+	let size = {
 			height: req && req.crop && req.crop.size,
 			width: req && req.crop && req.crop.size
 		},
-		imageName = req && req.imageFileName;
+		imageName = req && req.imageFileName,
+		imagePath = req.imagePath;
 	
 	Jimp.read(imagePath, (err, image) => {			
 		if (err) return err;		
@@ -26,9 +26,10 @@ const imageCropper = (req, callback) => {
 		req.intermediateImagePath.push(uploadPath);
 
 		image.crop(cropX, cropY, cropWidth, cropHeight)
-			 .write(uploadPath);
-		
-		callback(null, uploadPath);
+			 .write(uploadPath, (err) => {
+			 	if (err) return err;
+			 	callback(null, uploadPath);
+			 });
 	});
 }
 

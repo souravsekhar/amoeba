@@ -3,13 +3,12 @@
 import Jimp from 'jimp';
 
 const imageResizer = (req, callback) => {
-	
-	let imagePath = '.' + req.imagePath,
-		imageName = req && req.imageFileName,
+	let imageName = req && req.imageFileName,
 		dimensions = {
 			width: req && req.resize && req.resize.dimension,
 			height: req && req.resize && req.resize.dimension
-		};
+		},
+		imagePath = req.imagePath;
 
 	Jimp.read(imagePath, (err, image) => {		
 		if (err) return err;
@@ -23,9 +22,10 @@ const imageResizer = (req, callback) => {
 		req.intermediateImagePath.push(uploadPath);
 
 		image.resize(height, width)
-			 .write(uploadPath);
-		
-		callback(null, uploadPath);
+			 .write(uploadPath, (err) => {
+			 	if (err) return err;			 	
+			 	callback(null, uploadPath);
+			 });
 	});
 }
 

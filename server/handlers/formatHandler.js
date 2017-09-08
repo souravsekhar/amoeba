@@ -2,11 +2,11 @@
 
 import Jimp from 'jimp';
 
-function formatHandler (req, callback) {	
+const formatHandler = (req, callback) => {
 	
-	let imagePath = '.' + req.imagePath,
-		imageName = req && req.imageFileName,
-		fileFormat = req && req.formats && req.formats.format;
+	let imageName = req && req.imageFileName,
+		fileFormat = req && req.formats && req.formats.format,
+		imagePath = req.imagePath;
 
 	Jimp.read(imagePath, (err, image) => {		
 		if (err) return err;
@@ -16,9 +16,10 @@ function formatHandler (req, callback) {
 
 		req.intermediateImagePath.push(uploadPath);
 
-		image.write(uploadPath);
-		
-		callback(null, uploadPath);
+		image.write(uploadPath, (err) => {
+			if (err) return err;			
+			callback(null, uploadPath);
+		});
 	});
 }
 

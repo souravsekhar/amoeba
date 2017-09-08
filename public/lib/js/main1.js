@@ -167,6 +167,7 @@ $(document).ready(function() {
 	$('.submitChanges').click(function() {		
 		requestPayload.operationOrder = reorder(); // sending operation order to server based on user's choice
 
+		console.log('requestPayload', requestPayload);
 		$.ajax({
 			type: 'POST',
 			url: url,
@@ -179,7 +180,7 @@ $(document).ready(function() {
 		});
 	});
 
-	$('#cropCheck, #resizeCheck, #compositeCheck, #formatCheck').on('change', function () {		
+	$('#cropCheck, #resizeCheck, #compositeCheck, #formatCheck, #invertCheckBoxInput, #flipCheckBoxInput, #greyScaleCheckBoxInput').on('change', function () {		
 		var tempArr = [];
 		var removeUncheckedOperation = function (self) {			
 			operationsArr.forEach(function (elem) {				
@@ -246,7 +247,69 @@ $(document).ready(function() {
 					$('#formatDrag').remove();
 
 					requestPayload.formats = {} //not sending operation data on uncheck of format operation
-				}	
+				}
+
+				break;
+
+			case 'invertCheckBoxInput':
+				var $li = $('<li>', {'id': 'invertDrag'});
+				var $span = $('<span>', {'class':'btn btn-info btn-arrow-right buttonAlign'})
+				$span.html("Invert");	
+				$li.append($span);
+				if ($(this).is(':checked')) {				
+					tempArr.push($(this).attr('id'));	
+					$('.operationsOrder').append($li);
+					requestPayload.invert = true;
+
+				}
+				else {					
+					tempArr.splice(tempArr.indexOf($(this).attr('id')), 1);
+					removeUncheckedOperation(this);
+					$('#invertDrag').remove();
+					requestPayload.invert = false //not sending operation data on uncheck of format operation
+				}
+
+				break;
+
+			case 'flipCheckBoxInput':
+				var $li = $('<li>', {'id': 'flipDrag'});
+				var $span = $('<span>', {'class':'btn btn-info btn-arrow-right buttonAlign'})
+				$span.html("Flip");	
+				$li.append($span);
+				if ($(this).is(':checked')) {				
+					tempArr.push($(this).attr('id'));	
+					$('.operationsOrder').append($li);
+					requestPayload.flip = true;
+
+				}
+				else {					
+					tempArr.splice(tempArr.indexOf($(this).attr('id')), 1);
+					removeUncheckedOperation(this);
+					$('#invertDrag').remove();
+					requestPayload.flip = false //not sending operation data on uncheck of format operation
+				}
+
+				break;
+
+			case 'greyScaleCheckBoxInput':
+				var $li = $('<li>', {'id': 'greyDrag'});
+				var $span = $('<span>', {'class':'btn btn-info btn-arrow-right buttonAlign'})
+				$span.html("Greyscale");	
+				$li.append($span);
+				if ($(this).is(':checked')) {				
+					tempArr.push($(this).attr('id'));	
+					$('.operationsOrder').append($li);
+					requestPayload.greyscale = true;
+
+				}
+				else {					
+					tempArr.splice(tempArr.indexOf($(this).attr('id')), 1);
+					removeUncheckedOperation(this);
+					$('#greyDrag').remove();
+					requestPayload.greyscale = false //not sending operation data on uncheck of format operation
+				}
+
+				break;	
 		}
 		
 		if($('.operationsOrder li').length > 0){			

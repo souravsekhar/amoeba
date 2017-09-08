@@ -2,7 +2,11 @@
 
 import Jimp from 'jimp';
 
-function invertHandler (imagePath, imageName, fields, callback) {	
+function invertHandler (req, callback) {
+
+	let imageName = req && req.imageFileName,
+		imagePath = req.imagePath;
+
 	Jimp.read(imagePath, (err, image) => {		
 		if (err) return err;
 		
@@ -10,10 +14,13 @@ function invertHandler (imagePath, imageName, fields, callback) {
 			fileName = imageName.substring(0, imageName.indexOf('.')),
 			uploadPath = `./uploads/inverted/inverted_images_${fileName}.${fileExtn}`;
 
+		req.intermediateImagePath.push(uploadPath);
+
 		image.invert()
-			 .write(uploadPath);
-		
-		callback(null, uploadPath);
+			 .write(uploadPath, (err) => {
+			 	if (err) return err;
+			 	callback(null, uploadPath);
+			 });		
 	});
 }
 

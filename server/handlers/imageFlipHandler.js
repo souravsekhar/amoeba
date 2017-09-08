@@ -2,7 +2,10 @@
 
 import Jimp from 'jimp';
 
-function imageFlipHandler (imagePath, imageName, fields, callback) {	
+function imageFlipHandler (req, callback) {
+	let imageName = req && req.imageFileName,
+		imagePath = req.imagePath;
+
 	Jimp.read(imagePath, (err, image) => {		
 		if (err) return err;
 		
@@ -10,10 +13,13 @@ function imageFlipHandler (imagePath, imageName, fields, callback) {
 			fileName = imageName.substring(0, imageName.indexOf('.')),
 			uploadPath = `./uploads/flipped/flipped_images_${fileName}.${fileExtn}`;
 
-		image.flip() // TODO:takes param 'horizontally' or 'vertically'
-			 .write(uploadPath);
-		
-		callback(null, uploadPath);
+		req.intermediateImagePath.push(uploadPath);
+
+		image.flip(true, false) // TODO:takes param 'horizontally' or 'vertically'
+			 .write(uploadPath, (err) => {
+			 	if (err) return err;
+			 	callback(null, uploadPath);
+			 });		
 	});
 }
 

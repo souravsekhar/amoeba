@@ -10,14 +10,14 @@ const generateProcessedImage = (req, callback) => {
 		fileName = imageName.substring(0, imageName.indexOf('.')),
 		uploadPath = `./uploads/processed/processed_images_${fileName}${fileFormat}`;
 
-	Jimp.read(imagePath, (err, image) => {		
+	Jimp.read(imagePath, (err, image) => {	
 		if (err) return err;		
 		
 		image.write(uploadPath, (err) => {			
 			if (err) return err;
-
-			req.intermediateImagePath.map((path) => {				
-				fs.unlink(path, (err) => {
+			
+			req.intermediateImagePath.map((path) => {								
+				fs.unlink(path, (err) => {				
 					if (err) return err;						
 				});
 			});

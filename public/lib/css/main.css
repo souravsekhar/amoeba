@@ -1,7 +1,7 @@
 header {
   height: 50px;
   background-color: #0471af;
-  text-align: center;    
+  text-align: center;
   color: #fff;
   font-size: 25px;
   line-height: 50px;
@@ -39,7 +39,7 @@ header {
   margin-right: 10px;
 }
 
-.homeOverlay > .btnContainer > .btn-primary:hover, 
+.homeOverlay > .btnContainer > .btn-primary:hover,
 .homeOverlay > .btnContainer > .btn-primary:active {
     color: #fff;
     background-color: #48535d;
@@ -142,7 +142,7 @@ div.container-fluid.sidePannel{
   opacity: 0.5;
 }
 
-.imageContainer .croppedImg{  
+.imageContainer .croppedImg{
   position: absolute;
   overflow: hidden;
   opacity: 1 !important;
@@ -179,7 +179,7 @@ footer {
     height: auto;
     padding: 15px;
   }
-  .row.content {height: auto;} 
+  .row.content {height: auto;}
 }
 /*start*/
 #selectedImage {
@@ -241,11 +241,11 @@ li {
 }
 
 .liButton {
-  height: 32px;  
+  height: 32px;
 }
 
 .liButton:after {
-  margin-right: 2px; 
+  margin-right: 2px;
 }
 
 

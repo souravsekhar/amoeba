@@ -3,7 +3,7 @@
 	<head>
 	  <title>Amoeba</title>
 	  <meta charset="utf-8">
-	  <meta name="viewport" content="width=device-width, initial-scale=1">	  
+	  <meta name="viewport" content="width=device-width, initial-scale=1">
 	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
@@ -13,10 +13,10 @@
 	  <!-- <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css"> -->
 	</head>
 	<body>
-		<header>Amoeba <i></i></header>			
+		<header>Amoeba <i></i></header>
 			<div class="homeOverlay">
-				<h1>Amoeba</h1>				
-				<div class="btnContainer">					
+				<h1>Amoeba</h1>
+				<div class="btnContainer">
 					<button class="btn btn-primary singleUpload">Single Upload</button>
 					<button class="btn btn-primary multiUpload">Multiple Upload</button>
 				</div>
@@ -27,12 +27,12 @@
 				    <!-- tabs section -->
 				    <ul class="nav nav-tabs" role="tablist">
 				       <li role="presentation"><a href="#singleTab" aria-controls="singleTab" role="tab" data-toggle="tab">Single upload</a></li>
-				       <li role="presentation"><a href="#multiTab" aria-controls="multiTab" role="tab" data-toggle="tab">Multiple upload</a></li>			       
+				       <li role="presentation"><a href="#multiTab" aria-controls="multiTab" role="tab" data-toggle="tab">Multiple upload</a></li>
 				    </ul>
 				    <!-- tabs section -->
 			    	<div class="tab-content">
 				    <div class="singleUploadContainer tab-pane" id="singleTab" role="tabpanel">
-					    <form class="container-fluid" id="imageUploadForm" name="uploadForm" enctype="multipart/form-data">	    
+					    <form class="container-fluid" id="imageUploadForm" name="uploadForm" enctype="multipart/form-data">
 						   <!-- <input id="selectedImage" type="file" name="imageFile"> -->
 						   <p>Please select image to be uploaded</p>
 						   <label for="selectedImage" class="btn btn-primary">
@@ -49,28 +49,28 @@
 						   <!-- Progress bar -->
 						   <button type="submit" class="btn btn-primary uploadButton">
 						   	  <i class="glyphicon glyphicon-upload"></i> Upload
-						   </button>    
+						   </button>
 					    </form>
 					      <div class="container-fluid imageContainer" id="imageContainer">
-					      		<img src="./uploads/originals/placeholder.png" id="placeholderImage">			      
+					      		<img src="./uploads/originals/placeholder.png" id="placeholderImage">
 								<div class="layer"></div>
 								<div class="croppedImg">
-									
+
 								</div>
 					      </div>
 					      <div class="minimalOperations">
 					      		<div class="sliderCheckBox">
 					      			<input type="checkbox" name="invertCheck" id="invertCheckBoxInput" value="1">
-					      			<label for="invertCheckBoxInput"></label>			      			
+					      			<label for="invertCheckBoxInput"></label>
 					      		</div><span>Invert</span>
 					      		<div class="sliderCheckBox">
 					      			<input type="checkbox" name="invertCheck" id="flipCheckBoxInput" value="1">
-					      			<label for="flipCheckBoxInput"></label>			      			
+					      			<label for="flipCheckBoxInput"></label>
 					      		</div>
 					      		<span>Flip</span>
 					      		<div class="sliderCheckBox">
 					      			<input type="checkbox" name="invertCheck" id="greyScaleCheckBoxInput" value="1">
-					      			<label for="greyScaleCheckBoxInput"></label>			      			
+					      			<label for="greyScaleCheckBoxInput"></label>
 					      		</div>
 					      		<span>Greyscale</span>
 					      </div>
@@ -79,27 +79,27 @@
 				      	<h5>Put all your images at the source path shown below and you will get your processed images at the destination shown:</h5>
 				      	<h5>Source</h5>
 				      	<input type="text" name="sourcePath" value="/uploads/batch_src" disabled>
-				      	<h5>Destination</h5><input type="text" name="destPath" value="/uploads/processed" disabled>				
+				      	<h5>Destination</h5><input type="text" name="destPath" value="/uploads/processed" disabled>
 				      </div>
 				      </div>
-			    </div>			    
+			    </div>
 
-			    <div class="col-sm-8 col-md-8 rightPanel">	
+			    <div class="col-sm-8 col-md-8 rightPanel">
 			    	<div class="operationsPanelOverlay">
 			    		<h2>Please upload to begin...</h2>
-			    	</div>		    	
+			    	</div>
 			    	<div class="reorderSection">
 				    	<div class="dragIconHolder">
 				    		<img class="dragIcon" src="./uploads/originals/drag.png">Drag to re-order the operations the way you want your image to be processed.
-				    	</div>		    	
+				    	</div>
 				    	<ul class="operationsOrder"></ul>
 			    	</div>
 			    	<div><span>After you upload your image, choose operations to be done with it:</span></div>
-					<div id="cropPanel">						
+					<div id="cropPanel">
 						<label class="btn btn-primary btn-sm btnSize">
 							<input id="cropCheck" type="checkbox" data-toggle="toggle" data-target="#cropSlider"> Crop
-						</label>						
-					
+						</label>
+
 						<div id="cropSlider" class="buttonPanel">
 						    <div class="btn-group labelsSection" data-toggle="buttons">
 						      <label class="btn btn-primary cropLbl">
@@ -114,10 +114,10 @@
 						      <label class="btn btn-primary cropLbl">
 						        <input type="radio" id="option4" autocomplete="off" value="50" name="cropRadio"> 50 x 50
 						      </label>
-						    </div>						    	
+						    </div>
 						</div>
 					</div>
-					<div id="resizePanel">						
+					<div id="resizePanel">
 						<label class="btn btn-primary btn-sm btnSize">
 							<input id="resizeCheck" type="checkbox" data-toggle="toggle" data-target="#resizeSlider"> Resize
 						</label>
@@ -139,7 +139,7 @@
 						   </div>
 						</div>
 					</div>
-					<div id="formatPanel">					
+					<div id="formatPanel">
 						<label class="btn btn-primary btn-sm btnSize">
 							<input id="formatCheck" type="checkbox" data-toggle="toggle" data-target="#formatSlider"> Format
 						</label>
@@ -157,28 +157,28 @@
 							  </label>
 							</div>
 						</div>
-					</div>						
+					</div>
 					<div>
 					<!-- <div class="minimalOperations">
 			      		<div class="sliderCheckBox">
 			      			<input type="checkbox" name="invertCheck" id="invertCheckBoxInput" value="1">
-			      			<label for="invertCheckBoxInput"></label>			      			
+			      			<label for="invertCheckBoxInput"></label>
 			      		</div><span>Invert</span>
 			      		<div class="sliderCheckBox">
 			      			<input type="checkbox" name="invertCheck" id="flipCheckBoxInput" value="1">
-			      			<label for="flipCheckBoxInput"></label>			      			
+			      			<label for="flipCheckBoxInput"></label>
 			      		</div>
 			      		<span>Flip</span>
 			      		<div class="sliderCheckBox">
 			      			<input type="checkbox" name="invertCheck" id="greyScaleCheckBoxInput" value="1">
-			      			<label for="greyScaleCheckBoxInput"></label>			      			
+			      			<label for="greyScaleCheckBoxInput"></label>
 			      		</div>
 			      		<span>Greyscale</span>
 			      </div> -->
 					<div class="multiGenerateCheckBox">
 						<input type="checkbox" name="multiGenerate" id="multiGenerateCheckBoxInput" value="1">
 						<label for="multiGenerateCheckBoxInput"></label>
-						
+
 					</div>
 					<span>Do you want the images generated at each step? <i>(Keep unchecked, if you want the final processed image only)</i></span>
 					</div>
@@ -188,17 +188,17 @@
 					</label> -->
 					<div class="submitBtnContainer submitChanges">
 						<button type='button' class="btn  btn-block btn-primary"></button>
-					</div>		
-					
+					</div>
+
 
 			    </div>
 			  </div>
-			</div>		
+			</div>
 		<footer class="container-fluid">
 		  <p>Footer Text</p>
 		</footer>
-			
-		<script type="text/javascript" src='/js/jquery-3.2.1.min.js'></script>		
+
+		<script type="text/javascript" src='/js/jquery-3.2.1.min.js'></script>
 		<!-- <script type="text/javascript" src='/bootstrap/js/bootstrap.js'</script> -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 		<script type="text/javascript" src="/js/jquery-ui.js"></script>

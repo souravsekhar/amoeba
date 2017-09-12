@@ -4,6 +4,9 @@ $("[data-toggle='toggle']").click(function() {
 });
 
 $(document).ready(function() {
+	// initial page render settings
+	$('.rightPanel, .imageContainer').css('display', 'none');
+	$('.sidenav').addClass('sideNavFullWidth');
 
 	var requestPayload = {};
 	var operationsArr = [];
@@ -55,17 +58,27 @@ $(document).ready(function() {
 		$('.submitBtnContainer > button').text('PROCESS MULTIPLE');
 		$('.operationsPanelOverlay').css('display','none');
 	});
+
+	$("#selectedImage").change(function () {		
+		var filePath = $(this)[0].value;
+		var selectedFileName = filePath.replace(/^.*[\\\/]/, '');
+		$("#fileNameDisplayBox").val(selectedFileName);
+		$('.uploadButton').slideDown(500);
+		$("#imageUploadForm").submit();
+	});
 		
 	$("#imageUploadForm").submit(function(e) {
 		e.preventDefault();
 
 		var formElement = document.querySelector("#imageUploadForm");
-		var request = new XMLHttpRequest();		
+		var request = new XMLHttpRequest();
 		
 		var formData = new FormData(formElement);
 
 		request.open("POST", "/upload");				
 		request.send(formData);
+
+		$('#imageUploadForm > label').css('display', 'none');
 
 		request.onreadystatechange = function () {
 			if (this.readyState === 4 && this.status === 200) {
@@ -80,32 +93,58 @@ $(document).ready(function() {
 				requestPayload.imageFileName = fileName;
 				requestPayload.imagePath = path;				
 
-				$('.progress, .progressBar').css('display', 'block');
+				$('.progress, .progressBar').css('display', 'block');			
 
 				var showImage = setInterval(function() {
 					width = width + 1;
-					if (width <= 100) {
+					if (width <= 200) {
 						$('.progressBar').css('width', width+'%');
 					}
 					else {
-
+						$('.dndHolder').css('display', 'none');
+						$('.imageContainer').css('display', 'block');
 						div.appendChild(img);
 
 						$('#placeholderImage').remove();
 
 						$('.progressBar').removeClass('active');
 						$('.progressBar').html('UPLOADED');
+						$('.progress, .progressBar').css('display', 'none');
+
+						// $(".croppedImg").css({
+						// 	'width':'inherit',
+						// 	'min-height':'100%',
+						// 	'top':0,
+						// 	'left':0,
+						// 	'background': 'url('+path+') no-repeat -0px -0px',
+						// 	'background-size': $('.imageContainer')[0].clientWidth + 'px'
+						// });
+
+						$(".layer").css({
+							"width":img.width,
+							"height":img.height,
+							"display": "inline-block",
+							"vertical-align": "middle",
+							"margin": "0 auto",
+							"top": $(img).position().top
+						});
 
 						$(".croppedImg").css({
-							'width':'100%',
-							'min-height':'100%',
-							'top':0,
+							"width":img.width,
+							"height":img.height,
+							"display": "inline-block",
+							"vertical-align": "middle",
+							"margin": "0 auto",
+							"top": $(img).position().top,
 							'left':0,
 							'background': 'url('+path+') no-repeat -0px -0px',
 							'background-size': $('.imageContainer')[0].clientWidth + 'px'
 						});
 
-						$('.operationsPanelOverlay').addClass('fadeout');	
+
+						$('.operationsPanelOverlay').addClass('fadeout');
+						$('.sidenav').removeClass('sideNavFullWidth');
+						$('.rightPanel').css('display', 'block');
 						
 						clearInterval(showImage);
 					}			
@@ -161,14 +200,7 @@ $(document).ready(function() {
 				requestPayload.formats.format = format;				
 				break;
 		}	
-	});
-
-	$("#selectedImage").change(function () {		
-		var filePath = $(this)[0].value;
-		var selectedFileName = filePath.replace(/^.*[\\\/]/, '');
-		$("#fileNameDisplayBox").val(selectedFileName);
-		$('.uploadButton').slideDown(500);
-	});
+	});	
 
 	$('.submitChanges').click(function() {		
 		requestPayload.operationOrder = reorder(); // sending operation order to server based on user's choice

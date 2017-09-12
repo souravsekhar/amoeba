@@ -3,7 +3,6 @@
 import Jimp from 'jimp';
 
 const formatHandler = (req, callback) => {
-	
 	let imageName = req && req.imageFileName,
 		fileFormat = req && req.formats && req.formats.format,
 		imagePath = req.imagePath;

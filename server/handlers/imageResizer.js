@@ -2,7 +2,7 @@
 
 import Jimp from 'jimp';
 
-const imageResizer = (req, callback) => {
+const imageResizer = (req, callback) => {	
 	let imageName = req && req.imageFileName,
 		dimensions = {
 			width: req && req.resize && req.resize.dimension,

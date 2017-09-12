@@ -1,12 +1,17 @@
+body {
+  font-family: Muli,Helvetica,Arial,sans-serif;
+}
 header {
   height: 50px;
-  background-color: #0471af;
+  background-color: #1abc9c;
   text-align: center;
   color: #fff;
   font-size: 25px;
   line-height: 50px;
 }
-
+.singleUploadContainer {
+  position: relative;
+}
 .multipleUploadContainer > h5:nth-child(1) {
   margin-bottom: 25px;
 }
@@ -157,13 +162,14 @@ div.container-fluid.sidePannel{
 
 /* Set gray background color and 100% height */
 .sidenav {
-  background-color: #f1f1f1;
+  background-color: #fff;
   min-height: inherit;
 }
 
 .rightPanel{
   min-height: inherit;
   position: relative;
+  transition: 0.5s;
 }
 
 /* Set black background color, white text and some padding */
@@ -197,13 +203,19 @@ footer {
 }
 
 .progress {
-  margin-top: 10px;
+  width: 50%;
+  position: absolute;
+  margin: 0 auto;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
   display: none;
 }
 
 .progressBar {
   width: 0%;
   display: none;
+  background-color: #1abc9c;
 }
 
 .btnSize {

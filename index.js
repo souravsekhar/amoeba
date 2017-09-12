@@ -11,7 +11,7 @@ const server = new hapi.Server();
 
 // Initiating connection on port
 server.connection({
-	port: process.env.port || 8000,
+	port: process.env.port || 8080,
 	host: "localhost"
 });
 

@@ -9,7 +9,7 @@ import ImageFlipHandler from './imageFlipHandler.js';
 import GreyScaleHandler from './greyScaleHandler.js';
 import async from 'async';
 
-const operationsHandler = (imageInfo, request, cb) => {
+const operationsHandler = (imageInfo, request, cb) => {	
 	const req = request && request.payload,
 		  orderArr = JSON.parse(req.operationOrder),
 	      asyncArr = [];

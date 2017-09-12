@@ -3,6 +3,7 @@
 import Jimp from 'jimp';
 
 const imageCropper = (req, callback) => {
+
 	let size = {
 			height: req && req.crop && req.crop.size,
 			width: req && req.crop && req.crop.size
@@ -26,7 +27,7 @@ const imageCropper = (req, callback) => {
 		req.intermediateImagePath.push(uploadPath);
 
 		image.crop(cropX, cropY, cropWidth, cropHeight)
-			 .write(uploadPath, (err) => {
+			 .write(uploadPath, (err) => {			 	
 			 	if (err) return err;
 			 	callback(null, uploadPath);
 			 });

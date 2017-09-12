@@ -11,13 +11,12 @@ const multipleUploadsHandler = (request, reply) => {
 	let files = fs.readdirSync(sourcePath);
 
 	files.splice(0, 2);
-	console.log('file', files);
 
 	files.forEach((file) => {
 		imagePathArr.push('/uploads/batch_src/' + file);
 	});
 	
-	const operationsIteratee = (imageInfo, cb) => {
+	const operationsIteratee = (imageInfo, cb) => {		
 		OperationsHandler.operationsHandler(imageInfo, request, cb);
 	}
 

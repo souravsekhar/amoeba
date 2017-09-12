@@ -8,7 +8,6 @@
 	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
 	  <link rel="stylesheet" type="text/css" href="/css/main.css">
-	  <link rel="stylesheet" type="text/css" href="/css/main1.css">
 	  <link rel="stylesheet" type="text/css" href="/css/build.css">
 	  <!-- <link rel="stylesheet" type="text/css" href="/css/jquery-ui.css"> -->
 	  <!-- <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css"> -->
@@ -18,66 +17,48 @@
 			<div class="homeOverlay">
 				<h1>Amoeba</h1>				
 				<div class="btnContainer">					
-					<button class="btn customBtn singleUpload">Single Upload</button>
-					<button class="btn customBtn multiUpload">Multiple Upload</button>
+					<button class="btn btn-primary singleUpload">Single Upload</button>
+					<button class="btn btn-primary multiUpload">Multiple Upload</button>
 				</div>
 			</div>
 			<div class="container-fluid sidePannel">
 			  <div class="row content customContainer">
-			    <div class="col-sm-8 col-md-8 sidenav">
+			    <div class="col-sm-4 col-md-4 sidenav">
 				    <!-- tabs section -->
-				    <ul class="nav nav-tabs nav-ui" role="tablist">
+				    <ul class="nav nav-tabs" role="tablist">
 				       <li role="presentation"><a href="#singleTab" aria-controls="singleTab" role="tab" data-toggle="tab">Single upload</a></li>
 				       <li role="presentation"><a href="#multiTab" aria-controls="multiTab" role="tab" data-toggle="tab">Multiple upload</a></li>			       
 				    </ul>
 				    <!-- tabs section -->
 			    	<div class="tab-content">
 				    <div class="singleUploadContainer tab-pane" id="singleTab" role="tabpanel">
-					    <!-- <form class="container-fluid" id="imageUploadForm" name="uploadForm" enctype="multipart/form-data">	    
-						   <input id="selectedImage" type="file" name="imageFile">
+					    <form class="container-fluid" id="imageUploadForm" name="uploadForm" enctype="multipart/form-data">	    
+						   <!-- <input id="selectedImage" type="file" name="imageFile"> -->
 						   <p>Please select image to be uploaded</p>
-						   <label for="selectedImage" class="btn customBtn">
+						   <label for="selectedImage" class="btn btn-primary">
 						       <i class="glyphicon glyphicon-search"></i> Browse
 						   </label>
 						   <input id="selectedImage" type="file" name="imageFile"/>
 						   <input type="text" name="filename" id="fileNameDisplayBox" disabled>
-						   
+						   <!-- Progress bar -->
 						   <div class="progress">
 						     <div class="progress-bar progress-bar-striped active progressBar" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100">
 						       <span class="sr-only">45% Complete</span>
 						     </div>
 						   </div>
-						   
-						   <button type="submit" class="btn customBtn uploadButton">
+						   <!-- Progress bar -->
+						   <button type="submit" class="btn btn-primary uploadButton">
 						   	  <i class="glyphicon glyphicon-upload"></i> Upload
 						   </button>    
-					    </form> -->
-					    
-					    <div class="dndHolder">
-					    	<form id="imageUploadForm" class="dndForm" enctype="multipart/form-data">
-					    		<!-- <div for="selectedImage">
-						  			<i class="glyphicon glyphicon-open"></i>
-						  			<p for="selectedImage"><span for="selectedImage"><b>Choose an image</b></span> or drag it here to upload</p>
-					  			</div>
-					  			<input id="selectedImage" type="file" name="imageFile"> -->
-					  			<label for="selectedImage">
-					  			    <i class="glyphicon glyphicon-open"></i>
-					  			    <div><p>Choose an image</p></div>
-					  			</label>
-					  			<input id="selectedImage" type="file" name="imageFile"/>
-					  		</form>
-					    </div>					  
-					      <div class="imageContainer parentContainer" id="imageContainer">
-					      		<img src="./uploads/originals/PlaceholderImage.jpg" id="placeholderImage">
-								<div for="selectedImage" class="layer"></div>
-								<div class="croppedImg"></div>
-					    </div>
-					    <div class="progress">
-					      <div class="progress-bar progress-bar-striped active progressBar" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100">
-					        <span class="sr-only">45% Complete</span>
+					    </form>
+					      <div class="container-fluid imageContainer" id="imageContainer">
+					      		<img src="./uploads/originals/placeholder.png" id="placeholderImage">			      
+								<div class="layer"></div>
+								<div class="croppedImg">
+									
+								</div>
 					      </div>
-					    </div>
-					     <!--  <div class="minimalOperations">
+					      <div class="minimalOperations">
 					      		<div class="sliderCheckBox">
 					      			<input type="checkbox" name="invertCheck" id="invertCheckBoxInput" value="1">
 					      			<label for="invertCheckBoxInput"></label>			      			
@@ -92,7 +73,7 @@
 					      			<label for="greyScaleCheckBoxInput"></label>			      			
 					      		</div>
 					      		<span>Greyscale</span>
-					      </div> -->
+					      </div>
 				      </div>
 				      <div class="multipleUploadContainer tab-pane" id="multiTab" role="tabpanel">
 				      	<h5>Put all your images at the source path shown below and you will get your processed images at the destination shown:</h5>
@@ -103,7 +84,7 @@
 				      </div>
 			    </div>			    
 
-			    <div class="col-sm-4 col-md-4 rightPanel">	
+			    <div class="col-sm-8 col-md-8 rightPanel">	
 			    	<div class="operationsPanelOverlay">
 			    		<h2>Please upload to begin...</h2>
 			    	</div>		    	
@@ -115,63 +96,63 @@
 			    	</div>
 			    	<div><span>After you upload your image, choose operations to be done with it:</span></div>
 					<div id="cropPanel">						
-						<label class="btn customBtn btn-sm btnSize">
+						<label class="btn btn-primary btn-sm btnSize">
 							<input id="cropCheck" type="checkbox" data-toggle="toggle" data-target="#cropSlider"> Crop
 						</label>						
 					
 						<div id="cropSlider" class="buttonPanel">
 						    <div class="btn-group labelsSection" data-toggle="buttons">
-						      <label class="btn customBtn cropLbl">
+						      <label class="btn btn-primary cropLbl">
 						        <input type="radio" id="option1" autocomplete="off" value="200" name="cropRadio"> 200 x 200
 						      </label>
-						      <label class="btn customBtn cropLbl">
+						      <label class="btn btn-primary cropLbl">
 						        <input type="radio" id="option2" autocomplete="off" value="150" name="cropRadio"> 150 x 150
 						      </label>
-						      <label class="btn customBtn cropLbl">
+						      <label class="btn btn-primary cropLbl">
 						        <input type="radio" id="option3" autocomplete="off" value="100" name="cropRadio"> 100 x 100
 						      </label>
-						      <label class="btn customBtn cropLbl">
+						      <label class="btn btn-primary cropLbl">
 						        <input type="radio" id="option4" autocomplete="off" value="50" name="cropRadio"> 50 x 50
 						      </label>
 						    </div>						    	
 						</div>
 					</div>
 					<div id="resizePanel">						
-						<label class="btn customBtn btn-sm btnSize">
+						<label class="btn btn-primary btn-sm btnSize">
 							<input id="resizeCheck" type="checkbox" data-toggle="toggle" data-target="#resizeSlider"> Resize
 						</label>
 
 						<div id="resizeSlider" class="buttonPanel">
 						   <div class="btn-group labelsSection" data-toggle="buttons">
-					     	  <label class="btn customBtn">
+					     	  <label class="btn btn-primary">
 					     	    <input type="radio" name="options" id="option1" autocomplete="off" value="800"> X-Large (800px)
 					     	  </label>
-					     	  <label class="btn customBtn">
+					     	  <label class="btn btn-primary">
 					     	    <input type="radio" name="options" id="option2" autocomplete="off" value="500"> Large (500px)
 					     	  </label>
-					     	  <label class="btn customBtn">
+					     	  <label class="btn btn-primary">
 					     	    <input type="radio" name="options" id="option3" autocomplete="off" value="300"> Medium (300px)
 					     	  </label>
-					     	  <label class="btn customBtn">
+					     	  <label class="btn btn-primary">
 					     	    <input type="radio" name="options" id="option3" autocomplete="off" value="150"> Small (150px)
 					     	  </label>
 						   </div>
 						</div>
 					</div>
 					<div id="formatPanel">					
-						<label class="btn customBtn btn-sm btnSize">
+						<label class="btn btn-primary btn-sm btnSize">
 							<input id="formatCheck" type="checkbox" data-toggle="toggle" data-target="#formatSlider"> Format
 						</label>
 
 						<div id="formatSlider" class="buttonPanel">
 						    <div class="btn-group labelsSection" data-toggle="buttons">
-							  <label class="btn customBtn">
+							  <label class="btn btn-primary">
 							    <input type="radio" name="options" id="option1" autocomplete="off" value="png"> PNG
 							  </label>
-							  <label class="btn customBtn">
+							  <label class="btn btn-primary">
 							    <input type="radio" name="options" id="option2" autocomplete="off" value="jpg"> JPG
 							  </label>
-							  <label class="btn customBtn">
+							  <label class="btn btn-primary">
 							    <input type="radio" name="options" id="option3" autocomplete="off" value="gif"> GIF
 							  </label>
 							</div>
@@ -202,18 +183,20 @@
 					<span>Do you want the images generated at each step? <i>(Keep unchecked, if you want the final processed image only)</i></span>
 					</div>
 
-					<!-- <label class="btn customBtn btn-sm btnSize">
+					<!-- <label class="btn btn-primary btn-sm btnSize">
 						<input id="cropCheck" type="checkbox" data-toggle="toggle" data-target="#cropSlider"> Crop
 					</label> -->
 					<div class="submitBtnContainer submitChanges">
-						<button type='button' class="btn  btn-block customBtn"></button>
+						<button type='button' class="btn  btn-block btn-primary"></button>
 					</div>		
 					
 
 			    </div>
 			  </div>
 			</div>		
-
+		<footer class="container-fluid">
+		  <p>Footer Text</p>
+		</footer>
 			
 		<script type="text/javascript" src='/js/jquery-3.2.1.min.js'></script>		
 		<!-- <script type="text/javascript" src='/bootstrap/js/bootstrap.js'</script> -->

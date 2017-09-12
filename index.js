@@ -21,8 +21,18 @@ server.register([vision, inert], (err) => {
     }
 });
 
+// register the cookie scheme.
+server.state('token', {
+    ttl: 24 * 60 * 60 * 1000,
+    isSecure: false,
+    isHttpOnly: true,
+    encoding: 'base64json',
+    clearInvalid: false, // remove invalid cookies
+    strictHeader: true // don't allow violations of RFC 6265
+});
+
 // setting up templating engine
-server.views({  
+server.views({
     engines: {
         html: require('handlebars')
     },

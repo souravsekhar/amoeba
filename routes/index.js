@@ -5,6 +5,8 @@ import SearchHandler from '../server/handlers/searchHandler.js';
 import ImageUploadHandler from '../server/handlers/imageUploadHandler.js';
 import RequestHandler from '../server/handlers/requestHandler.js';
 import MultipleUploadsHandler from '../server/handlers/multipleUploadsHandler.js';
+import loginHandler from '../server/handlers/loginHandler.js';
+import homePageHandler from '../server/handlers/homePageHandler.js';
 
 const routes = [
     {// serve css files
@@ -103,16 +105,26 @@ const routes = [
     {// homepage of the app
         method: 'GET',
         path: '/process',
-        handler: function (request, reply) {            
+        handler: function (request, reply) {
             reply.view('process', {});
         }
     },
     {// homepage of the app
         method: 'GET',
         path: '/',
-        handler: function (request, reply) {            
-            reply.view('index', {});
+        handler: function (request, reply) {
+            reply.view('login');
         }
+    },
+    {// login handler
+        method: 'POST',
+        path: '/login',
+        handler: loginHandler.validateUser
+    },
+    {// home handler
+        method: 'GET',
+        path: '/home',
+        handler: homePageHandler.homePageHandler
     },
     {// serve uploaded image files
         method: 'GET',

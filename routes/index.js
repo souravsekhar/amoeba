@@ -121,6 +121,15 @@ const routes = [
         path: '/login',
         handler: loginHandler.validateUser
     },
+    {// logout handler
+        method: 'GET',
+        path: '/logout',
+        handler: function (request, reply) {
+            reply.redirect('/').unstate('token');
+        }
+    },
+
+
     {// home handler
         method: 'GET',
         path: '/home',

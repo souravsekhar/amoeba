@@ -1,38 +1,38 @@
 'use strict';
-var fs          = require('fs');
-var jwt         = require('jsonwebtoken');
-var users     = loadUsers();
+const fs          = require('fs');
+const jwt         = require('jsonwebtoken');
+const users     = loadUsers();
 
 process.env.SECRET_KEY = 'hafha2F3RT3ET2FYGFKJhishgjueiuF5n5095202nfhas983rhb';
 
 
 // validate a user login
 function validateUser(request, reply) {
-    var userName = request.payload.userName;
-    var userPassword = request.payload.password;
-
-    // get user details form database(json)
-    var dbUserName = users[userName].id;
-    var dbPassword = users[userName].password;
+    let userName = request.payload.userName;
+    let userPassword = request.payload.password;
 
     // check if exists
-    if(!dbUserName){
+    if(!(userName in users)){
         var errMsg = 'User not found';
         reply.view('login',{errMsg:errMsg});
     }
 
     else {
+        // get user details form database(json)
+        let dbUserName = users[userName].id;
+        let dbPassword = users[userName].password;
+
         // validate the user
-            if(!(userName === dbUserName && userPassword === dbPassword)){
+            if(!(userPassword === dbPassword)){
                 var errMsg = 'Wrong username or password!';
                 reply.view('login',{errMsg:errMsg});
             }
 
             else {
-                var userId = users[userName].id;
+                let userId = users[userName].id;
                 // if user is found and password is right
                 // create a token
-                var token = jwt.sign(userId, process.env.SECRET_KEY);
+                let token = jwt.sign(userId, process.env.SECRET_KEY);
                 //  console.log("token generated:  "+token);
                 // save this tokent on client side
                 reply.redirect('/home').state('token', token);
@@ -47,5 +47,6 @@ function loadUsers() {
 }
 
 module.exports = {
-    validateUser:validateUser
+    validateUser:validateUser,
+    loadUsers:loadUsers
 };

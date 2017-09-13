@@ -4,6 +4,7 @@ $("[data-toggle='toggle']").click(function() {
 });
 
 $(document).ready(function() {
+    	console.log("{{[userId]}}");
 	// initial page render settings
 	$('.rightPanel, .imageContainer').css('display', 'none');
 	$('.sidenav').addClass('sideNavFullWidth');
@@ -14,8 +15,8 @@ $(document).ready(function() {
 
 	var reorder = function() {
 		var operationArray = $('.operationsOrder > li');
-		var operationOrder = [];		
-		var operationOrder = operationArray.map(function(li, liValue){							
+		var operationOrder = [];
+		var operationOrder = operationArray.map(function(li, liValue){
 			return $(liValue).text();
 		});
 
@@ -35,21 +36,21 @@ $(document).ready(function() {
 			$('.submitBtnContainer > button').text('PROCESS SINGLE');
 			$('.operationsPanelOverlay').css('display', 'block');
 		}
-		else {			
+		else {
 			$('.multipleUploadContainer').addClass('active');
 			$('.nav-tabs > li:nth-child(2)').addClass('active');
 			url = '/image/multipleUpload';
 			$('.submitBtnContainer > button').text('PROCESS MULTIPLE');
 			$('.operationsPanelOverlay').css('display', 'none');
-		}	
+		}
 	});
 
 	$('.nav-tabs > li:first-child').click(function() {// for nav tabs
 		url = '/image/process';
 		$('.submitBtnContainer > button').text('PROCESS SINGLE');
 		if($('.imageContainer > img').attr('src') === './uploads/originals/placeholder.png'){
-			$('.operationsPanelOverlay').css('display','block');		
-			
+			$('.operationsPanelOverlay').css('display','block');
+
 		}
 	});
 
@@ -59,23 +60,23 @@ $(document).ready(function() {
 		$('.operationsPanelOverlay').css('display','none');
 	});
 
-	$("#selectedImage").change(function () {		
+	$("#selectedImage").change(function () {
 		var filePath = $(this)[0].value;
 		var selectedFileName = filePath.replace(/^.*[\\\/]/, '');
 		$("#fileNameDisplayBox").val(selectedFileName);
 		$('.uploadButton').slideDown(500);
 		$("#imageUploadForm").submit();
 	});
-		
+
 	$("#imageUploadForm").submit(function(e) {
 		e.preventDefault();
 
 		var formElement = document.querySelector("#imageUploadForm");
 		var request = new XMLHttpRequest();
-		
+
 		var formData = new FormData(formElement);
 
-		request.open("POST", "/upload");				
+		request.open("POST", "/upload");
 		request.send(formData);
 
 		$('#imageUploadForm > label').css('display', 'none');
@@ -88,12 +89,12 @@ $(document).ready(function() {
 				var fileName = path.replace(/^.*[\\\/]/, '');
 				var width = 0;
 
-				img.src = path;	
+				img.src = path;
 
 				requestPayload.imageFileName = fileName;
-				requestPayload.imagePath = path;				
+				requestPayload.imagePath = path;
 
-				$('.progress, .progressBar').css('display', 'block');			
+				$('.progress, .progressBar').css('display', 'block');
 
 				var showImage = setInterval(function() {
 					width = width + 1;
@@ -145,19 +146,19 @@ $(document).ready(function() {
 						$('.operationsPanelOverlay').addClass('fadeout');
 						$('.sidenav').removeClass('sideNavFullWidth');
 						$('.rightPanel').css('display', 'block');
-						
+
 						clearInterval(showImage);
-					}			
-				}, 30);			
+					}
+				}, 30);
 			}
 		}
 	});
 
 	//crop logic
 
-	$(".labelsSection > label > input").change(function(){					
+	$(".labelsSection > label > input").change(function(){
 		var panelID = $(this).parent().parent().parent().attr('id');
-		var size = Number($(this).val());		
+		var size = Number($(this).val());
 		var containerWidth = $("#imageContainer")[0].clientWidth;
 		var containerHeight = $("#imageContainer")[0].clientHeight;
 
@@ -174,18 +175,18 @@ $(document).ready(function() {
 				'width': size,
 				'min-height': size,
 				'left': offsetX,
-				'top': offsetY,			
+				'top': offsetY,
 				'background': 'url('+url+') no-repeat -'+ (offsetX + 1)+'px -'+(offsetY + 1)+'px',
 				'background-size': $('.imageContainer')[0].clientWidth + 'px',
-				'border': '1px dashed #fff'		
+				'border': '1px dashed #fff'
 			});
-		}		
+		}
 
 		switch(panelID) {
-			case 'cropSlider':				
+			case 'cropSlider':
 				requestPayload.crop = {};
 				requestPayload.crop.size = size;
-				imageCropper();				
+				imageCropper();
 				break;
 
 			case 'resizeSlider':
@@ -197,12 +198,12 @@ $(document).ready(function() {
 			case 'formatSlider':
 				var format = $(this).val();
 				requestPayload.formats = {};
-				requestPayload.formats.format = format;				
+				requestPayload.formats.format = format;
 				break;
-		}	
-	});	
+		}
+	});
 
-	$('.submitChanges').click(function() {		
+	$('.submitChanges').click(function() {
 		requestPayload.operationOrder = reorder(); // sending operation order to server based on user's choice
 
 		$.ajax({
@@ -217,11 +218,11 @@ $(document).ready(function() {
 		});
 	});
 
-	$('#cropCheck, #resizeCheck, #compositeCheck, #formatCheck, #invertCheckBoxInput, #flipCheckBoxInput, #greyScaleCheckBoxInput').on('change', function () {		
+	$('#cropCheck, #resizeCheck, #compositeCheck, #formatCheck, #invertCheckBoxInput, #flipCheckBoxInput, #greyScaleCheckBoxInput').on('change', function () {
 		var tempArr = [];
-		var removeUncheckedOperation = function (self) {			
-			operationsArr.forEach(function (elem) {				
-				if (elem.text == $(self).attr('id')) {					
+		var removeUncheckedOperation = function (self) {
+			operationsArr.forEach(function (elem) {
+				if (elem.text == $(self).attr('id')) {
 					operationsArr.splice(operationsArr.indexOf({id: elem.id, text: elem.text}), 1);
 				}
 			});
@@ -231,16 +232,16 @@ $(document).ready(function() {
 			case 'cropCheck':
 				var $li = $('<li>', {'id': 'cropDrag'});
 				var $span = $('<span>', {'class':'btn btn-info buttonAlign'})
-				$span.html("Crop");	
+				$span.html("Crop");
 				$li.append($span);
-				if ($(this).is(':checked')) {				
-					tempArr.push($(this).attr('id'));	
+				if ($(this).is(':checked')) {
+					tempArr.push($(this).attr('id'));
 					$('.operationsOrder').append($li);
 
 				}
-				else {							
+				else {
 					tempArr.splice(tempArr.indexOf($(this).attr('id')), 1);
-					removeUncheckedOperation(this);					
+					removeUncheckedOperation(this);
 					$('#cropDrag').remove();
 
 					requestPayload.crop = {}; //not sending operation data on uncheck of crop operation
@@ -251,14 +252,14 @@ $(document).ready(function() {
 			case 'resizeCheck':
 				var $li = $('<li>', {'id': 'resizeDrag'});
 				var $span = $('<span>', {'class':'btn btn-info btn-arrow-right buttonAlign'})
-				$span.html("Resize");	
+				$span.html("Resize");
 				$li.append($span);
-				if ($(this).is(':checked')) {				
-					tempArr.push($(this).attr('id'));	
+				if ($(this).is(':checked')) {
+					tempArr.push($(this).attr('id'));
 					$('.operationsOrder').append($li);
 
 				}
-				else {					
+				else {
 					tempArr.splice(tempArr.indexOf($(this).attr('id')), 1);
 					removeUncheckedOperation(this);
 					$('#resizeDrag').remove();
@@ -271,14 +272,14 @@ $(document).ready(function() {
 			case 'formatCheck':
 				var $li = $('<li>', {'id': 'formatDrag'});
 				var $span = $('<span>', {'class':'btn btn-info btn-arrow-right buttonAlign'})
-				$span.html("Format");	
+				$span.html("Format");
 				$li.append($span);
-				if ($(this).is(':checked')) {				
-					tempArr.push($(this).attr('id'));	
+				if ($(this).is(':checked')) {
+					tempArr.push($(this).attr('id'));
 					$('.operationsOrder').append($li);
 
 				}
-				else {					
+				else {
 					tempArr.splice(tempArr.indexOf($(this).attr('id')), 1);
 					removeUncheckedOperation(this);
 					$('#formatDrag').remove();
@@ -291,15 +292,15 @@ $(document).ready(function() {
 			case 'invertCheckBoxInput':
 				var $li = $('<li>', {'id': 'invertDrag'});
 				var $span = $('<span>', {'class':'btn btn-info btn-arrow-right buttonAlign'})
-				$span.html("Invert");	
+				$span.html("Invert");
 				$li.append($span);
-				if ($(this).is(':checked')) {				
-					tempArr.push($(this).attr('id'));	
+				if ($(this).is(':checked')) {
+					tempArr.push($(this).attr('id'));
 					$('.operationsOrder').append($li);
 					requestPayload.invert = true;
 
 				}
-				else {					
+				else {
 					tempArr.splice(tempArr.indexOf($(this).attr('id')), 1);
 					removeUncheckedOperation(this);
 					$('#invertDrag').remove();
@@ -311,15 +312,15 @@ $(document).ready(function() {
 			case 'flipCheckBoxInput':
 				var $li = $('<li>', {'id': 'flipDrag'});
 				var $span = $('<span>', {'class':'btn btn-info btn-arrow-right buttonAlign'})
-				$span.html("Flip");	
+				$span.html("Flip");
 				$li.append($span);
-				if ($(this).is(':checked')) {				
-					tempArr.push($(this).attr('id'));	
+				if ($(this).is(':checked')) {
+					tempArr.push($(this).attr('id'));
 					$('.operationsOrder').append($li);
 					requestPayload.flip = true;
 
 				}
-				else {					
+				else {
 					tempArr.splice(tempArr.indexOf($(this).attr('id')), 1);
 					removeUncheckedOperation(this);
 					$('#invertDrag').remove();
@@ -331,29 +332,29 @@ $(document).ready(function() {
 			case 'greyScaleCheckBoxInput':
 				var $li = $('<li>', {'id': 'greyDrag'});
 				var $span = $('<span>', {'class':'btn btn-info btn-arrow-right buttonAlign'})
-				$span.html("Greyscale");	
+				$span.html("Greyscale");
 				$li.append($span);
-				if ($(this).is(':checked')) {				
-					tempArr.push($(this).attr('id'));	
+				if ($(this).is(':checked')) {
+					tempArr.push($(this).attr('id'));
 					$('.operationsOrder').append($li);
 					requestPayload.greyscale = true;
 
 				}
-				else {					
+				else {
 					tempArr.splice(tempArr.indexOf($(this).attr('id')), 1);
 					removeUncheckedOperation(this);
 					$('#greyDrag').remove();
 					requestPayload.greyscale = false //not sending operation data on uncheck of format operation
 				}
 
-				break;	
+				break;
 		}
-		
-		if($('.operationsOrder li').length > 0){			
+
+		if($('.operationsOrder li').length > 0){
 			$('.reorderSection').slideDown(500);
 
 		}
-		else {			
+		else {
 			$('.reorderSection').slideUp(500);
 		}
 
@@ -365,7 +366,7 @@ $(document).ready(function() {
 		});
 	});
 
-	$('input[name=multiGenerate]').change(function() {		
+	$('input[name=multiGenerate]').change(function() {
 		if($(this).is(':checked')){
 			requestPayload.multiGenerate = true;
 		}

@@ -1,8 +1,8 @@
 .customBtn{
   color: #525252;
-  background-color: #eaeaea;
+  background-color: #fff;
+  border: 1px solid #1abc9c;
   border-radius: 0;
-  border-color: none;
   transition: all 0.2s ease-in;
 }
 
@@ -11,8 +11,8 @@
 .customBtn:hover,
 .customBtn.active{
   color: #fff;
-  background-color: #525252;
-  border-color: #525252;
+  background-color: #1abc9c;
+  border-color: #1abc9c;
 }
 .parentContainer{
   height: 500px;
@@ -49,16 +49,6 @@
   background-color: white;
   width: 70%;
 }
-/*.dndForm > i, .dndForm span {
-  font-size: 80px;
-  color: grey;
-}
-
-.dndForm > span {
-  font-size: 30px;
-  color: grey;
-  top: 70%;
-}*/
 
 #imageUploadForm label {
   position: absolute;
@@ -69,12 +59,20 @@
 #imageUploadForm i {
   font-size: 80px;
   color: grey;
-  left: 31%;
+  left: 21%;
 }
 #imageUploadForm  p, #imageUploadForm span {
   font-size: 20px;
   color: grey;
   display: inline-block;
+}
+
+#imageUploadForm i:hover {
+  color: #1abc9c;
+}
+
+#imageUploadForm  p:hover, #imageUploadForm span:hover {
+  color: #1abc9c;
 }
 
 .nav-ui {
@@ -105,10 +103,28 @@
     color: #555;
 }
 
-.nav-tabs>li.active>a:hover, .nav-tabs>li>a:hover{
+.nav-tabs>li.active>a:hover, 
+.nav-tabs>li>a:hover {
   background-color: #1abc9c;
   color: #fff;
 }
+
+#process-single-btn {
+  background-color: #1abc9c;
+  color: #fff;
+}
+
+.separator {
+  border: 1px solid;
+}
+
+#resizeSlider .row {
+  padding-left: 0;
+  padding-right: 0;
+  width: 100%;
+  margin-left: 0;
+}
+
 
 
 

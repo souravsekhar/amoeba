@@ -34,30 +34,40 @@ $(document).ready(function() {
 			$('.nav-tabs > li:nth-child(1)').addClass('active');
 			url = '/image/process';
 			$('.submitBtnContainer > button').text('PROCESS SINGLE');
-			$('.operationsPanelOverlay').css('display', 'block');
+			// $('.operationsPanelOverlay').css('display', 'block');
 		}
 		else {
 			$('.multipleUploadContainer').addClass('active');
 			$('.nav-tabs > li:nth-child(2)').addClass('active');
 			url = '/image/multipleUpload';
 			$('.submitBtnContainer > button').text('PROCESS MULTIPLE');
-			$('.operationsPanelOverlay').css('display', 'none');
+			// $('.operationsPanelOverlay').css('display', 'none');
 		}
 	});
 
 	$('.nav-tabs > li:first-child').click(function() {// for nav tabs
 		url = '/image/process';
 		$('.submitBtnContainer > button').text('PROCESS SINGLE');
-		if($('.imageContainer > img').attr('src') === './uploads/originals/placeholder.png'){
-			$('.operationsPanelOverlay').css('display','block');
+		console.log('imagepath', $('.imageContainer img').attr('src'));
+		if($('.imageContainer img').attr('src')){
+			console.log('image uploaded');
+			// $('.operationsPanelOverlay').css('display','block');
 
+			$('.sidenav').removeClass('sideNavFullWidth');
+			$('.rightPanel').css('display', 'block');
+		}
+		else{
+			$('.sidenav').addClass('sideNavFullWidth');
+			$('.rightPanel').css('display', 'none');
 		}
 	});
 
 	$('.nav-tabs > li:last-child').click(function() {
 		url = '/image/multipleUpload';
 		$('.submitBtnContainer > button').text('PROCESS MULTIPLE');
-		$('.operationsPanelOverlay').css('display','none');
+		// $('.operationsPanelOverlay').css('display','none');
+		$('.sidenav').removeClass('sideNavFullWidth');
+		$('.rightPanel').css('display', 'block');
 	});
 
 	$("#selectedImage").change(function () {
@@ -323,7 +333,7 @@ $(document).ready(function() {
 				else {
 					tempArr.splice(tempArr.indexOf($(this).attr('id')), 1);
 					removeUncheckedOperation(this);
-					$('#invertDrag').remove();
+					$('#flipDrag').remove();
 					requestPayload.flip = false //not sending operation data on uncheck of format operation
 				}
 

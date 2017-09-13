@@ -1,5 +1,5 @@
 body {
-  font-family: Muli,Helvetica,Arial,sans-serif;
+  font-family: 'Lato', sans-serif;
 }
 header {
   height: 50px;
@@ -169,14 +169,13 @@ div.container-fluid.sidePannel{
 }
 
 .buttonPanel.in {
-  width: 60%;
-  height: 35px;
+  width: 74%;
+  height: 37px;
 }
 
 .imageContainer{
   width: 300px;
   margin:10px auto;
-  border: 1px solid;
   position: relative;
 }
 
@@ -267,9 +266,10 @@ footer {
 
 .btnSize {
   font-size: 16px;
-  width: 15%;
+  width: 25%;
   text-align: left;
   margin: 2px auto;
+  box-sizing: border-box;
 }
 
 label.active {
@@ -282,7 +282,7 @@ div.btn-group .btn-secondary > input:hover {
 }
 
 .operationsOrder {
-  border: 2px dashed;
+  border: 1px dashed #1abc9c;
   margin: 5px auto;
   padding: 5px;
   display: table;
@@ -328,13 +328,15 @@ li {
     border: 0;
     border-radius: 0;
     box-shadow: none !important;
+    background-color: #1abc9c;
 
 }
-.buttonAlign:before , .buttonAlign:after{
+.buttonAlign:before, 
+.buttonAlign:after{
     content: "";
     position: absolute;
     width: 0;
-    height: 0;
+    height: 0;    
 }
 .buttonAlign:before {
     border-top: 16px solid transparent;
@@ -342,26 +344,39 @@ li {
     border-left: 16px solid #fff;
     left: -1px;
     top: 0;
+    background-color: #1abc9c;
 
 }
 .buttonAlign:after {
     border-top: 16px solid transparent;
     border-bottom: 16px solid transparent;
-    border-left: 16px solid #5bc0de;
+    border-left: 16px solid #1abc9c;
     right: -16px;
     top: 0px;
 }
-.buttonAlign:hover:after, .buttonAlign:focus:after{
-  border-left: 16px solid #31b0d5;
+.buttonAlign:hover:after, 
+.buttonAlign:focus:after {
+  border-left: 16px solid #1abc9c;
 }
 
 .buttonAlign:active:after{
-  border-left: 16px solid #269abc;
+  border-left: 16px solid #1abc9c;
+}
+.buttonAlign:hover,
+.buttonAlign:focus,
+.buttonAlign:visited,
+.buttonAlign:active,
+.buttonAlign:active:focus,
+.buttonAlign:active:hover {
+  background-color: #1abc9c;
 }
 
 /*arrow buttons css*/
 
-#invertCheckBoxInput, #flipCheckBoxInput, #greyScaleCheckBoxInput, #multiGenerateCheckBoxInput {
+#invertCheckBoxInput, 
+#flipCheckBoxInput, 
+#greyScaleCheckBoxInput, 
+#multiGenerateCheckBoxInput {
   visibility: hidden;
 }
 
@@ -456,15 +471,49 @@ li {
 .multiGenerateCheckBox input[type=checkbox]:checked + label {
   background: #0471af;
 }
-input[name="sourcePath"], input[name="destPath"] {
+/*input[name="sourcePath"], input[name="destPath"] {
     width: 100%;
     padding: 8px;
     border: solid 1px #fff;
     box-shadow: inset 1px 1px 2px 0 #707070;
     transition: box-shadow 0.3s;
+}*/
+.iconHolder {
+    text-align: center;
+    padding: 50px 0;
+    display: table;
+    height: 525px;
+    vertical-align: middle;
+    width: 100%;
+}
+.sourcePath, .destPath, .arrow {
+   font-size: 100px;
+   color: #1abc9c;
+   display: inline-block;
+}
+
+.arrow {
+  font-size: 50px;
+  line-height: 12;
+}
+
+.iconHolder .col-md-4 {
+    display: table-cell;
+    min-height: 100%;
+    float: none;
+    vertical-align: middle;
+    width: 33%;
 }
 
 input[name="sourcePath"]:focus, input[name="destPath"]:focus,
 input[name="sourcePath"].focus, input[name="destPath"].focus {
     box-shadow: inset 1px 1px 2px 0 #c9c9c9;
+}
+
+.opsPanel {
+  margin: 7px 0 10px;
+}
+
+.rightPanel input[type='checkbox'] {
+  margin: 7px 8px 0;
 }

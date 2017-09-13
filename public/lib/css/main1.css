@@ -89,13 +89,13 @@
 .nav-tabs>li:first-child > a {
     border-right: 0;
 }
-.nav-tabs>li>a, 
-.nav-tabs>li.active>a, 
-.nav-tabs>li>a:hover, 
+.nav-tabs>li>a,
+.nav-tabs>li.active>a,
+.nav-tabs>li>a:hover,
 .nav-tabs>li>a:link,
 .nav-tabs>li>a:visited,
 .nav-tabs>li.active>a:hover,
-.nav-tabs>li.active>a:focus {  
+.nav-tabs>li.active>a:focus {
     border: 1px solid #1abc9c;
     border-bottom-color: #1abc9c;
     border-radius: 0;
@@ -128,4 +128,87 @@
 
 
 
+/*-----------------------------
+saved configuration accordion
+-------------------------------
+*/
 
+.panel-title a > .glyphicon {
+     margin-right:10px;
+}
+
+.panel-body {
+     padding:0px;
+}
+#accordion{
+    margin: 30px 0;
+    border-radius: 0;
+}
+
+#accordion #panel{
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+
+}
+
+#accordion #panel-heading{
+    border-radius: 0;
+    background: #1abc9c;
+    color: #fff;
+}
+
+#accordion .panel-title > a {
+    text-decoration: none;
+    display: block;
+}
+
+#accordion .panel-body .row{
+    margin: 10px 0;
+}
+
+#accordion .panel-body .row:last-child{
+    margin: 0;
+}
+
+#accordion .panel-body .row .col-md-6:first-child{
+    padding: 0;
+    border: 1px solid #1abc9c;
+}
+
+#accordion .panel-body .row .col-md-6:first-child > div.col-md-6{
+    padding: 4px 15px;
+}
+
+#accordion .panel-body .row .col-md-6:first-child > div.col-md-6:first-child{
+    background: #1abc9c;
+    color: #fff;
+}
+
+#cropIcon, #resizeIcon, #formatIcon{
+    margin-right: 15px;
+}
+/*
+#accordion .panel-body .row .col-md-4{
+    padding: 4px 15px;
+    background: #1abc9c;
+    color: #fff;
+}*/
+
+#accordion .panel-body .row .col-md-4 > i{
+    margin-right: 10px;
+}
+
+#accordion .panel-body .row .col-md-8{
+    padding: 4px;
+}
+
+
+.panel-body .row .col-md-4 .glyphicon{
+     margin-right:10px;
+}
+
+/*---------------------------------
+saved configuration accordion end
+-----------------------------------
+*/

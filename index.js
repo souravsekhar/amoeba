@@ -46,4 +46,4 @@ server.views({
 server.route(routes);
 
 // starting server
-server.start(() => {console.log(chalk.green('✓'), "Server running at port", 8000)});
+server.start(() => {console.log(chalk.green('✓'), "Server running at port", 8080)});

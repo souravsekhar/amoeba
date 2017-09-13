@@ -18,6 +18,7 @@
   "homepage": "https://github.com/souravsekhar/imageprocessingwrapper#readme",
   "dependencies": {
     "async": "^2.5.0",
+    "chokidar": "^1.7.0",
     "handlebars": "^4.0.10",
     "hapi": "^16.5.2",
     "inert": "^4.2.1",

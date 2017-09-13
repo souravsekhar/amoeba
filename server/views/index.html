@@ -10,6 +10,7 @@
 	  <link rel="stylesheet" type="text/css" href="/css/main.css">
 	  <link rel="stylesheet" type="text/css" href="/css/main1.css">
 	  <link rel="stylesheet" type="text/css" href="/css/build.css">
+	  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 	  <!-- <link rel="stylesheet" type="text/css" href="/css/jquery-ui.css"> -->
 	  <!-- <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css"> -->
 	</head>
@@ -24,7 +25,7 @@
 			</div>
 			<div class="container-fluid sidePannel">
 			  <div class="row content customContainer">
-			    <div class="col-sm-8 col-md-8 sidenav">
+			    <div class="col-sm-7 col-md-7 col-lg-7 sidenav">
 				    <!-- tabs section -->
 				    <ul class="nav nav-tabs nav-ui" role="tablist">
 				       <li role="presentation"><a href="#singleTab" aria-controls="singleTab" role="tab" data-toggle="tab">Single upload</a></li>
@@ -61,14 +62,13 @@
 					  			</div>
 					  			<input id="selectedImage" type="file" name="imageFile"> -->
 					  			<label for="selectedImage">
-					  			    <i class="glyphicon glyphicon-open"></i>
-					  			    <div><p>Choose an image</p></div>
-					  			</label>
+					  			    <i class="glyphicon glyphicon-open chooseImageIcon"></i>
+					  			    <div><p class="chooseImageIcon">Upload image</p></div>
+					  			</label>					  			
 					  			<input id="selectedImage" type="file" name="imageFile"/>
 					  		</form>
 					    </div>
-					      <div class="imageContainer parentContainer" id="imageContainer">
-					      		<img src="./uploads/originals/PlaceholderImage.jpg" id="placeholderImage">
+					      <div class="imageContainer parentContainer" id="imageContainer">					  
 								<div for="selectedImage" class="layer"></div>
 								<div class="croppedImg"></div>
 					    </div>
@@ -95,26 +95,48 @@
 					      </div> -->
 				      </div>
 				      <div class="multipleUploadContainer tab-pane" id="multiTab" role="tabpanel">
-				      	<h5>Put all your images at the source path shown below and you will get your processed images at the destination shown:</h5>
-				      	<h5>Source</h5>
-				      	<input type="text" name="sourcePath" value="/uploads/batch_src" disabled>
-				      	<h5>Destination</h5><input type="text" name="destPath" value="/uploads/processed" disabled>
+				      	<!-- <h5>Put all your images at the source path shown below and you will get your processed images at the destination shown:</h5> -->
+				      	<!-- <h5>Source</h5> -->
+				      	<!-- <input type="text" name="sourcePath" value="/uploads/batch_src" disabled> -->
+				      	<!-- <div class="sourcePath">/uploads/batch_src</div>
+				      	<div class="destPath">/uploads/processed</div> -->
+				      	<!-- <h5>Destination</h5><input type="text" name="destPath" value="/uploads/processed" disabled> -->
+
+				      	<div class="row iconHolder">
+				      		<div class="col-md-4">
+					      		<div class="sourcePath">
+				      				<i class="glyphicon glyphicon-folder-open"></i>
+				      			</div>
+				      			<p>Source</p>			  
+				      		</div>
+				      		<div class="arrow col-md-4">
+				      			<i class="glyphicon glyphicon-arrow-right"></i>
+				      		</div>
+				      		<div class="col-md-4">
+				      		<div class="destPath">
+				      			<i class="glyphicon glyphicon-folder-close"></i>
+				      		</div>
+				      			<p>Destination</p>
+				      		</div>
+				      	</div>
 				      </div>
 				      </div>
 			    </div>
 
-			    <div class="col-sm-4 col-md-4 rightPanel">
-			    	<div class="operationsPanelOverlay">
+			    <!-- <div class="separator"></div> -->
+
+			    <div class="col-sm-5 col-md-5 col-lg-5 rightPanel">
+			    	<!-- <div class="operationsPanelOverlay">
 			    		<h2>Please upload to begin...</h2>
-			    	</div>
+			    	</div> -->
 			    	<div class="reorderSection">
 				    	<div class="dragIconHolder">
 				    		<img class="dragIcon" src="./uploads/originals/drag.png">Drag to re-order the operations the way you want your image to be processed.
 				    	</div>
 				    	<ul class="operationsOrder"></ul>
 			    	</div>
-			    	<div><span>After you upload your image, choose operations to be done with it:</span></div>
-					<div id="cropPanel">
+			    	<!-- <div><span>After you upload your image, choose operations to be done with it:</span></div> -->
+					<div id="cropPanel" class="opsPanel">
 						<label class="btn customBtn btn-sm btnSize">
 							<input id="cropCheck" type="checkbox" data-toggle="toggle" data-target="#cropSlider"> Crop
 						</label>
@@ -136,29 +158,29 @@
 						    </div>
 						</div>
 					</div>
-					<div id="resizePanel">
+					<div id="resizePanel" class="opsPanel">
 						<label class="btn customBtn btn-sm btnSize">
 							<input id="resizeCheck" type="checkbox" data-toggle="toggle" data-target="#resizeSlider"> Resize
 						</label>
 
 						<div id="resizeSlider" class="buttonPanel">
-						   <div class="btn-group labelsSection" data-toggle="buttons">
-					     	  <label class="btn customBtn">
+						   <div class="btn-group labelsSection row" data-toggle="buttons">
+					     	  <label class="btn customBtn col-md-3">
 					     	    <input type="radio" name="options" id="option1" autocomplete="off" value="800"> X-Large (800px)
 					     	  </label>
-					     	  <label class="btn customBtn">
+					     	  <label class="btn customBtn col-md-3">
 					     	    <input type="radio" name="options" id="option2" autocomplete="off" value="500"> Large (500px)
 					     	  </label>
-					     	  <label class="btn customBtn">
+					     	  <label class="btn customBtn col-md-3">
 					     	    <input type="radio" name="options" id="option3" autocomplete="off" value="300"> Medium (300px)
 					     	  </label>
-					     	  <label class="btn customBtn">
+					     	  <label class="btn customBtn col-md-3">
 					     	    <input type="radio" name="options" id="option3" autocomplete="off" value="150"> Small (150px)
 					     	  </label>
 						   </div>
 						</div>
 					</div>
-					<div id="formatPanel">
+					<div id="formatPanel" class="opsPanel">
 						<label class="btn customBtn btn-sm btnSize">
 							<input id="formatCheck" type="checkbox" data-toggle="toggle" data-target="#formatSlider"> Format
 						</label>
@@ -174,6 +196,41 @@
 							  <label class="btn customBtn">
 							    <input type="radio" name="options" id="option3" autocomplete="off" value="gif"> GIF
 							  </label>
+							</div>
+						</div>
+					</div>
+					<div id="otherOperationsPanel" class="opsPanel">
+						<label class="btn customBtn btn-sm btnSize">
+							<input id="otherOps" type="checkbox" data-toggle="toggle" data-target="#otherOpsSlider"> Others
+						</label>
+
+						<div id="otherOpsSlider" class="buttonPanel">
+						    <div class="btn-group labelsSection" data-toggle="buttons">
+							  <label class="btn customBtn">
+							    <input type="checkbox" name="options" id="invertCheckBoxInput"autocomplete="off" value="png"> Invert
+							  </label>
+							  <label class="btn customBtn">
+							    <input type="checkbox" name="options" id="flipCheckBoxInput" autocomplete="off" value="jpg"> Flip
+							  </label>
+							  <label class="btn customBtn">
+							    <input type="checkbox" name="options" id="greyScaleCheckBoxInput" autocomplete="off" value="gif"> Greyscale
+							  </label>
+							</div>
+						</div>
+					</div>
+					<div id="multiGeneratePanel" class="opsPanel">
+						<label class="btn customBtn btn-sm btnSize">
+							<input id="mulGen" type="checkbox" data-toggle="toggle" data-target="#mulGenSlider"> Multi-generate
+						</label>
+
+						<div id="mulGenSlider" class="buttonPanel">
+						    <div class="btn-group labelsSection" data-toggle="buttons">
+							  <label class="btn customBtn">
+							    <input type="radio" name="options" id="option1" autocomplete="off" value="png"> Yes
+							  </label>
+							  <label class="btn customBtn">
+							    <input type="radio" name="options" id="option2" autocomplete="off" value="jpg"> No
+							  </label>							  
 							</div>
 						</div>
 					</div>
@@ -194,22 +251,22 @@
 			      		</div>
 			      		<span>Greyscale</span>
 			      </div> -->
-					<div class="multiGenerateCheckBox">
+					<!-- <div class="multiGenerateCheckBox">
 						<input type="checkbox" name="multiGenerate" id="multiGenerateCheckBoxInput" value="1">
 						<label for="multiGenerateCheckBoxInput"></label>
 
 					</div>
 					<span>Do you want the images generated at each step? <i>(Keep unchecked, if you want the final processed image only)</i></span>
-					</div>
+					</div> -->
 
 					<!-- <label class="btn customBtn btn-sm btnSize">
 						<input id="cropCheck" type="checkbox" data-toggle="toggle" data-target="#cropSlider"> Crop
 					</label> -->
-					<div class="submitBtnContainer submitChanges">
-						<button type='button' class="btn  btn-block customBtn"></button>
-					</div>
-
-
+				
+						<div class="submitBtnContainer submitChanges col-md-6">
+							<button id="process-single-btn" type='button' class="btn btn-block customBtn"></button>
+						</div>
+														
 			    </div>
 			  </div>
 			</div>

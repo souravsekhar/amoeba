@@ -1,8 +1,11 @@
 'use strict';
 
 import Jimp from 'jimp';
+import chalk from 'chalk';
 
 const imageCropper = (req, callback) => {
+
+	console.log(chalk.yellow('---------- CROPPING INITIATED ----------'));
 
 	let size = {
 			height: req && req.crop && req.crop.size,
@@ -25,10 +28,14 @@ const imageCropper = (req, callback) => {
 			uploadPath = `./uploads/cropped/cropped_image_${fileName}${fileExtn}`;		
 		
 		req.intermediateImagePath.push(uploadPath);
-
+		
 		image.crop(cropX, cropY, cropWidth, cropHeight)
 			 .write(uploadPath, (err) => {			 	
 			 	if (err) return err;
+
+			 	console.log(chalk.green('---------- CROPPING COMPLETED ----------'));
+			 	console.log(chalk.cyan(`${fileName}${fileExtn}`) + ' has been cropped and stored at' + chalk.cyan(` ${uploadPath}`));
+
 			 	callback(null, uploadPath);
 			 });
 	});

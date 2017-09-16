@@ -1,16 +1,16 @@
 {
-    "surya.pratap@lowes.com":{
-        "id":"surya.pratap@lowes.com",
-        "name": "surya pratap",
-        "password": "qwe123",
-        "config":[{
-
-            }]
-    },
-    "sourav.sahoo@lowes.com":{
-        "id":"sourav.sahoo@lowes.com",
-        "name": "sourav sahoo",
-        "password": "qwe123",
-        "config":[{}]
-    }
+    "users": [
+        {
+            "id":"surya.pratap@lowes.com",
+            "name": "sourav sahoo",
+            "password": "qwe123",
+            "config":[]
+        },
+        {
+            "id":"sourav.sahoo@lowes.com",
+            "name": "sourav sahoo",
+            "password": "qwe123",
+            "config":[]
+        }
+    ]
 }

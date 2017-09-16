@@ -2,8 +2,10 @@
 
 import Jimp from 'jimp';
 import fs from 'fs';
+import chalk from 'chalk';
 
 const generateProcessedImage = (req, callback) => {
+	
 	let imagePath = req.imagePath,
 		imageName = req && req.imageFileName,
 		fileFormat = imagePath.substring(imagePath.lastIndexOf('.')),

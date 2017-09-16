@@ -33,23 +33,20 @@ $(document).ready(function() {
 			$('.nav-tabs > li:nth-child(1)').addClass('active');
 			url = '/image/process';
 			$('.submitBtnContainer > button').text('PROCESS SINGLE');
-			// $('.operationsPanelOverlay').css('display', 'block');
 		}
 		else {
 			$('.multipleUploadContainer').addClass('active');
 			$('.nav-tabs > li:nth-child(2)').addClass('active');
 			url = '/image/multipleUpload';
 			$('.submitBtnContainer > button').text('PROCESS MULTIPLE');
-			// $('.operationsPanelOverlay').css('display', 'none');
 		}
 	});
 
 	$('.nav-tabs > li:first-child').click(function() {// for nav tabs
 		url = '/image/process';
 		$('.submitBtnContainer > button').text('PROCESS SINGLE');
-		if($('.imageContainer img').attr('src')){
-			// $('.operationsPanelOverlay').css('display','block');
 
+		if($('.imageContainer img').attr('src')){
 			$('.sidenav').removeClass('sideNavFullWidth');
 			$('.rightPanel').css('display', 'block');
 		}
@@ -62,7 +59,6 @@ $(document).ready(function() {
 	$('.nav-tabs > li:last-child').click(function() {
 		url = '/image/multipleUpload';
 		$('.submitBtnContainer > button').text('PROCESS MULTIPLE');
-		// $('.operationsPanelOverlay').css('display','none');
 		$('.sidenav').removeClass('sideNavFullWidth');
 		$('.rightPanel').css('display', 'block');
 	});
@@ -106,8 +102,12 @@ var img = new Image();
 
 				$('.progress, .progressBar').css('display', 'block');
 
-				var showImage = setInterval(function() {
+				var showProgress = setInterval(showImage, 20);
+
+				function showImage() {
+					console.log('showImage called');
 					width = width + 1;
+
 					if (width <= 100) {
 						$('.progressBar').css('width', width+'%');
 					}
@@ -175,9 +175,9 @@ var img = new Image();
 						$('.sidenav').removeClass('sideNavFullWidth');
 						$('.rightPanel').css('display', 'block');
 
-						clearInterval(showImage);
+						clearInterval(showProgress);
 					}
-				}, 20);
+				}
 			}
 		}
 	});
@@ -229,7 +229,11 @@ var img = new Image();
 	});
 
 	$('.submitChanges').click(function() {
+
 		requestPayload.operationOrder = reorder(); // sending operation order to server based on user's choice
+		requestPayload.sourcePath = $('input[name=sourceInput]').val();
+		requestPayload.destPath = $('input[name=destInput]').val();
+
 		$.ajax({
 			type: 'POST',
 			url: url,
@@ -237,10 +241,30 @@ var img = new Image();
 			dataType: "json",
 			contentType: 'application/json',
 			success: function(result) {
+				// requestPayload = {}
 				console.log('result', result);
 			}
 		});
 	});
+
+	$(".saveBtn").click(function () {
+
+		requestPayload.operationOrder = reorder(); // sending operation order to server based on user's choice
+		requestPayload.sourcePath = $('input[name=sourceInput]').val();
+		requestPayload.destPath = $('input[name=destInput]').val();
+
+		$.ajax({
+			type: 'POST',
+			url: 'saveConfig',
+			data: JSON.stringify(requestPayload),
+			dataType: 'json',
+			contentType: 'application/json',
+			success: function(result) {
+				// requestPayload = {};
+				console.log('saved result', result);
+			}
+		});
+	})
 
 	$('#cropCheck, #resizeCheck, #compositeCheck, #formatCheck, #invertCheckBoxInput, #flipCheckBoxInput, #greyScaleCheckBoxInput').on('change', function () {
 		var tempArr = [];

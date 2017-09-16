@@ -114,8 +114,8 @@
 				      		<div class="col-md-4">
 					      		<div class="sourcePath">
 				      				<i class="glyphicon glyphicon-folder-open"></i>
-				      			</div>
-				      			<p>Source</p>
+				      			</div>				      			
+				      			<input type="text" name="sourceInput" placeholder="Enter source path">
 				      		</div>
 				      		<div class="arrow col-md-4">
 				      			<i class="glyphicon glyphicon-arrow-right"></i>
@@ -123,8 +123,8 @@
 				      		<div class="col-md-4">
 				      		<div class="destPath">
 				      			<i class="glyphicon glyphicon-folder-close"></i>
-				      		</div>
-				      			<p>Destination</p>
+				      		</div>			      			
+				      			<input type="text" name="destInput" placeholder="Enter destination path">
 				      		</div>
 				      	</div>
 				      </div>
@@ -332,19 +332,20 @@
 					<!-- <label class="btn customBtn btn-sm btnSize">
 						<input id="cropCheck" type="checkbox" data-toggle="toggle" data-target="#cropSlider"> Crop
 					</label> -->
-
+					<div class="row">
 						<div class="submitBtnContainer submitChanges col-md-6">
 							<button id="process-single-btn" type='button' class="btn btn-block customBtn">PROCESS SINGLE</button>
 						</div>
-
+						<div class="saveBtn col-md-6">
+							<button id="process-single-btn" type='button' class="btn btn-block customBtn">SAVE</button>
+						</div>	
+						<!-- <div class="resetBtn col-md-4">
+							<button type='button' class="btn btn-block customBtn">RESET</button>
+						</div>	 -->				
+					</div>					
 			    </div>
 			  </div>
 			</div>
-
-	<script type="text/javascript">
-
-	</script>
-
 		<script type="text/javascript" src='/js/jquery-3.2.1.min.js'></script>
 		<!-- <script type="text/javascript" src='/bootstrap/js/bootstrap.js'</script> -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>

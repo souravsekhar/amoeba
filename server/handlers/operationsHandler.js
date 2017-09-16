@@ -8,6 +8,7 @@ import InvertHandler from './invertHandler.js';
 import ImageFlipHandler from './imageFlipHandler.js';
 import GreyScaleHandler from './greyScaleHandler.js';
 import async from 'async';
+import chalk from 'chalk';
 
 const operationsHandler = (imageInfo, request, cb) => {	
 	const req = request && request.payload,

@@ -443,9 +443,26 @@ li {
 .submitBtnContainer{
     position: absolute;
     bottom: 15px;
-    left: 15px;
+    left: 0;
     right: 15px;
 }
+
+.saveBtn {
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+}
+
+.resetBtn {
+  position: absolute;
+  bottom: 15px;
+  left: 100%;
+}
+
+/*.resetBtn, .saveBtn, .submitBtnContainer{
+  background-color: #1abc9c;
+  color: #fff;
+}*/
 
 .reorderSection {
   display: none;
@@ -498,6 +515,10 @@ li {
     vertical-align: middle;
     width: 100%;
 }
+
+.iconHolder p {
+  display: inline-block;
+}
 .sourcePath, .destPath, .arrow {
    font-size: 100px;
    color: #1abc9c;
@@ -520,6 +541,14 @@ li {
 input[name="sourcePath"]:focus, input[name="destPath"]:focus,
 input[name="sourcePath"].focus, input[name="destPath"].focus {
     box-shadow: inset 1px 1px 2px 0 #c9c9c9;
+}
+
+input[name="sourceInput"], input[name="destInput"]{
+  width: 100%;
+  outline: 0;
+  color: #1abc9c;
+  font-size: 20px;
+  text-align: center;
 }
 
 .opsPanel {

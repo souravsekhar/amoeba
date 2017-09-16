@@ -1,7 +1,11 @@
-const jwt         = require('jsonwebtoken');
-import loginHandler from './loginHandler';
+'use strict';
 
-const users = loginHandler.loadUsers();
+import loginHandler from './loginHandler';
+import chalk from 'chalk';
+
+const jwt = require('jsonwebtoken'),
+      users = loginHandler.loadUsers();
+
 
 function homePageHandler (request, reply) {
     //get token from cookies
@@ -13,11 +17,9 @@ function homePageHandler (request, reply) {
         }else {
             let userId = data;
 
-
             reply.view('index',{userId:userId});
         }
     });
-
 }
 
 module.exports = {

@@ -1,8 +1,12 @@
 'use strict';
 
 import Jimp from 'jimp';
+import chalk from 'chalk';
 
-const imageResizer = (req, callback) => {	
+const imageResizer = (req, callback) => {
+
+	console.log(chalk.yellow('---------- RESIZING INITIATED ----------'));
+
 	let imageName = req && req.imageFileName,
 		dimensions = {
 			width: req && req.resize && req.resize.dimension,
@@ -22,8 +26,12 @@ const imageResizer = (req, callback) => {
 		req.intermediateImagePath.push(uploadPath);
 
 		image.resize(height, width)
-			 .write(uploadPath, (err) => {
-			 	if (err) return err;			 	
+			 .write(uploadPath, (err) => {			 	
+			 	if (err) return err;
+
+			 	console.log(chalk.green('---------- RESIZING COMPLETED ----------'));
+			 	console.log(chalk.cyan(`${fileName}${fileExtn}`) + ' has been resized and uploaded to' + chalk.cyan(` ${uploadPath}`));
+
 			 	callback(null, uploadPath);
 			 });
 	});

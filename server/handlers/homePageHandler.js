@@ -17,6 +17,8 @@ function homePageHandler (request, reply) {
         }else {
             let userId = data;
 
+
+
             reply.view('index',{userId:userId});
         }
     });

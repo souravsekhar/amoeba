@@ -1,356 +1,345 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-	  <title>Amoeba</title>
-	  <meta charset="utf-8">
-	  <meta name="viewport" content="width=device-width, initial-scale=1">
-	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-	  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
-	  <link rel="stylesheet" type="text/css" href="/css/main.css">
-	  <link rel="stylesheet" type="text/css" href="/css/main1.css">
-	  <link rel="stylesheet" type="text/css" href="/css/build.css">
-	  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
-	  <!-- <link rel="stylesheet" type="text/css" href="/css/jquery-ui.css"> -->
-	  <!-- <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css"> -->
-	</head>
-	<body>
-		<header>
-			<div class="headContainer">
-				<h1>Amoeba</h1>
-			</div>
-			<ul class="nav navbar-nav ravbar-right logout">
-				<li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span></a></li>
-			</ul>
-		</header>
-			<div class="homeOverlay">
-				<h1>Amoeba</h1>
-				<div class="btnContainer">
-					<button class="btn customBtn singleUpload">Single Upload</button>
-					<button class="btn customBtn multiUpload">Multiple Upload</button>
+<head>
+	<title>Amoeba</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"> -->
+	<link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/css/main.css">
+	<link rel="stylesheet" type="text/css" href="/css/main1.css">
+	<link rel="stylesheet" type="text/css" href="/css/build.css">
+	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+	<!-- <link rel="stylesheet" type="text/css" href="/css/jquery-ui.css"> -->
+	<!-- <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css"> -->
+</head>
+<body>
+	<header>
+		<div class="headContainer">
+			<h1>Amoeba</h1>
+		</div>
+		<ul class="nav navbar-nav ravbar-right logout">
+			<li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span></a></li>
+		</ul>
+	</header>
+	<div class="homeOverlay">
+		<h1>Amoeba</h1>
+		<div class="btnContainer">
+			<button class="btn customBtn singleUpload">Single Upload</button>
+			<button class="btn customBtn multiUpload">Multiple Upload</button>
+		</div>
+	</div>
+	<div class="container-fluid sidePannel">
+		<div class="row content customContainer">
+			<div class="col-sm-7 col-md-7 col-lg-7 sidenav">
+				<!-- tabs section -->
+				<ul class="nav nav-tabs nav-ui" role="tablist">
+					<li role="presentation" class="active"><a href="#singleTab" aria-controls="singleTab" role="tab" data-toggle="tab">Single upload</a></li>
+					<li role="presentation"><a href="#multiTab" aria-controls="multiTab" role="tab" data-toggle="tab">Multiple upload</a></li>
+				</ul>
+				<!-- tabs section -->
+				<div class="tab-content">
+					<div class="singleUploadContainer tab-pane active" id="singleTab" role="tabpanel">
+						<!-- <form class="container-fluid" id="imageUploadForm" name="uploadForm" enctype="multipart/form-data">
+						<input id="selectedImage" type="file" name="imageFile">
+						<p>Please select image to be uploaded</p>
+						<label for="selectedImage" class="btn customBtn">
+						<i class="glyphicon glyphicon-search"></i> Browse
+					</label>
+					<input id="selectedImage" type="file" name="imageFile"/>
+					<input type="text" name="filename" id="fileNameDisplayBox" disabled>
+
+					<div class="progress">
+					<div class="progress-bar progress-bar-striped active progressBar" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100">
+					<span class="sr-only">45% Complete</span>
 				</div>
 			</div>
-			<div class="container-fluid sidePannel">
-			  <div class="row content customContainer">
-			    <div class="col-sm-7 col-md-7 col-lg-7 sidenav">
-				    <!-- tabs section -->
-				    <ul class="nav nav-tabs nav-ui" role="tablist">
-				       <li role="presentation" class="active"><a href="#singleTab" aria-controls="singleTab" role="tab" data-toggle="tab">Single upload</a></li>
-				       <li role="presentation"><a href="#multiTab" aria-controls="multiTab" role="tab" data-toggle="tab">Multiple upload</a></li>
-				    </ul>
-				    <!-- tabs section -->
-			    	<div class="tab-content">
-				    <div class="singleUploadContainer tab-pane active" id="singleTab" role="tabpanel">
-					    <!-- <form class="container-fluid" id="imageUploadForm" name="uploadForm" enctype="multipart/form-data">
-						   <input id="selectedImage" type="file" name="imageFile">
-						   <p>Please select image to be uploaded</p>
-						   <label for="selectedImage" class="btn customBtn">
-						       <i class="glyphicon glyphicon-search"></i> Browse
-						   </label>
-						   <input id="selectedImage" type="file" name="imageFile"/>
-						   <input type="text" name="filename" id="fileNameDisplayBox" disabled>
 
-						   <div class="progress">
-						     <div class="progress-bar progress-bar-striped active progressBar" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100">
-						       <span class="sr-only">45% Complete</span>
-						     </div>
-						   </div>
+			<button type="submit" class="btn customBtn uploadButton">
+			<i class="glyphicon glyphicon-upload"></i> Upload
+		</button>
+	</form> -->
 
-						   <button type="submit" class="btn customBtn uploadButton">
-						   	  <i class="glyphicon glyphicon-upload"></i> Upload
-						   </button>
-					    </form> -->
+	<div class="dndHolder">
+		<form id="imageUploadForm" class="dndForm" enctype="multipart/form-data">
+			<!-- <div for="selectedImage">
+			<i class="glyphicon glyphicon-open"></i>
+			<p for="selectedImage"><span for="selectedImage"><b>Choose an image</b></span> or drag it here to upload</p>
+		</div>
+		<input id="selectedImage" type="file" name="imageFile"> -->
+		<label for="selectedImage">
+			<i class="glyphicon glyphicon-open chooseImageIcon"></i>
+			<div><p class="chooseImageIcon">Upload image</p></div>
+		</label>
+		<input id="selectedImage" type="file" name="imageFile"/>
+	</form>
+</div>
+<div class="imageContainer parentContainer" id="imageContainer">
+	<div for="selectedImage" class="layer"></div>
+	<div class="croppedImg"></div>
 
-					    <div class="dndHolder">
-					    	<form id="imageUploadForm" class="dndForm" enctype="multipart/form-data">
-					    		<!-- <div for="selectedImage">
-						  			<i class="glyphicon glyphicon-open"></i>
-						  			<p for="selectedImage"><span for="selectedImage"><b>Choose an image</b></span> or drag it here to upload</p>
-					  			</div>
-					  			<input id="selectedImage" type="file" name="imageFile"> -->
-					  			<label for="selectedImage">
-					  			    <i class="glyphicon glyphicon-open chooseImageIcon"></i>
-					  			    <div><p class="chooseImageIcon">Upload image</p></div>
-					  			</label>
-					  			<input id="selectedImage" type="file" name="imageFile"/>
-					  		</form>
-					    </div>
-					      <div class="imageContainer parentContainer" id="imageContainer">
-								<div for="selectedImage" class="layer"></div>
-								<div class="croppedImg"></div>
+</div>
+<div class="progress">
+	<div class="progress-bar progress-bar-striped active progressBar" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100">
+		<span class="sr-only">45% Complete</span>
+	</div>
+</div>
+<!--  <div class="minimalOperations">
+<div class="sliderCheckBox">
+<input type="checkbox" name="invertCheck" id="invertCheckBoxInput" value="1">
+<label for="invertCheckBoxInput"></label>
+</div><span>Invert</span>
+<div class="sliderCheckBox">
+<input type="checkbox" name="invertCheck" id="flipCheckBoxInput" value="1">
+<label for="flipCheckBoxInput"></label>
+</div>
+<span>Flip</span>
+<div class="sliderCheckBox">
+<input type="checkbox" name="invertCheck" id="greyScaleCheckBoxInput" value="1">
+<label for="greyScaleCheckBoxInput"></label>
+</div>
+<span>Greyscale</span>
+</div> -->
+</div>
+<div class="multipleUploadContainer tab-pane" id="multiTab" role="tabpanel">
+	<!-- <h5>Put all your images at the source path shown below and you will get your processed images at the destination shown:</h5> -->
+	<!-- <h5>Source</h5> -->
+	<!-- <input type="text" name="sourcePath" value="/uploads/batch_src" disabled> -->
+	<!-- <div class="sourcePath">/uploads/batch_src</div>
+	<div class="destPath">/uploads/processed</div> -->
+	<!-- <h5>Destination</h5><input type="text" name="destPath" value="/uploads/processed" disabled> -->
 
-					    </div>
-					    <div class="progress">
-					      <div class="progress-bar progress-bar-striped active progressBar" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100">
-					        <span class="sr-only">45% Complete</span>
-					      </div>
-					    </div>
-					     <!--  <div class="minimalOperations">
-					      		<div class="sliderCheckBox">
-					      			<input type="checkbox" name="invertCheck" id="invertCheckBoxInput" value="1">
-					      			<label for="invertCheckBoxInput"></label>
-					      		</div><span>Invert</span>
-					      		<div class="sliderCheckBox">
-					      			<input type="checkbox" name="invertCheck" id="flipCheckBoxInput" value="1">
-					      			<label for="flipCheckBoxInput"></label>
-					      		</div>
-					      		<span>Flip</span>
-					      		<div class="sliderCheckBox">
-					      			<input type="checkbox" name="invertCheck" id="greyScaleCheckBoxInput" value="1">
-					      			<label for="greyScaleCheckBoxInput"></label>
-					      		</div>
-					      		<span>Greyscale</span>
-					      </div> -->
-				      </div>
-				      <div class="multipleUploadContainer tab-pane" id="multiTab" role="tabpanel">
-				      	<!-- <h5>Put all your images at the source path shown below and you will get your processed images at the destination shown:</h5> -->
-				      	<!-- <h5>Source</h5> -->
-				      	<!-- <input type="text" name="sourcePath" value="/uploads/batch_src" disabled> -->
-				      	<!-- <div class="sourcePath">/uploads/batch_src</div>
-				      	<div class="destPath">/uploads/processed</div> -->
-				      	<!-- <h5>Destination</h5><input type="text" name="destPath" value="/uploads/processed" disabled> -->
-
-				      	<div class="row iconHolder">
-				      		<div class="col-md-4">
-					      		<div class="sourcePath">
-				      				<i class="glyphicon glyphicon-folder-open"></i>
-				      			</div>				      			
-				      			<input type="text" name="sourceInput" placeholder="Enter source path">
-				      		</div>
-				      		<div class="arrow col-md-4">
-				      			<i class="glyphicon glyphicon-arrow-right"></i>
-				      		</div>
-				      		<div class="col-md-4">
-				      		<div class="destPath">
-				      			<i class="glyphicon glyphicon-folder-close"></i>
-				      		</div>			      			
-				      			<input type="text" name="destInput" placeholder="Enter destination path">
-				      		</div>
-				      	</div>
-				      </div>
-				      </div>
-			    </div>
-
-			    <!-- <div class="separator"></div> -->
-
-			    <div class="col-sm-5 col-md-5 col-lg-5 rightPanel">
-			    	<!-- <div class="operationsPanelOverlay">
-			    		<h2>Please upload to begin...</h2>
-			    	</div> -->
-					<div class="row newConfigurations">
-						<h4>New Configuration</h4>
-					</div>
-			    	<div class="reorderSection">
-				    	<div class="dragIconHolder">
-				    		<img class="dragIcon" src="./uploads/originals/drag.png">Drag to re-order the operations the way you want your image to be processed.
-				    	</div>
-				    	<ul class="operationsOrder"></ul>
-			    	</div>
-			    	<!-- <div><span>After you upload your image, choose operations to be done with it:</span></div> -->
-					<div id="cropPanel" class="opsPanel">
-						<label class="btn customBtn btn-sm btnSize">
-							<input id="cropCheck" type="checkbox" data-toggle="toggle" data-target="#cropSlider"> Crop
-						</label>
-
-						<div id="cropSlider" class="buttonPanel">
-						    <div class="btn-group labelsSection" data-toggle="buttons">
-						      <label class="btn customBtn cropLbl">
-						        <input type="radio" id="option1" autocomplete="off" value="200" name="cropRadio"> 200 x 200
-						      </label>
-						      <label class="btn customBtn cropLbl">
-						        <input type="radio" id="option2" autocomplete="off" value="150" name="cropRadio"> 150 x 150
-						      </label>
-						      <label class="btn customBtn cropLbl">
-						        <input type="radio" id="option3" autocomplete="off" value="100" name="cropRadio"> 100 x 100
-						      </label>
-						      <label class="btn customBtn cropLbl">
-						        <input type="radio" id="option4" autocomplete="off" value="50" name="cropRadio"> 50 x 50
-						      </label>
-						    </div>
-						</div>
-					</div>
-					<div id="resizePanel" class="opsPanel">
-						<label class="btn customBtn btn-sm btnSize">
-							<input id="resizeCheck" type="checkbox" data-toggle="toggle" data-target="#resizeSlider"> Resize
-						</label>
-
-						<div id="resizeSlider" class="buttonPanel">
-						   <div class="btn-group labelsSection row" data-toggle="buttons">
-					     	  <label class="btn customBtn col-md-3">
-					     	    <input type="radio" name="options" id="option1" autocomplete="off" value="800"> X-Large (800px)
-					     	  </label>
-					     	  <label class="btn customBtn col-md-3">
-					     	    <input type="radio" name="options" id="option2" autocomplete="off" value="500"> Large (500px)
-					     	  </label>
-					     	  <label class="btn customBtn col-md-3">
-					     	    <input type="radio" name="options" id="option3" autocomplete="off" value="300"> Medium (300px)
-					     	  </label>
-					     	  <label class="btn customBtn col-md-3">
-					     	    <input type="radio" name="options" id="option3" autocomplete="off" value="150"> Small (150px)
-					     	  </label>
-						   </div>
-						</div>
-					</div>
-					<div id="formatPanel" class="opsPanel">
-						<label class="btn customBtn btn-sm btnSize">
-							<input id="formatCheck" type="checkbox" data-toggle="toggle" data-target="#formatSlider"> Format
-						</label>
-
-						<div id="formatSlider" class="buttonPanel">
-						    <div class="btn-group labelsSection" data-toggle="buttons">
-							  <label class="btn customBtn">
-							    <input type="radio" name="options" id="option1" autocomplete="off" value="png"> PNG
-							  </label>
-							  <label class="btn customBtn">
-							    <input type="radio" name="options" id="option2" autocomplete="off" value="jpg"> JPG
-							  </label>
-							  <label class="btn customBtn">
-							    <input type="radio" name="options" id="option3" autocomplete="off" value="gif"> GIF
-							  </label>
-							</div>
-						</div>
-					</div>
-					<div id="otherOperationsPanel" class="opsPanel">
-						<label class="btn customBtn btn-sm btnSize">
-							<input id="otherOps" type="checkbox" data-toggle="toggle" data-target="#otherOpsSlider"> Others
-						</label>
-
-						<div id="otherOpsSlider" class="buttonPanel">
-						    <div class="btn-group labelsSection" data-toggle="buttons">
-							  <label class="btn customBtn">
-							    <input type="checkbox" name="options" id="invertCheckBoxInput"autocomplete="off" value="png"> Invert
-							  </label>
-							  <label class="btn customBtn">
-							    <input type="checkbox" name="options" id="flipCheckBoxInput" autocomplete="off" value="jpg"> Flip
-							  </label>
-							  <label class="btn customBtn">
-							    <input type="checkbox" name="options" id="greyScaleCheckBoxInput" autocomplete="off" value="gif"> Greyscale
-							  </label>
-							</div>
-						</div>
-					</div>
-					<div id="multiGeneratePanel" class="opsPanel">
-						<label class="btn customBtn btn-sm btnSize">
-							<input id="mulGen" type="checkbox" data-toggle="toggle" data-target="#mulGenSlider"> Multi-generate
-						</label>
-
-						<div id="mulGenSlider" class="buttonPanel">
-						    <div class="btn-group labelsSection" data-toggle="buttons">
-							  <label class="btn customBtn">
-							    <input type="radio" name="options" id="option1" autocomplete="off" value="png"> Yes
-							  </label>
-							  <label class="btn customBtn">
-							    <input type="radio" name="options" id="option2" autocomplete="off" value="jpg"> No
-							  </label>
-							</div>
-						</div>
-					</div>
-					<div>
-					<!-- <div class="minimalOperations">
-			      		<div class="sliderCheckBox">
-			      			<input type="checkbox" name="invertCheck" id="invertCheckBoxInput" value="1">
-			      			<label for="invertCheckBoxInput"></label>
-			      		</div><span>Invert</span>
-			      		<div class="sliderCheckBox">
-			      			<input type="checkbox" name="invertCheck" id="flipCheckBoxInput" value="1">
-			      			<label for="flipCheckBoxInput"></label>
-			      		</div>
-			      		<span>Flip</span>
-			      		<div class="sliderCheckBox">
-			      			<input type="checkbox" name="invertCheck" id="greyScaleCheckBoxInput" value="1">
-			      			<label for="greyScaleCheckBoxInput"></label>
-			      		</div>
-			      		<span>Greyscale</span>
-			      </div> -->
-					<!-- <div class="multiGenerateCheckBox">
-						<input type="checkbox" name="multiGenerate" id="multiGenerateCheckBoxInput" value="1">
-						<label for="multiGenerateCheckBoxInput"></label>
-
-					</div>
-					<span>Do you want the images generated at each step? <i>(Keep unchecked, if you want the final processed image only)</i></span>
-					</div> -->
-					<!-- configuration accordion start-->
-
-					<div class="panel-group" id="accordion">
-					    <div class="panel panel-default" id="panel">
-					        <div class="panel-heading" id="panel-heading">
-					            <h4 class="panel-title">
-					                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-										<span class="glyphicon glyphicon-cog">
-						                </span>Saved configurations
-									</a>
-					            </h4>
-					        </div>
-					        <div id="collapseOne" class="panel-collapse collapse">
-					            <div class="panel-body">
-									<div class="row">
-										<div class="col-md-6">
-											<div class="col-md-6">
-												<i class="fa fa-crop" id="cropIcon"></i><span>Crop</span>
-											</div>
-											<div class="col-md-6">
-												<span>200px</span>
-											</div>
-										</div>
-										<div class="col-md-6">
-
-										</div>
-									</div>
-									<div class="row">
-										<div class="col-md-6">
-											<div class="col-md-6">
-												<span class="glyphicon glyphicon-resize-full" id="resizeIcon"></span><span>Resize</span>
-											</div>
-											<div class="col-md-6">
-												<span>200px</span>
-											</div>
-										</div>
-										<div class="col-md-6">
-
-										</div>
-									</div>
-									<div class="row">
-										<div class="col-md-6">
-											<div class="col-md-6">
-												<span class="glyphicon glyphicon-picture" id="formatIcon"></span></i><span>Format</span>
-											</div>
-											<div class="col-md-6">
-												<span>PNG</span>
-											</div>
-										</div>
-										<div class="col-md-6">
-
-										</div>
-									</div>
-					            </div>
-					        </div>
-					    </div>
-					</div>
-
-					<!-- configuration accordion end-->
-
-					<!-- <label class="btn customBtn btn-sm btnSize">
-						<input id="cropCheck" type="checkbox" data-toggle="toggle" data-target="#cropSlider"> Crop
-					</label> -->
-					<div class="row">
-						<div class="submitBtnContainer submitChanges col-md-6">
-							<button id="process-single-btn" type='button' class="btn btn-block customBtn">PROCESS SINGLE</button>
-						</div>
-						<div class="saveBtn col-md-6">
-							<button id="process-single-btn" type='button' class="btn btn-block customBtn">SAVE</button>
-						</div>	
-						<!-- <div class="resetBtn col-md-4">
-							<button type='button' class="btn btn-block customBtn">RESET</button>
-						</div>	 -->				
-					</div>					
-			    </div>
-			  </div>
+	<div class="row iconHolder">
+		<div class="col-md-4">
+			<div class="sourcePath">
+				<i class="glyphicon glyphicon-folder-open"></i>
 			</div>
-		<script type="text/javascript" src='/js/jquery-3.2.1.min.js'></script>
-		<!-- <script type="text/javascript" src='/bootstrap/js/bootstrap.js'</script> -->
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-		<script type="text/javascript" src="/js/jquery-ui.js"></script>
-		<script type="text/javascript" src="/js/main1.js"></script>
-		<!-- <script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script> -->
-	</body>
+			<input type="text" name="sourceInput" placeholder="Enter source path">
+		</div>
+		<div class="arrow col-md-4">
+			<i class="glyphicon glyphicon-arrow-right"></i>
+		</div>
+		<div class="col-md-4">
+			<div class="destPath">
+				<i class="glyphicon glyphicon-folder-close"></i>
+			</div>
+			<input type="text" name="destInput" placeholder="Enter destination path">
+		</div>
+	</div>
+</div>
+</div>
+</div>
+
+<!-- <div class="separator"></div> -->
+
+<div class="col-sm-5 col-md-5 col-lg-5 rightPanel">
+	<!-- <div class="operationsPanelOverlay">
+	<h2>Please upload to begin...</h2>
+</div> -->
+<div class="row newConfigurations">
+	<h4>New Configuration</h4>
+</div>
+<div class="reorderSection">
+	<div class="dragIconHolder">
+		<img class="dragIcon" src="./uploads/originals/drag.png">Drag to re-order the operations the way you want your image to be processed.
+	</div>
+	<ul class="operationsOrder"></ul>
+</div>
+<!-- <div><span>After you upload your image, choose operations to be done with it:</span></div> -->
+<div id="cropPanel" class="opsPanel">
+	<label class="btn customBtn btn-sm btnSize">
+		<input id="cropCheck" type="checkbox" data-toggle="toggle" data-target="#cropSlider"> Crop
+	</label>
+
+	<div id="cropSlider" class="buttonPanel">
+		<div class="btn-group labelsSection" data-toggle="buttons">
+			<label class="btn customBtn cropLbl">
+				<input type="radio" id="option1" autocomplete="off" value="200" name="cropRadio"> 200 x 200
+			</label>
+			<label class="btn customBtn cropLbl">
+				<input type="radio" id="option2" autocomplete="off" value="150" name="cropRadio"> 150 x 150
+			</label>
+			<label class="btn customBtn cropLbl">
+				<input type="radio" id="option3" autocomplete="off" value="100" name="cropRadio"> 100 x 100
+			</label>
+			<label class="btn customBtn cropLbl">
+				<input type="radio" id="option4" autocomplete="off" value="50" name="cropRadio"> 50 x 50
+			</label>
+		</div>
+	</div>
+</div>
+<div id="resizePanel" class="opsPanel">
+	<label class="btn customBtn btn-sm btnSize">
+		<input id="resizeCheck" type="checkbox" data-toggle="toggle" data-target="#resizeSlider"> Resize
+	</label>
+
+	<div id="resizeSlider" class="buttonPanel">
+		<div class="btn-group labelsSection row" data-toggle="buttons">
+			<label class="btn customBtn col-md-3">
+				<input type="radio" name="options" id="option1" autocomplete="off" value="800"> X-Large (800px)
+			</label>
+			<label class="btn customBtn col-md-3">
+				<input type="radio" name="options" id="option2" autocomplete="off" value="500"> Large (500px)
+			</label>
+			<label class="btn customBtn col-md-3">
+				<input type="radio" name="options" id="option3" autocomplete="off" value="300"> Medium (300px)
+			</label>
+			<label class="btn customBtn col-md-3">
+				<input type="radio" name="options" id="option3" autocomplete="off" value="150"> Small (150px)
+			</label>
+		</div>
+	</div>
+</div>
+<div id="formatPanel" class="opsPanel">
+	<label class="btn customBtn btn-sm btnSize">
+		<input id="formatCheck" type="checkbox" data-toggle="toggle" data-target="#formatSlider"> Format
+	</label>
+
+	<div id="formatSlider" class="buttonPanel">
+		<div class="btn-group labelsSection" data-toggle="buttons">
+			<label class="btn customBtn">
+				<input type="radio" name="options" id="option1" autocomplete="off" value="png"> PNG
+			</label>
+			<label class="btn customBtn">
+				<input type="radio" name="options" id="option2" autocomplete="off" value="jpg"> JPG
+			</label>
+			<label class="btn customBtn">
+				<input type="radio" name="options" id="option3" autocomplete="off" value="gif"> GIF
+			</label>
+		</div>
+	</div>
+</div>
+<div id="otherOperationsPanel" class="opsPanel">
+	<label class="btn customBtn btn-sm btnSize">
+		<input id="otherOps" type="checkbox" data-toggle="toggle" data-target="#otherOpsSlider"> Others
+	</label>
+
+	<div id="otherOpsSlider" class="buttonPanel">
+		<div class="btn-group labelsSection" data-toggle="buttons">
+			<label class="btn customBtn">
+				<input type="checkbox" name="options" id="invertCheckBoxInput"autocomplete="off" value="png"> Invert
+			</label>
+			<label class="btn customBtn">
+				<input type="checkbox" name="options" id="flipCheckBoxInput" autocomplete="off" value="jpg"> Flip
+			</label>
+			<label class="btn customBtn">
+				<input type="checkbox" name="options" id="greyScaleCheckBoxInput" autocomplete="off" value="gif"> Greyscale
+			</label>
+		</div>
+	</div>
+</div>
+<div id="multiGeneratePanel" class="opsPanel">
+	<label class="btn customBtn btn-sm btnSize">
+		<input id="mulGen" type="checkbox" data-toggle="toggle" data-target="#mulGenSlider"> Multi-generate
+	</label>
+
+	<div id="mulGenSlider" class="buttonPanel">
+		<div class="btn-group labelsSection" data-toggle="buttons">
+			<label class="btn customBtn">
+				<input type="radio" name="options" id="option1" autocomplete="off" value="png"> Yes
+			</label>
+			<label class="btn customBtn">
+				<input type="radio" name="options" id="option2" autocomplete="off" value="jpg"> No
+			</label>
+		</div>
+	</div>
+</div>
+<div>
+	<!-- <div class="minimalOperations">
+	<div class="sliderCheckBox">
+	<input type="checkbox" name="invertCheck" id="invertCheckBoxInput" value="1">
+	<label for="invertCheckBoxInput"></label>
+</div><span>Invert</span>
+<div class="sliderCheckBox">
+<input type="checkbox" name="invertCheck" id="flipCheckBoxInput" value="1">
+<label for="flipCheckBoxInput"></label>
+</div>
+<span>Flip</span>
+<div class="sliderCheckBox">
+<input type="checkbox" name="invertCheck" id="greyScaleCheckBoxInput" value="1">
+<label for="greyScaleCheckBoxInput"></label>
+</div>
+<span>Greyscale</span>
+</div> -->
+<!-- <div class="multiGenerateCheckBox">
+<input type="checkbox" name="multiGenerate" id="multiGenerateCheckBoxInput" value="1">
+<label for="multiGenerateCheckBoxInput"></label>
+
+</div>
+<span>Do you want the images generated at each step? <i>(Keep unchecked, if you want the final processed image only)</i></span>
+</div> -->
+<!-- configuration accordion start-->
+
+<div class="panel-group" id="accordion">
+	<div class="panel panel-default" id="panel">
+		<div class="panel-heading" id="panel-heading">
+			<h4 class="panel-title">
+				<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+					<span class="glyphicon glyphicon-cog">
+					</span>Saved configurations
+				</a>
+			</h4>
+		</div>
+		<div id="collapseOne" class="panel-collapse collapse">
+			<div class="panel-body">
+				<div class="row">
+					<!-- iterate configurations -->
+					<div class="col-md-6">
+						<div class="row">
+							<div class="col-md-12">
+								<span class="glyphicon glyphicon-folder-open"></span><span>Folder Name</span>
+								<div class="configCheckbox">
+									<input type="checkbox" name="qwe" value="configId" id="configId">
+									<label for="configId"></label>
+								</div>
+							</div>
+						</div>
+						<!-- iterate properties -->
+						<div class="row">
+							<div class="col-md-6">
+								<span>Crop</span>
+							</div>
+							<div class="col-md-6">
+								<span>200px</span>
+							</div>
+						</div>
+					</div>
+					<!-- iterate configurations -->
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- configuration accordion end-->
+
+<!-- <label class="btn customBtn btn-sm btnSize">
+<input id="cropCheck" type="checkbox" data-toggle="toggle" data-target="#cropSlider"> Crop
+</label> -->
+<div class="row">
+	<div class="submitBtnContainer submitChanges col-md-6">
+		<button id="process-single-btn" type='button' class="btn btn-block customBtn">PROCESS SINGLE</button>
+	</div>
+	<div class="saveBtn col-md-6">
+		<button id="process-single-btn" type='button' class="btn btn-block customBtn">SAVE</button>
+	</div>
+	<!-- <div class="resetBtn col-md-4">
+	<button type='button' class="btn btn-block customBtn">RESET</button>
+</div>	 -->
+</div>
+</div>
+</div>
+</div>
+<script type="text/javascript" src='/js/jquery-3.2.1.min.js'></script>
+<!-- <script type="text/javascript" src='/bootstrap/js/bootstrap.js'</script> -->
+<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> -->
+<script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/js/jquery-ui.js"></script>
+<script type="text/javascript" src="/js/main1.js"></script>
+<script type="text/javascript" src="/js/saveConfiguration.js"></script>
+<!-- <script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script> -->
+</body>
 </html>

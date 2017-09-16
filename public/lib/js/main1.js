@@ -5,8 +5,8 @@ $("[data-toggle='toggle']").click(function() {
 
 $(document).ready(function() {
 	// initial page render settings
-	$('.rightPanel, .imageContainer').css('display', 'none');
-	$('.sidenav').addClass('sideNavFullWidth');
+	//$('.imageContainer').css('display', 'none');
+    //$('.sidenav').addClass('sideNavFullWidth');
 
 	var requestPayload = {};
 	var operationsArr = [];
@@ -47,20 +47,20 @@ $(document).ready(function() {
 		$('.submitBtnContainer > button').text('PROCESS SINGLE');
 
 		if($('.imageContainer img').attr('src')){
-			$('.sidenav').removeClass('sideNavFullWidth');
-			$('.rightPanel').css('display', 'block');
+            $('.sidenav').addClass('decreasWidth');
+			$('.rightPanel').addClass('rightShow');
 		}
 		else{
-			$('.sidenav').addClass('sideNavFullWidth');
-			$('.rightPanel').css('display', 'none');
+            $('.sidenav').removeClass('decreasWidth');
+			$('.rightPanel').addClass('rightShow');
 		}
 	});
 
 	$('.nav-tabs > li:last-child').click(function() {
 		url = '/image/multipleUpload';
 		$('.submitBtnContainer > button').text('PROCESS MULTIPLE');
-		$('.sidenav').removeClass('sideNavFullWidth');
-		$('.rightPanel').css('display', 'block');
+        $('.sidenav').addClass('decreasWidth');
+		$('.rightPanel').addClass('rightShow');
 	});
 
 	$("#selectedImage").change(function () {
@@ -105,7 +105,6 @@ var img = new Image();
 				var showProgress = setInterval(showImage, 20);
 
 				function showImage() {
-					console.log('showImage called');
 					width = width + 1;
 
 					if (width <= 100) {
@@ -127,6 +126,7 @@ var img = new Image();
                         var imgHeight = img.height;
 
                         //set image layer's height and width according to image
+                        //if image is horizontal
                         if(imgWidth > imgHeight){
                             $(".layer").css({
     							"width":imgWidth,
@@ -148,7 +148,9 @@ var img = new Image();
     							'background': 'url('+path+') no-repeat -0px -0px',
     							'background-size': imgWidth + 'px'
     						});
-                        }else {
+                        }
+                        //if image is Vertical
+                        else if(imgWidth < imgHeight){
                             $(".layer").css({
     							"width":imgWidth,
     							"height":imgHeight,
@@ -160,7 +162,6 @@ var img = new Image();
     						});
 
     						$(".croppedImg").css({
-
     							"width":imgWidth,
     							"height":imgHeight,
     							"display": "inline-block",
@@ -172,9 +173,34 @@ var img = new Image();
     							'background-size': imgWidth + 'px'
     						});
                         }
-						$('.sidenav').removeClass('sideNavFullWidth');
-						$('.rightPanel').css('display', 'block');
+                        //if image is square
+                        else {
+                            $(".layer").css({
+                                "width":imgWidth,
+                                "height":imgHeight,
+                                "display": "inline-block",
+                                "vertical-align": "middle",
+                                "margin": "0 auto",
+                                "left": Number($(img).position().left),
+                                "top":Number($(img).position().top)
+                            });
 
+                            $(".croppedImg").css({
+
+                                "width":imgWidth,
+                                "height":imgHeight,
+                                "display": "inline-block",
+                                "vertical-align": "middle",
+                                "margin": "0 auto",
+                                "left": Number($(img).position().left),
+                                "top":Number($(img).position().top),
+                                'background': 'url('+path+') no-repeat -0px -0px',
+                                'background-size': imgWidth + 'px'
+                            });
+                        }
+					//	$('.sidenav').removeClass('sideNavFullWidth');
+					    $('.sidenav').addClass('decreasWidth');
+						$('.rightPanel').addClass('rightShow');
 						clearInterval(showProgress);
 					}
 				}

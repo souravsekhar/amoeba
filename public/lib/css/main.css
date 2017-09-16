@@ -186,6 +186,7 @@ div.container-fluid.sidePannel{
   width: 300px;
   margin:10px auto;
   position: relative;
+  display: none;
 }
 
 /*.imageContainer > img{
@@ -219,12 +220,26 @@ div.container-fluid.sidePannel{
 .sidenav {
   background-color: #fff;
   min-height: inherit;
+  transition: width 0.2s linear;
+  width: 100%;
+}
+
+.sidenav.decreasWidth{
+    width: 58.33333333%
+}
+.sidenav.increasWidth{
+    width: 100%
 }
 
 .rightPanel{
   min-height: inherit;
   position: relative;
-  transition: 0.5s;
+  display: none;
+  transition: display 0.5s linear;
+}
+
+.rightShow{
+    display: block;
 }
 
 /* Set black background color, white text and some padding */

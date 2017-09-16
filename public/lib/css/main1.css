@@ -193,25 +193,125 @@ saved configuration accordion
 }
 
 #accordion .panel-body .row{
-    margin: 10px 0;
-}
-
-#accordion .panel-body .row:last-child{
     margin: 0;
 }
 
-#accordion .panel-body .row .col-md-6:first-child{
+/*Configration*/
+
+.configSelector{
+    width: 33.33%;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    border-left: 1px solid #1abc9c;
+}
+
+.panel-body >.row >.col-md-6{
     padding: 0;
     border: 1px solid #1abc9c;
+    overflow-y: scroll;
+    max-height: 156px;
+    margin-top: 10px;
 }
 
-#accordion .panel-body .row .col-md-6:first-child > div.col-md-6{
+.panel-body > .row .col-md-6:first-child > div.col-md-6{
     padding: 0px 15px;
+    margin-bottom: 0 ;
 }
 
-#accordion .panel-body .row .col-md-6:first-child > div.col-md-6:first-child{
-    background: #1abc9c;
+.panel-body > .row > .col-md-6 > .row:last-child{
+    border:0;
+    margin-bottom: 0 !important;
+}
+
+.panel-body > .row > .col-md-6 > .row > .col-md-6{
+    padding: 4px 15px;
+    /*border-bottom: 1px solid #e5e5e5;*/
+    /*border-left: 1px solid #1abc9c;*/
+}
+/*folder name*/
+.panel-body > .row > .col-md-6  .row{
+    margin: 0 !important;
+    border-bottom: 1px solid #e5e5e5;
+}
+.panel-body > .row > .col-md-6 > .row > .col-md-12{
+    text-align: center;
+    background: #34bc9b;
     color: #fff;
+    padding: 5px;
+}
+
+.panel-body > .row > .col-md-6 > .row > .col-md-12 > span{
+    font-size: 16px;
+}
+.panel-body > .row > .col-md-6 > .row > .col-md-12 > span:first-child{
+    margin-right: 15px;
+}
+
+
+.configCheckbox input[type=checkbox]{
+    visibility: hidden;
+}
+
+
+.configCheckbox{
+    width: 20px;
+    margin: 0;
+    position: absolute;
+    display: inline-block;
+    right: 20px;
+    top: 5px;
+}
+
+.configCheckbox label {
+    cursor: pointer;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 0;
+    left: 0;
+    background: #eee;
+    border: 1px solid #ddd;
+}
+.configCheckbox input{
+    margin: 0;
+}
+/**
+ * Display the tick inside the checkbox
+ */
+.configCheckbox label:after {
+    opacity: 0.2;
+    content: '';
+    position: absolute;
+    width: 9px;
+    height: 5px;
+    background: transparent;
+    top: 5px;
+    left: 5px;
+    border: 3px solid #1abc9c;
+    border-top: none;
+    border-right: none;
+    transform: rotate(-45deg);
+}
+
+/**
+ * Create the hover event of the tick
+ */
+.configCheckbox label:hover::after {
+	opacity: 0.5;
+}
+
+/**
+ * Create the checkbox state for the tick
+ */
+.configCheckbox input[type=checkbox]:checked + label:after {
+	opacity: 1;
+}
+
+
+.panel-body > .row > .col-md-6 > .row > .col-md-6:last-child{
+    border-bottom: 1px solid #fff;
 }
 
 #cropIcon, #resizeIcon, #formatIcon{

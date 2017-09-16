@@ -35,12 +35,12 @@
 			    <div class="col-sm-7 col-md-7 col-lg-7 sidenav">
 				    <!-- tabs section -->
 				    <ul class="nav nav-tabs nav-ui" role="tablist">
-				       <li role="presentation"><a href="#singleTab" aria-controls="singleTab" role="tab" data-toggle="tab">Single upload</a></li>
+				       <li role="presentation" class="active"><a href="#singleTab" aria-controls="singleTab" role="tab" data-toggle="tab">Single upload</a></li>
 				       <li role="presentation"><a href="#multiTab" aria-controls="multiTab" role="tab" data-toggle="tab">Multiple upload</a></li>
 				    </ul>
 				    <!-- tabs section -->
 			    	<div class="tab-content">
-				    <div class="singleUploadContainer tab-pane" id="singleTab" role="tabpanel">
+				    <div class="singleUploadContainer tab-pane active" id="singleTab" role="tabpanel">
 					    <!-- <form class="container-fluid" id="imageUploadForm" name="uploadForm" enctype="multipart/form-data">
 						   <input id="selectedImage" type="file" name="imageFile">
 						   <p>Please select image to be uploaded</p>
@@ -78,6 +78,7 @@
 					      <div class="imageContainer parentContainer" id="imageContainer">
 								<div for="selectedImage" class="layer"></div>
 								<div class="croppedImg"></div>
+
 					    </div>
 					    <div class="progress">
 					      <div class="progress-bar progress-bar-striped active progressBar" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100">
@@ -136,6 +137,9 @@
 			    	<!-- <div class="operationsPanelOverlay">
 			    		<h2>Please upload to begin...</h2>
 			    	</div> -->
+					<div class="row newConfigurations">
+						<h4>New Configuration</h4>
+					</div>
 			    	<div class="reorderSection">
 				    	<div class="dragIconHolder">
 				    		<img class="dragIcon" src="./uploads/originals/drag.png">Drag to re-order the operations the way you want your image to be processed.
@@ -273,7 +277,7 @@
 					            <h4 class="panel-title">
 					                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
 										<span class="glyphicon glyphicon-cog">
-						                </span>Content
+						                </span>Saved configurations
 									</a>
 					            </h4>
 					        </div>
@@ -308,10 +312,10 @@
 									<div class="row">
 										<div class="col-md-6">
 											<div class="col-md-6">
-												<span class="glyphicon glyphicon-picture" id="resizeIcon"></span></i><span>Format</span>
+												<span class="glyphicon glyphicon-picture" id="formatIcon"></span></i><span>Format</span>
 											</div>
 											<div class="col-md-6">
-												<span>200px</span>
+												<span>PNG</span>
 											</div>
 										</div>
 										<div class="col-md-6">
@@ -330,7 +334,7 @@
 					</label> -->
 
 						<div class="submitBtnContainer submitChanges col-md-6">
-							<button id="process-single-btn" type='button' class="btn btn-block customBtn"></button>
+							<button id="process-single-btn" type='button' class="btn btn-block customBtn">PROCESS SINGLE</button>
 						</div>
 
 			    </div>

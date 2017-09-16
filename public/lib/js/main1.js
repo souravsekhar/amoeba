@@ -4,14 +4,13 @@ $("[data-toggle='toggle']").click(function() {
 });
 
 $(document).ready(function() {
-    	console.log("{{[userId]}}");
 	// initial page render settings
 	$('.rightPanel, .imageContainer').css('display', 'none');
 	$('.sidenav').addClass('sideNavFullWidth');
 
 	var requestPayload = {};
 	var operationsArr = [];
-	var url;
+	var url = "/image/process";
 
 	var reorder = function() {
 		var operationArray = $('.operationsOrder > li');
@@ -48,9 +47,7 @@ $(document).ready(function() {
 	$('.nav-tabs > li:first-child').click(function() {// for nav tabs
 		url = '/image/process';
 		$('.submitBtnContainer > button').text('PROCESS SINGLE');
-		console.log('imagepath', $('.imageContainer img').attr('src'));
 		if($('.imageContainer img').attr('src')){
-			console.log('image uploaded');
 			// $('.operationsPanelOverlay').css('display','block');
 
 			$('.sidenav').removeClass('sideNavFullWidth');
@@ -78,6 +75,9 @@ $(document).ready(function() {
 		$("#imageUploadForm").submit();
 	});
 
+
+var img = new Image();
+
 	$("#imageUploadForm").submit(function(e) {
 		e.preventDefault();
 
@@ -94,7 +94,7 @@ $(document).ready(function() {
 		request.onreadystatechange = function () {
 			if (this.readyState === 4 && this.status === 200) {
 				var div = document.getElementById("imageContainer");
-				var img = new Image();
+
 				var path = this.responseText.substring(1);
 				var fileName = path.replace(/^.*[\\\/]/, '');
 				var width = 0;
@@ -108,7 +108,7 @@ $(document).ready(function() {
 
 				var showImage = setInterval(function() {
 					width = width + 1;
-					if (width <= 200) {
+					if (width <= 100) {
 						$('.progressBar').css('width', width+'%');
 					}
 					else {
@@ -122,44 +122,62 @@ $(document).ready(function() {
 						$('.progressBar').html('UPLOADED');
 						$('.progress, .progressBar').css('display', 'none');
 
-						// $(".croppedImg").css({
-						// 	'width':'inherit',
-						// 	'min-height':'100%',
-						// 	'top':0,
-						// 	'left':0,
-						// 	'background': 'url('+path+') no-repeat -0px -0px',
-						// 	'background-size': $('.imageContainer')[0].clientWidth + 'px'
-						// });
 
-						$(".layer").css({
-							"width":img.width,
-							"height":img.height,
-							"display": "inline-block",
-							"vertical-align": "middle",
-							"margin": "0 auto",
-							"top": $(img).position().top
-						});
+                        var imgWidth = img.width;
+                        var imgHeight = img.height;
 
-						$(".croppedImg").css({
-							"width":img.width,
-							"height":img.height,
-							"display": "inline-block",
-							"vertical-align": "middle",
-							"margin": "0 auto",
-							"top": $(img).position().top,
-							'left':0,
-							'background': 'url('+path+') no-repeat -0px -0px',
-							'background-size': $('.imageContainer')[0].clientWidth + 'px'
-						});
+                        //set image layer's height and width according to image
+                        if(imgWidth > imgHeight){
+                            $(".layer").css({
+    							"width":imgWidth,
+    							"height":imgHeight,
+    							"display": "inline-block",
+    							"vertical-align": "middle",
+    							"margin": "0 auto",
+    							"top": $(img).position().top,
+                                "left":0
+    						});
+    						$(".croppedImg").css({
+    							"width":imgWidth,
+    							"height":imgHeight,
+    							"display": "inline-block",
+    							"vertical-align": "middle",
+    							"margin": "0 auto",
+                                'left':0,
+    							"top": Number($(img).position().top),
+    							'background': 'url('+path+') no-repeat -0px -0px',
+    							'background-size': imgWidth + 'px'
+    						});
+                        }else {
+                            $(".layer").css({
+    							"width":imgWidth,
+    							"height":imgHeight,
+    							"display": "inline-block",
+    							"vertical-align": "middle",
+    							"margin": "0 auto",
+    							"left": Number($(img).position().left),
+                                "top":0
+    						});
 
+    						$(".croppedImg").css({
 
-						$('.operationsPanelOverlay').addClass('fadeout');
+    							"width":imgWidth,
+    							"height":imgHeight,
+    							"display": "inline-block",
+    							"vertical-align": "middle",
+    							"margin": "0 auto",
+                                "left": Number($(img).position().left),
+                                "top":0,
+    							'background': 'url('+path+') no-repeat -0px -0px',
+    							'background-size': imgWidth + 'px'
+    						});
+                        }
 						$('.sidenav').removeClass('sideNavFullWidth');
 						$('.rightPanel').css('display', 'block');
 
 						clearInterval(showImage);
 					}
-				}, 30);
+				}, 20);
 			}
 		}
 	});
@@ -169,26 +187,23 @@ $(document).ready(function() {
 	$(".labelsSection > label > input").change(function(){
 		var panelID = $(this).parent().parent().parent().attr('id');
 		var size = Number($(this).val());
-		var containerWidth = $("#imageContainer")[0].clientWidth;
-		var containerHeight = $("#imageContainer")[0].clientHeight;
-
-		var centerX = containerWidth/2;
-		var centerY = containerHeight/2;
-
+		var layerWidth = Number($(".layer")[0].clientWidth);
+		var layerHeight = Number($(".layer")[0].clientHeight);
+		var centerX = layerWidth/2;
+		var centerY = layerHeight/2;
 		var offsetX = centerX - size/2;
 		var offsetY = centerY - size/2;
-
 		var url = $('.imageContainer > img').attr('src');
 
 		var imageCropper = function () {
 			$('.croppedImg').css({
-				'width': size,
-				'min-height': size,
-				'left': offsetX,
-				'top': offsetY,
-				'background': 'url('+url+') no-repeat -'+ (offsetX + 1)+'px -'+(offsetY + 1)+'px',
-				'background-size': $('.imageContainer')[0].clientWidth + 'px',
-				'border': '1px dashed #fff'
+                'width': size,
+                'height': size,
+                'left': offsetX + Number($(img).position().left),
+				'top': offsetY + Number($(img).position().top),
+				'border': '1px dashed #fff',
+                'background': 'url('+url+') no-repeat -'+ (offsetX + 1)+'px -'+(offsetY + 1)+'px',
+				'background-size': layerWidth + 'px',
 			});
 		}
 
@@ -215,7 +230,6 @@ $(document).ready(function() {
 
 	$('.submitChanges').click(function() {
 		requestPayload.operationOrder = reorder(); // sending operation order to server based on user's choice
-
 		$.ajax({
 			type: 'POST',
 			url: url,

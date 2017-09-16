@@ -256,6 +256,7 @@ $(document).ready(function() {
 
 	$('.submitChanges').click(function() {
 
+		$('.loaderLayer, .loader').css('display', 'block');
 		requestPayload.operationOrder = reorder(); // sending operation order to server based on user's choice
 		requestPayload.sourcePath = $('input[name=sourceInput]').val();
 		requestPayload.destPath = $('input[name=destInput]').val();
@@ -266,12 +267,14 @@ $(document).ready(function() {
 			data: JSON.stringify(requestPayload),
 			contentType: 'application/json',
 			success: function(result) {
-				// requestPayload = {}
+				requestPayload = {}
 				console.log('Process Multiple result => ', result);
+				$('.loaderLayer, .loader').css('display', 'none');
+	            swal("Congratulations!", "All images processed", "success");
 			},
-      error: function(error){
-        console.log('Process Multiple Error => ', error);
-      }
+	        error: function(error){
+	            console.log('Process Multiple Error => ', error);	                     
+	        }
 		});
 	});
 
@@ -286,14 +289,15 @@ $(document).ready(function() {
 			url: 'saveConfig',
 			data: JSON.stringify(requestPayload),
 			contentType: 'application/json',
-      dataType: 'json',
+      		dataType: 'json',
 			success: function(result) {
-				// requestPayload = {};
+				requestPayload = {};
 				console.log('Save config result', result);
 			},
-      error: function(error){
-        console.log('Save config Error => ', error);
-      }
+	        error: function(error){
+	        	requestPayload = {};
+	        	console.log('Save config Error => ', error);
+	        }
 		});
 	})
 

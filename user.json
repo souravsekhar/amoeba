@@ -1,1 +1,16 @@
-{"users":[{"id":"surya.pratap@lowes.com","name":"sourav sahoo","password":"qwe123","config":[]},{"id":"sourav.sahoo@lowes.com","name":"sourav sahoo","password":"qwe123","config":[]}]}
+{
+    "users": [
+        {
+            "id":"surya.pratap@lowes.com",
+            "name": "sourav sahoo",
+            "password": "qwe123",
+            "config":[]
+        },
+        {
+            "id":"sourav.sahoo@lowes.com",
+            "name": "sourav sahoo",
+            "password": "qwe123",
+            "config":[]
+        }
+    ]
+}

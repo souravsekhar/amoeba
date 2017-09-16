@@ -11,6 +11,8 @@ const requestHandler = (request, reply) => {
 	
 	OperationsHandler.operationsHandler(imageInfo, request, (err) => {
 		if (err) return err;
+
+		reply(true);
 	});
 }
 

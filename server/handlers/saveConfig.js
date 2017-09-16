@@ -9,7 +9,8 @@ const deepDiff = require('deep-diff');
 
 const saveConfig = (request, cb) => {
     let userID = request.payload && request.payload.data;
-    let validUser = userJSON.users.filter((user) => {
+
+    let validUser = userJSON.users.filter((user) => {      
         return userID === user.id;
     });
     let sourcePath = '/uploads/batch_src/' + request.payload && request.payload.sourcePath;
@@ -17,8 +18,9 @@ const saveConfig = (request, cb) => {
 
     request.payload.folderName = folderName;
     request.payload.sourcePath = sourcePath;
-
+    
     if (validUser.length == 1) {
+
       let isUniqueConfig = true;
       let diffConfig;
       if (validUser[0].config && validUser[0].config.length) {
@@ -31,6 +33,7 @@ const saveConfig = (request, cb) => {
         });
       }
       if(isUniqueConfig) {
+            
         request.payload.configID = folderName + uuid();
         validUser[0].config.push(request.payload);
 

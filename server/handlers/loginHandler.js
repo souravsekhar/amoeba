@@ -1,43 +1,41 @@
 'use strict';
-const fs          = require('fs');
-const jwt         = require('jsonwebtoken');
-const users     = loadUsers();
+
+const fs = require('fs');
+const jwt = require('jsonwebtoken');
+const usersJSON = loadUsers();
+import chalk from 'chalk';
 
 process.env.SECRET_KEY = 'hafha2F3RT3ET2FYGFKJhishgjueiuF5n5095202nfhas983rhb';
 
 
 // validate a user login
 function validateUser(request, reply) {
-    let userName = request.payload.userName;
-    let userPassword = request.payload.password;
+    let userName = request.payload.userName,
+        userPassword = request.payload.password,
+        userNameExists,
+        passwordExists;
 
-    // check if exists
-    if(!(userName in users)){
-        var errMsg = 'User not found';
-        reply.view('login',{errMsg:errMsg});
-    }
-
-    else {
-        // get user details form database(json)
-        let dbUserName = users[userName].id;
-        let dbPassword = users[userName].password;
-
-        // validate the user
-            if(!(userPassword === dbPassword)){
-                var errMsg = 'Wrong username or password!';
-                reply.view('login',{errMsg:errMsg});
-            }
-
-            else {
-                let userId = users[userName].id;
-                // if user is found and password is right
-                // create a token
+    usersJSON.users.forEach((user) => {
+        if (userName === user.id) {
+            userNameExists = true;
+            if (userPassword === user.password) {
+                passwordExists = true;
+                let userId = user.id;
                 let token = jwt.sign(userId, process.env.SECRET_KEY);
-                //  console.log("token generated:  "+token);
-                // save this tokent on client side
+
                 reply.redirect('/home').state('token', token);
             }
         }
+    });
+
+    if (!userNameExists) {
+        let errMsg = 'User not found';
+        reply.view('login',{errMsg:errMsg});
+    }
+    else if(!passwordExists){
+        let errMsg = 'Wrong password!';
+        reply.view('login',{errMsg:errMsg});
+    }
 }
 
 // load notes from database

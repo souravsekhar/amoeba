@@ -5,6 +5,7 @@ import routes from './routes';
 import vision from 'vision';
 import chalk from 'chalk';
 import inert from 'inert';
+import MasterDirWatcher from './server/handlers/masterDirWatcher.js';
 
 // Instatiating hapi server
 const server = new hapi.Server();
@@ -46,4 +47,7 @@ server.views({
 server.route(routes);
 
 // starting server
-server.start(() => {console.log(chalk.green('✓'), "Server running at port", 8080)});
+server.start(() => {
+    console.log(chalk.green('✓'), "Server running at port", 8080)
+    MasterDirWatcher.masterDirWatcher();
+});

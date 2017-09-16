@@ -7,6 +7,7 @@ import ImageCropper from './imageCropper';
 import FormatHandler from './formatHandler';
 import path from 'path';
 import async from 'async';
+import chalk from 'chalk';
 
 const uploadHandler = (req, reply) => {// uploads the received image to disk currently	
 	let form = new multiparty.Form(),

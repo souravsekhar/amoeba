@@ -1,6 +1,7 @@
 'use strict';
 
 import fs from 'fs';
+import chalk from 'chalk';
 
 const searchHandler = (request, reply) => {		
 	let fileNamesArr = fs.readdirSync('./uploads/originals');

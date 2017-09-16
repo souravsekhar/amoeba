@@ -97,6 +97,7 @@
 .nav-tabs>li.active>a:hover,
 .nav-tabs>li.active>a:focus {
     border: 1px solid #1abc9c;
+    
     border-bottom-color: #1abc9c;
     border-radius: 0;
     margin-right: 0;

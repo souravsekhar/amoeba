@@ -1,13 +1,14 @@
 'use strict';
 
 import OperationsHandler from './operationsHandler.js';
+import chalk from 'chalk';
 
 const requestHandler = (request, reply) => {
+	console.log(chalk.yellow('---------- SINGLE IMAGE PROCESSING INITIATED ----------'));
 	let imageInfo = request.payload && request.payload.imagePath;
 
 	var userConfigurations = request.payload;
-	console.log("userConfigurations",userConfigurations);
-
+	
 	OperationsHandler.operationsHandler(imageInfo, request, (err) => {
 		if (err) return err;
 	});

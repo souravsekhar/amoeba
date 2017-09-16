@@ -7,6 +7,7 @@ import RequestHandler from '../server/handlers/requestHandler.js';
 import MultipleUploadsHandler from '../server/handlers/multipleUploadsHandler.js';
 import loginHandler from '../server/handlers/loginHandler.js';
 import homePageHandler from '../server/handlers/homePageHandler.js';
+import SaveConfigHandler from '../server/handlers/SaveConfigHandler.js';
 
 const routes = [
     {// serve css files
@@ -149,6 +150,11 @@ const routes = [
         method: "POST",
         path: '/image/process',
         handler: RequestHandler.requestHandler
+    },
+    {
+        method: "POST",
+        path: '/saveConfig',
+        handler: SaveConfigHandler.saveConfigHandler
     }
 ];
 

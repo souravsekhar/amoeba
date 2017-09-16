@@ -2,6 +2,7 @@
 
 import Jimp from 'jimp';
 import fs from 'fs';
+import chalk from 'chalk';
 
 // predefined image configuration
 const imageConfig = {

@@ -1,9 +1,10 @@
 'use strict';
 
 import Jimp from 'jimp';
+import chalk from 'chalk';
 
 function invertHandler (req, callback) {
-
+	console.log(chalk.yellow('---------- INVERTING INITIATED ----------'));
 	let imageName = req && req.imageFileName,
 		imagePath = req.imagePath;
 
@@ -19,6 +20,8 @@ function invertHandler (req, callback) {
 		image.invert()
 			 .write(uploadPath, (err) => {
 			 	if (err) return err;
+			 	console.log(chalk.green('---------- INVERTING COMPLETED ----------'));
+			 	console.log(chalk.cyan(`${fileName}${fileExtn}`) + ' has been inverted and stored at' + chalk.cyan(` ${uploadPath}`));	
 			 	callback(null, uploadPath);
 			 });		
 	});

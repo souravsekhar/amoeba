@@ -7,12 +7,12 @@ const formatHandler = (req, callback) => {
 	console.log(chalk.yellow('---------- IMAGE TYPE FORMATTING INITIATED ----------'));
 
 	let imageName = req && req.imageFileName,
-		fileFormat = req && req.formats && req.formats.format,
+		fileFormat = req && req.format,
 		imagePath = req.imagePath;
 
-	Jimp.read(imagePath, (err, image) => {		
+	Jimp.read(imagePath, (err, image) => {
 		if (err) return err;
-				
+
 		let fileName = imageName.substring(0, imageName.indexOf('.')),
 			uploadPath = `./uploads/formatted/formatted_images_${fileName}.${fileFormat}`;
 

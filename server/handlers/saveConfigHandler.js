@@ -12,7 +12,6 @@ const saveConfigHandler = (request, reply) => {
         if (err) return err;
 
         request.payload.data = data;
-
         SaveConfig.saveConfig(request, (err, result) => {
             if (err) return err;
 

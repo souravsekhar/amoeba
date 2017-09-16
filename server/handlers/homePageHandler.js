@@ -2,6 +2,7 @@
 
 import loginHandler from './loginHandler';
 import chalk from 'chalk';
+import userJSON from '../../user.json';
 
 const jwt = require('jsonwebtoken'),
       users = loginHandler.loadUsers();
@@ -16,10 +17,37 @@ function homePageHandler (request, reply) {
             reply("401").code(401);
         }else {
             let userId = data;
+            let context = {};
+            let savedConfigs = [];
+            let orderedSavedConfig = [];
+            let validUser = userJSON.users.filter((user) => {
+                return userId === user.id;
+            });
 
-
-
-            reply.view('index',{userId:userId});
+            if (validUser.length == 1) {
+              if (validUser[0].config && validUser[0].config.length) {
+                for(var i = (validUser[0].config.length - 1) ; (i >= 0 && savedConfigs.length < 4) ; i--){
+                  savedConfigs.push(validUser[0].config[i]);
+                }
+              }
+            }
+            if (savedConfigs && savedConfigs.length) {
+              savedConfigs.forEach((eachSavedConfig) => {
+                  let orderedConfig = {};
+                  let orderArray = JSON.parse(eachSavedConfig.operationOrder);
+                  orderedConfig.folderName = eachSavedConfig.folderName;
+                  orderedConfig.configID = eachSavedConfig.configID;
+                  orderArray.forEach((operation) => {
+                      let opern = operation.toLowerCase();
+                      orderedConfig[opern] = eachSavedConfig[opern];
+                  });
+                  orderedSavedConfig.push(orderedConfig);
+              });
+            }
+            console.log("orderedSavedConfig 11 === ", orderedSavedConfig);
+            context.userId = userId;
+            context.savedConfigs = savedConfigs;
+            reply.view('index',context);
         }
     });
 }

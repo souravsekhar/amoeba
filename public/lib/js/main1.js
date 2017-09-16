@@ -22,25 +22,48 @@ $(document).ready(function() {
 		return JSON.stringify(operationOrder.get());
 	};
 
+	var clearAllInputs = function(selector) {
+		console.log('selector >>>', selector);
+	  $(selector).find(':input').each(function() {
+	  	console.log('this.type', this.type);
+	    if(this.type == 'submit'){
+	          //do nothing
+	      }
+	      else if(this.type == 'checkbox') {
+	      	if (this.checked) {
+	      		$(this).trigger('click');
+	      	}
+	      }
+	      else if(this.type == 'radio') {
+      		console.log('inside radio', $(this).prop('checked'));
+      		$(this).prop('checked', false);
+      		console.log($(this).attr('checked'));
+	      }
+	      else{
+	        $(this).val('');
+	      }
+	   });
+	}
+
 	$(".operationsOrder").sortable();
 
-	$('.singleUpload, .multiUpload').click(function() {// for overlay buttons
+	// $('.singleUpload, .multiUpload').click(function() {// for overlay buttons
 
-		$('.homeOverlay').css({top:"-100vh"});
+	// 	$('.homeOverlay').css({top:"-100vh"});
 
-		if($(this).attr('class').indexOf('singleUpload') !== -1) {
-			$('.singleUploadContainer').addClass('active');
-			$('.nav-tabs > li:nth-child(1)').addClass('active');
-			url = '/image/process';
-			$('.submitBtnContainer > button').text('PROCESS SINGLE');
-		}
-		else {
-			$('.multipleUploadContainer').addClass('active');
-			$('.nav-tabs > li:nth-child(2)').addClass('active');
-			url = '/image/multipleUpload';
-			$('.submitBtnContainer > button').text('PROCESS MULTIPLE');
-		}
-	});
+	// 	if($(this).attr('class').indexOf('singleUpload') !== -1) {
+	// 		$('.singleUploadContainer').addClass('active');
+	// 		$('.nav-tabs > li:nth-child(1)').addClass('active');
+	// 		url = '/image/process';
+	// 		$('.submitBtnContainer > button').text('PROCESS SINGLE');
+	// 	}
+	// 	else {
+	// 		$('.multipleUploadContainer').addClass('active');
+	// 		$('.nav-tabs > li:nth-child(2)').addClass('active');
+	// 		url = '/image/multipleUpload';
+	// 		$('.submitBtnContainer > button').text('PROCESS MULTIPLE');
+	// 	}
+	// });
 
 	$('.nav-tabs > li:first-child').click(function() {// for nav tabs
 		url = '/image/process';
@@ -54,27 +77,34 @@ $(document).ready(function() {
             $('.sidenav').removeClass('decreasWidth');
 			$('.rightPanel').addClass('rightShow');
 		}
+		requestPayload = {};//on changing tabs resetting the request payload
+		clearAllInputs('.rightPanel');
 	});
 
 	$('.nav-tabs > li:last-child').click(function() {
 		url = '/image/multipleUpload';
 		$('.submitBtnContainer > button').text('PROCESS MULTIPLE');
+
         $('.sidenav').addClass('decreasWidth');
 		$('.rightPanel').addClass('rightShow');
+
+		requestPayload = {};//on changing tabs resetting the request payload
+		clearAllInputs('.rightPanel');
 	});
 
 	$("#selectedImage").change(function () {
 		var filePath = $(this)[0].value;
 		var selectedFileName = filePath.replace(/^.*[\\\/]/, '');
+
 		$("#fileNameDisplayBox").val(selectedFileName);
 		$('.uploadButton').slideDown(500);
 		$("#imageUploadForm").submit();
 	});
 
 
-var img = new Image();
+	var img = new Image();
 
-	$("#imageUploadForm").submit(function(e) {
+	$("#imageUploadForm").submit(function(e) {// single image upload
 		e.preventDefault();
 
 		var formElement = document.querySelector("#imageUploadForm");
@@ -103,8 +133,7 @@ var img = new Image();
 				$('.progress, .progressBar').css('display', 'block');
 
 				var showProgress = setInterval(showImage, 20);
-
-				function showImage() {
+                function showImage() {
 					width = width + 1;
 
 					if (width <= 100) {
@@ -248,14 +277,14 @@ var img = new Image();
 
 			case 'formatSlider':
 				var format = $(this).val();
-				requestPayload.formats = {};
-				requestPayload.formats.format = format;
+				requestPayload.format = format;
 				break;
 		}
 	});
 
 	$('.submitChanges').click(function() {
 
+		$('.loaderLayer, .loader').css('display', 'block');
 		requestPayload.operationOrder = reorder(); // sending operation order to server based on user's choice
 		requestPayload.sourcePath = $('input[name=sourceInput]').val();
 		requestPayload.destPath = $('input[name=destInput]').val();
@@ -264,12 +293,16 @@ var img = new Image();
 			type: 'POST',
 			url: url,
 			data: JSON.stringify(requestPayload),
-			dataType: "json",
 			contentType: 'application/json',
 			success: function(result) {
-				// requestPayload = {}
-				console.log('result', result);
-			}
+				requestPayload = {}
+				console.log('Process Multiple result => ', result);
+				$('.loaderLayer, .loader').css('display', 'none');
+	            swal("Congratulations!", "All images processed", "success");
+			},
+	        error: function(error){
+	            console.log('Process Multiple Error => ', error);
+	        }
 		});
 	});
 
@@ -283,12 +316,16 @@ var img = new Image();
 			type: 'POST',
 			url: 'saveConfig',
 			data: JSON.stringify(requestPayload),
-			dataType: 'json',
 			contentType: 'application/json',
+      		dataType: 'json',
 			success: function(result) {
-				// requestPayload = {};
-				console.log('saved result', result);
-			}
+				requestPayload = {};
+				console.log('Save config result', result);
+			},
+	        error: function(error){
+	        	requestPayload = {};
+	        	console.log('Save config Error => ', error);
+	        }
 		});
 	})
 
@@ -317,6 +354,7 @@ var img = new Image();
 					tempArr.splice(tempArr.indexOf($(this).attr('id')), 1);
 					removeUncheckedOperation(this);
 					$('#cropDrag').remove();
+					$('input[name=cropRadio]').removeAttr('checked');
 
 					requestPayload.crop = {}; //not sending operation data on uncheck of crop operation
 				}

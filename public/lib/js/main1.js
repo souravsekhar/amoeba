@@ -29,13 +29,19 @@ $(document).ready(function() {
 	    if(this.type == 'submit'){
 	          //do nothing
 	      }
-	      else if(this.type == 'checkbox' || this.type == 'radio') {
+	      else if(this.type == 'checkbox') {
 	      	if (this.checked) {
 	      		$(this).trigger('click');
 	      	}	        
-	      }else{
-	        $(this).val('');
 	      }
+	      else if(this.type == 'radio') {
+      		console.log('inside radio', $(this).prop('checked'));
+      		$(this).prop('checked', false);
+      		console.log($(this).attr('checked'));
+	      }
+	      else{
+	        $(this).val('');
+	      }      
 	   });
 	}
 

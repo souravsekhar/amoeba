@@ -4,12 +4,15 @@
 	  <title>Amoeba</title>
 	  <meta charset="utf-8">
 	  <meta name="viewport" content="width=device-width, initial-scale=1">
-	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+	  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-	  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+	  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"> -->
+	  <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap-theme.css">
+      <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css">
 	  <link rel="stylesheet" type="text/css" href="/css/main.css">
 	  <link rel="stylesheet" type="text/css" href="/css/main1.css">
 	  <link rel="stylesheet" type="text/css" href="/css/build.css">
+	  <!-- <link rel="stylesheet" type="text/css" href="/css/lato.css"> -->
 	  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 	  <!-- <link rel="stylesheet" type="text/css" href="/css/jquery-ui.css"> -->
 	  <!-- <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css"> -->
@@ -23,13 +26,18 @@
 				<li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span></a></li>
 			</ul>
 		</header>
-			<div class="homeOverlay">
+			<!-- <div class="homeOverlay">
 				<h1>Amoeba</h1>
 				<div class="btnContainer">
 					<button class="btn customBtn singleUpload">Single Upload</button>
 					<button class="btn customBtn multiUpload">Multiple Upload</button>
 				</div>
-			</div>
+			</div> -->
+			<div class="loaderLayer"></div>
+			<div id="loader">
+			  <div id="largeBox"></div>
+			  <div id="smallBox"></div>
+			</div>				
 			<div class="container-fluid sidePannel">
 			  <div class="row content customContainer">
 			    <div class="col-sm-7 col-md-7 col-lg-7 sidenav">
@@ -133,11 +141,9 @@
 
 			    <!-- <div class="separator"></div> -->
 
-			    <div class="col-sm-5 col-md-5 col-lg-5 rightPanel">
-			    	<!-- <div class="operationsPanelOverlay">
-			    		<h2>Please upload to begin...</h2>
-			    	</div> -->
+			    <div class="col-sm-5 col-md-5 col-lg-5 rightPanel">			    	
 					<div class="row newConfigurations">
+						<!-- <span class="glyphicon glyphicon-cog"> -->
 						<h4>New Configuration</h4>
 					</div>
 			    	<div class="reorderSection">
@@ -342,13 +348,14 @@
 						<!-- <div class="resetBtn col-md-4">
 							<button type='button' class="btn btn-block customBtn">RESET</button>
 						</div>	 -->				
-					</div>					
+					</div>								
 			    </div>
 			  </div>
 			</div>
 		<script type="text/javascript" src='/js/jquery-3.2.1.min.js'></script>
 		<!-- <script type="text/javascript" src='/bootstrap/js/bootstrap.js'</script> -->
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+		<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> -->
+		<script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="/js/jquery-ui.js"></script>
 		<script type="text/javascript" src="/js/main1.js"></script>
 		<!-- <script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script> -->

@@ -17,6 +17,7 @@ const saveConfig = (request, cb) => {
 
     request.payload.folderName = folderName;
     request.payload.sourcePath = sourcePath;
+
     if (validUser.length == 1) {
       let isUniqueConfig = true;
       let diffConfig;
@@ -42,6 +43,8 @@ const saveConfig = (request, cb) => {
         console.log(chalk.green('x') + chalk.green(' ********** CONFIGURATION ALREADY EXISTS **********'));
         cb(null, false);
       }
+    } else {
+      cb(null, false);
     }
 }
 

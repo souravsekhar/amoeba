@@ -17,7 +17,7 @@ const saveConfig = (request, cb) => {
     request.payload.folderName = folderName;
     request.payload.sourcePath = sourcePath;
 
-    if (validUser.length > 1) {
+    if (validUser.length >= 1) {
     	validUser[0].config.push(request.payload);
     }
 

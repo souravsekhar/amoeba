@@ -17,7 +17,9 @@ const masterDirWatcher = () => {
 		let doneFile = path.substring(path.lastIndexOf('/') + 1);
 
 		if (doneFile === '.done') {
+
 			console.log(chalk.magenta('.done FILE DETECTED'));
+			
 			ChildDirWatcher.childDirWatcher(path);
 		}
 	});

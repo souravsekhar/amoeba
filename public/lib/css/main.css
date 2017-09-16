@@ -46,11 +46,19 @@ ul.logout li{
 ul.logout li a{
     color: #fff;
     transition: background-color 0.25s linear;
+    padding: 14px 15px;
 }
 ul.logout > li >a:hover {
     text-decoration: none;
     background-color: #26a58b;
+    padding: 14px 15px;
 }
+
+ul.logout li a > span{
+    position: relative;
+    top: -1px;
+}
+
 /*------------------------
 logout end
 --------------------------
@@ -80,6 +88,7 @@ logout end
     top: 0;
     z-index: 100;
     transition: 0.5s;
+    display: none;
 }
 
 .homeOverlay > .btnContainer > .btn-primary {
@@ -179,9 +188,9 @@ div.container-fluid.sidePannel{
   position: relative;
 }
 
-.imageContainer > img{
+/*.imageContainer > img{
   width: 100%;
-}
+}*/
 
 .imageContainer .layer{
   height: 100%;
@@ -191,13 +200,13 @@ div.container-fluid.sidePannel{
   left: 0;
   top: 0;
   opacity: 0.5;
+  display: block;
 }
 
 .imageContainer .croppedImg{
   position: absolute;
-  overflow: hidden;
-  opacity: 1 !important;
-  transition: all 0.5s ease-in-out;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
 }
 
 #imageContainer{
@@ -263,7 +272,10 @@ footer {
   display: none;
   background-color: #1abc9c;
 }
-
+.progress-bar{
+    transition: none;
+    -webkit-transition:none;
+}
 .btnSize {
   font-size: 16px;
   width: 25%;
@@ -331,12 +343,12 @@ li {
     background-color: #1abc9c;
 
 }
-.buttonAlign:before, 
+.buttonAlign:before,
 .buttonAlign:after{
     content: "";
     position: absolute;
     width: 0;
-    height: 0;    
+    height: 0;
 }
 .buttonAlign:before {
     border-top: 16px solid transparent;
@@ -354,7 +366,7 @@ li {
     right: -16px;
     top: 0px;
 }
-.buttonAlign:hover:after, 
+.buttonAlign:hover:after,
 .buttonAlign:focus:after {
   border-left: 16px solid #1abc9c;
 }
@@ -373,9 +385,9 @@ li {
 
 /*arrow buttons css*/
 
-#invertCheckBoxInput, 
-#flipCheckBoxInput, 
-#greyScaleCheckBoxInput, 
+#invertCheckBoxInput,
+#flipCheckBoxInput,
+#greyScaleCheckBoxInput,
 #multiGenerateCheckBoxInput {
   visibility: hidden;
 }

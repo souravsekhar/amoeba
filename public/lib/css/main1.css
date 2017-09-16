@@ -15,9 +15,9 @@
   border-color: #1abc9c;
 }
 .parentContainer{
-  height: 500px;
-  width: 500px;
-  line-height: 500px;
+  height: 700px;
+  width: 700px;
+  line-height: 700px;
   text-align: center;
   background-color: #fff;
   position: relative;
@@ -86,29 +86,33 @@
   color: #fff;
 }
 
-.nav-tabs>li:first-child > a {
-    border-right: 0;
-}
-.nav-tabs>li>a,
-.nav-tabs>li.active>a,
-.nav-tabs>li>a:hover,
+
 .nav-tabs>li>a:link,
 .nav-tabs>li>a:visited,
-.nav-tabs>li.active>a:hover,
+.nav-tabs>li>a:focus,
+.nav-tabs>li.active>a:link,
+.nav-tabs>li.active>a:visited,
 .nav-tabs>li.active>a:focus {
     border: 1px solid #1abc9c;
-    
-    border-bottom-color: #1abc9c;
     border-radius: 0;
     margin-right: 0;
     color: #555;
 }
 
-.nav-tabs>li.active>a:hover, 
-.nav-tabs>li>a:hover {
-  background-color: #1abc9c;
-  color: #fff;
+.nav-tabs>li.active>a:link,
+.nav-tabs>li>a:hover,
+.nav-tabs>li.active>a,
+.nav-tabs>li.active>a:focus{
+    background-color: #1abc9c;
+    color: #fff;
 }
+
+
+.nav-tabs>li:first-child > a {
+    border-right: 0;
+}
+
+
 
 #process-single-btn {
   background-color: #1abc9c;
@@ -127,6 +131,30 @@
 }
 
 
+
+/*-----------------------------
+new configuration
+-------------------------------
+*/
+
+.newConfigurations{
+    border-radius: 0;
+    background: #1abc9c;
+    color: #fff;
+    padding: 10px 15px;
+    margin: 30px 0 0 0;
+}
+
+.newConfigurations > h4{
+    margin:0;
+    padding:0;
+    font-size: 16px;
+}
+
+/*-----------------------------
+new configuration end
+-------------------------------
+*/
 
 
 /*-----------------------------
@@ -178,7 +206,7 @@ saved configuration accordion
 }
 
 #accordion .panel-body .row .col-md-6:first-child > div.col-md-6{
-    padding: 4px 15px;
+    padding: 0px 15px;
 }
 
 #accordion .panel-body .row .col-md-6:first-child > div.col-md-6:first-child{

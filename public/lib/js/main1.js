@@ -222,8 +222,7 @@ var img = new Image();
 
 			case 'formatSlider':
 				var format = $(this).val();
-				requestPayload.formats = {};
-				requestPayload.formats.format = format;
+				requestPayload.format = format;
 				break;
 		}
 	});
@@ -238,12 +237,14 @@ var img = new Image();
 			type: 'POST',
 			url: url,
 			data: JSON.stringify(requestPayload),
-			dataType: "json",
 			contentType: 'application/json',
 			success: function(result) {
 				// requestPayload = {}
-				console.log('result', result);
-			}
+				console.log('Process Multiple result => ', result);
+			},
+      error: function(error){
+        console.log('Process Multiple Error => ', error);
+      }
 		});
 	});
 
@@ -257,12 +258,15 @@ var img = new Image();
 			type: 'POST',
 			url: 'saveConfig',
 			data: JSON.stringify(requestPayload),
-			dataType: 'json',
 			contentType: 'application/json',
+      dataType: 'json',
 			success: function(result) {
 				// requestPayload = {};
-				console.log('saved result', result);
-			}
+				console.log('Save config result', result);
+			},
+      error: function(error){
+        console.log('Save config Error => ', error);
+      }
 		});
 	})
 

@@ -1,6 +1,27 @@
+
+/*@font-face {
+  font-family: 'Batman';
+  src: url('../fonts/batmfa__.eot');
+  src: local('☺'), url('../fonts/batmfa__.woff') format('woff'), 
+    url('../fonts/batmfa__.ttf') format('truetype'), url('../fonts/batmfa__.svg') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+*/
+
+
+
+@font-face {
+  font-family: 'Batman';
+  src: url('../fonts/batmfa__.eot'); /* IE9 Compat Modes */
+  src: url('../fonts/batmfa__.woff') format('woff'), /* Pretty Modern Browsers */
+       url('../fonts/batmfa__.ttf')  format('truetype') /* Safari, Android, iOS */
+}
+
 body {
   font-family: 'Lato', sans-serif;
 }
+
 header {
   height: 50px;
   background-color: #1abc9c;
@@ -9,6 +30,10 @@ header {
   font-size: 25px;
   line-height: 50px;
   position: relative;
+}
+
+header > div > h1 {
+  font-family: Batman;
 }
 
 .headContainer{

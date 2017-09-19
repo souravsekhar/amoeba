@@ -13,7 +13,7 @@ function invertHandler (req, callback) {
 		
 		let fileExtn = imageName.substring(imageName.indexOf('.')),
 			fileName = imageName.substring(0, imageName.indexOf('.')),
-			uploadPath = `./uploads/inverted/inverted_images_${fileName}.${fileExtn}`;
+			uploadPath = `./uploads/inverted/inverted_images_${fileName}${fileExtn}`;
 
 		req.intermediateImagePath.push(uploadPath);
 

@@ -4,7 +4,7 @@ import UploadHandler from '../server/handlers/uploadHandler.js';
 import SearchHandler from '../server/handlers/searchHandler.js';
 import ImageUploadHandler from '../server/handlers/imageUploadHandler.js';
 import RequestHandler from '../server/handlers/requestHandler.js';
-import MultipleUploadsHandler from '../server/handlers/multipleUploadsHandler.js';
+import MultiRequestHandler from '../server/handlers/multiRequestHandler.js';
 import loginHandler from '../server/handlers/loginHandler.js';
 import homePageHandler from '../server/handlers/homePageHandler.js';
 import SaveConfigHandler from '../server/handlers/SaveConfigHandler.js';
@@ -26,6 +26,16 @@ const routes = [
         handler: {
             directory: {
                 path: 'public/lib/js',
+                listing: true
+            }
+        }
+    },
+    {// serve js files
+        method: 'GET',
+        path: '/fonts/{file*}',
+        handler: {
+            directory: {
+                path: 'public/lib/fonts',
                 listing: true
             }
         }
@@ -96,7 +106,7 @@ const routes = [
     {// upload images
         method: 'POST',
         path: '/image/multipleUpload',
-        handler: MultipleUploadsHandler.multipleUploadsHandler
+        handler: MultiRequestHandler.multiRequestHandler
     },
     {// show processed images
         method: 'GET',

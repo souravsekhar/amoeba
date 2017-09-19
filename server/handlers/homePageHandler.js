@@ -34,19 +34,20 @@ function homePageHandler (request, reply) {
             if (savedConfigs && savedConfigs.length) {
               savedConfigs.forEach((eachSavedConfig) => {
                   let orderedConfig = {};
+                  orderedConfig.order = {}
                   let orderArray = JSON.parse(eachSavedConfig.operationOrder);
                   orderedConfig.folderName = eachSavedConfig.folderName;
                   orderedConfig.configID = eachSavedConfig.configID;
                   orderArray.forEach((operation) => {
                       let opern = operation.toLowerCase();
-                      orderedConfig[opern] = eachSavedConfig[opern];
+                      orderedConfig.order[opern] = eachSavedConfig[opern];
                   });
                   orderedSavedConfig.push(orderedConfig);
               });
             }
-            console.log("orderedSavedConfig 11 === ", orderedSavedConfig);
+
             context.userId = userId;
-            context.savedConfigs = savedConfigs;
+            context.savedConfigs = orderedSavedConfig;
             reply.view('index',context);
         }
     });

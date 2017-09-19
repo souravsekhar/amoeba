@@ -9,14 +9,14 @@ const imageResizer = (req, callback) => {
 
 	let imageName = req && req.imageFileName,
 		dimensions = {
-			width: req && req.resize && req.resize.dimension,
-			height: req && req.resize && req.resize.dimension
+			width: req && Number(req.resize.split('x')[0]),
+			height: req && Number(req.resize.split('x')[1])
 		},
 		imagePath = req.imagePath;
 
-	Jimp.read(imagePath, (err, image) => {		
+	Jimp.read(imagePath, (err, image) => {
 		if (err) return err;
-		
+
 		let height = dimensions.height,
 			width = dimensions.width,
 			fileExtn = imageName.substring(imageName.indexOf('.')),
@@ -26,7 +26,7 @@ const imageResizer = (req, callback) => {
 		req.intermediateImagePath.push(uploadPath);
 
 		image.resize(height, width)
-			 .write(uploadPath, (err) => {			 	
+			 .write(uploadPath, (err) => {
 			 	if (err) return err;
 
 			 	console.log(chalk.green('---------- RESIZING COMPLETED ----------'));

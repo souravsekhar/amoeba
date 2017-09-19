@@ -7,6 +7,7 @@ $(document).ready(function() {
 	// initial page render settings
 	//$('.imageContainer').css('display', 'none');
     //$('.sidenav').addClass('sideNavFullWidth');
+    // swal("Congratulations!", "All images processed", "success");
 
     //---------------------------------------------
     //Global objects
@@ -21,6 +22,7 @@ $(document).ready(function() {
 	var requestPayload = {};
 	var operationsArr = [];
 	var url = "/image/process";
+	var img = new Image();
 
 	var reorder = function() {
 		var operationArray = $('.operationsOrder > li');
@@ -36,6 +38,7 @@ $(document).ready(function() {
 		//console.log('selector >>>', selector);
 	  $(selector).find(':input').each(function() {
 	  	//console.log('this.type', this.type);
+
 	    if(this.type == 'submit'){
 	          //do nothing
 	      }
@@ -45,9 +48,11 @@ $(document).ready(function() {
 	      	}
 	      }
 	      else if(this.type == 'radio') {
-      	//	console.log('inside radio', $(this).prop('checked'));
-      		$(this).prop('checked', false);
-      		//console.log($(this).attr('checked'));
+      		// console.log('inside radio', $(this).prop('checked'));
+      		// $(this).prop('checked', false);
+      		// console.log($(this).attr('checked'));
+      		// console.log('this', $(this));
+      		$(this)[0].checked = false;
 	      }
 	      else{
 	        $(this).val('');
@@ -96,7 +101,6 @@ $(document).ready(function() {
         isMultipleUpload = true;
 		url = '/image/multipleUpload';
 		$('.submitBtnContainer > button').text('PROCESS MULTIPLE');
-
         $('.sidenav').addClass('decreasWidth');
 		$('.rightPanel').addClass('rightShow');
 
@@ -112,7 +116,6 @@ $(document).ready(function() {
 		$('.uploadButton').slideDown(500);
 		$("#imageUploadForm").submit();
 	});
-
 
 	$("#imageUploadForm").submit(function(e) {// single image upload
 		e.preventDefault();
@@ -253,6 +256,29 @@ $(document).ready(function() {
         }
     }
 
+	// function resetCroppedImg (){
+	// 		var layerWidth = Number($(".layer")[0].clientWidth);
+	// 		var layerHeight = Number($(".layer")[0].clientHeight);
+	// 		var centerX = layerWidth/2;
+	// 		var centerY = layerHeight/2;
+	// 		var offsetX = 0;
+	// 		var offsetY = 0;
+	// 		var url = $('.imageContainer > img').attr('src');
+	// 		console.log("img",img);
+
+	// 		$('.croppedImg').css({
+	//                 'width': layerWidth,
+	//                 'height': layerHeight,
+	//                 'left': Number($(".imageContainer > img").position().left),
+	// 				'top': Number($(".imageContainer > img").position().top),
+	// 				'border': '1px dashed #fff',
+	//                 'background': 'url('+url+') no-repeat -'+ (offsetX + 1)+'px -'+(offsetY + 1)+'px',
+	// 				'background-size': layerWidth + 'px',
+	// 			});
+
+	// }
+
+
 	//crop logic
 
 	$(".labelsSection > label > input").change(function(){
@@ -267,6 +293,8 @@ $(document).ready(function() {
 		var offsetY = centerY - size/2;
 		var url = $('.imageContainer > img').attr('src');
 
+		console.log("onload img", img);
+
 		var imageCropper = function () {
 			$('.croppedImg').css({
                 'width': size,
@@ -278,6 +306,8 @@ $(document).ready(function() {
 				'background-size': layerWidth + 'px',
 			});
 		}
+
+		console.log('panelID', panelID);
 
 		switch(panelID) {
 			case 'cropSlider':
@@ -294,6 +324,18 @@ $(document).ready(function() {
 				var format = $(this).val();
 				requestPayload.format = format;
 				break;
+
+			case 'mulGenSlider':
+				var mulGen = $(this).val();
+				console.log('mulGen', mulGen);
+				if (mulGen === 'Yes') {
+					requestPayload.multiGenerate = true;
+					console.log('requestPayload.multiGenerate', requestPayload.multiGenerate);
+				}
+				else {
+					requestPayload.multiGenerate = false;
+					console.log('requestPayload.multiGenerate', requestPayload.multiGenerate);
+				}
 		}
 	});
 
@@ -338,14 +380,17 @@ $(document).ready(function() {
     				requestPayload = {}
     				console.log('Process Multiple result => ', result);
     				$('.loaderLayer, .loader').css('display', 'none');
-    	            swal("Congratulations!", "All images processed", "success");
+                    swal("Congratulations!", "All images processed", "success")
+    	            .then(function() {
+    	            	window.location = '/home';
+    	            });
     			},
     	        error: function(error){
     	            console.log('Process Multiple Error => ', error);
     	        }
     		});
         } else {
-            
+
             //TODO: Display info alert
         }
 	});
@@ -364,6 +409,10 @@ $(document).ready(function() {
     			success: function(result) {
     				requestPayload = {};
     				console.log('Save config result', result);
+                    swal("Configurations saved successfully!", "", "success")
+    					.then(function() {
+    						window.location = '/home';
+    					});
     			},
     	        error: function(error){
     	        	requestPayload = {};
@@ -526,11 +575,15 @@ $(document).ready(function() {
 		});
 	});
 
-	$('input[name=multiGenerate]').change(function() {
-		if($(this).is(':checked')){
-			requestPayload.multiGenerate = true;
-		}
-	});
+	// $('input[name=multiGenerate]').change(function() {
+	// 	if($(this).is(':checked')){
+	// 		requestPayload.multiGenerate = true;
+	// 		console.log('requestPayload.multiGenerate', requestPayload.multiGenerate);
+	// 	}
+	// 	else{
+	// 		requestPayload.multiGenerate = false;
+	// 	}
+	// });
 
 	$('#flipCheckBoxInput').change(function () {
 		if($(this).is(':checked')) {

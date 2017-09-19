@@ -6,14 +6,14 @@ import vision from 'vision';
 import chalk from 'chalk';
 import inert from 'inert';
 import MasterDirWatcher from './server/handlers/masterDirWatcher.js';
+import ip from 'ip';
 
 // Instatiating hapi server
 const server = new hapi.Server();
-
 // Initiating connection on port
 server.connection({
-	port: process.env.port || 8080,
-	host: "localhost"
+	port: process.env.port || 3000,
+	host: ip.address()
 });
 
 server.register([vision, inert], (err) => {
@@ -48,6 +48,6 @@ server.route(routes);
 
 // starting server
 server.start(() => {
-    console.log(chalk.green('✓'), "Server running at port", 8080)
+    console.log(chalk.green('✓'), "Server running at port", ip.address(), ':', process.env.port);
     MasterDirWatcher.masterDirWatcher();
 });

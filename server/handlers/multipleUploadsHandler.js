@@ -5,12 +5,10 @@ import async from 'async';
 import OperationsHandler from './operationsHandler.js';
 import SaveConfig from './saveConfig.js';
 import chalk from 'chalk';
-import jwt from 'jsonwebtoken';
 
-const multipleUploadsHandler = (request, reply) => {
+const multipleUploadsHandler = (request, cb) => {
 	let sourcePath = './uploads/batch_src/' + (request.payload && request.payload.sourcePath),
-		imagePathArr = [],
-		token = request.state.token;
+		imagePathArr = [];
 
 
 	const multipleProcessor = () => {
@@ -32,29 +30,25 @@ const multipleUploadsHandler = (request, reply) => {
 		async.eachSeries(imagePathArr, operationsIteratee, (err) => {
 			if(err) return err;
 			console.log(chalk.green(chalk.bold(chalk.magenta('✓') + " YAY !!!! YOU'RE ALL DONE :)")));
-			reply("Series Done");
+			cb(null, true);
 		});
 	}
-	jwt.verify(token,process.env.SECRET_KEY,function(err,data) {
 
-		request.payload.data = data;
-
-		if(fs.existsSync(sourcePath)) {
-			// saving the configuration while processing multiple files from UI
-			if (request.payload && request.payload.batch) {
-				console.log(chalk.magenta('----------PROCESSING INITIATED AUTOMATICALLY DUE TO FOLDER UPDATE----------'));			
-				multipleProcessor();
-			}
-			else {
-				console.log(chalk.magenta('----------PROCESSING INITIATED BY USER MANUALLY----------'));			
-				SaveConfig.saveConfig(request, (err, result) => {
-					if (err) return err;
-
-					multipleProcessor();
-				});
-			}
+	if(fs.existsSync(sourcePath)) {
+		// saving the configuration while processing multiple files from UI
+		if (request.payload && request.payload.batch) {
+			console.log(chalk.magenta('----------PROCESSING INITIATED AUTOMATICALLY DUE TO FOLDER UPDATE----------'));			
+			multipleProcessor();
 		}
-	});
+		else {
+			console.log(chalk.magenta('----------PROCESSING INITIATED BY USER MANUALLY----------'));			
+			SaveConfig.saveConfig(request, (err, result) => {
+				if (err) return err;
+
+				multipleProcessor();
+			});
+		}
+	}
 }
 
 module.exports = {

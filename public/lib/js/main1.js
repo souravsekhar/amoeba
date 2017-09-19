@@ -9,6 +9,16 @@ $(document).ready(function() {
     //$('.sidenav').addClass('sideNavFullWidth');
     // swal("Congratulations!", "All images processed", "success");
 
+    //---------------------------------------------
+    //Global objects
+    //---------------------------------------------
+    var img = new Image();
+    var isMultipleUpload = false;
+
+    //---------------------------------------------
+    //Global objects end
+    //---------------------------------------------
+
 	var requestPayload = {};
 	var operationsArr = [];
 	var url = "/image/process";
@@ -22,12 +32,13 @@ $(document).ready(function() {
 		});
 
 		return JSON.stringify(operationOrder.get());
-	};	
+	};
 
 	var clearAllInputs = function(selector) {
-		// console.log('selector >>>', selector);
+		//console.log('selector >>>', selector);
 	  $(selector).find(':input').each(function() {
-	  	// console.log('this.type', this.type);
+	  	//console.log('this.type', this.type);
+
 	    if(this.type == 'submit'){
 	          //do nothing
 	      }
@@ -42,7 +53,6 @@ $(document).ready(function() {
       		// console.log($(this).attr('checked'));
       		// console.log('this', $(this));
       		$(this)[0].checked = false;
-
 	      }
 	      else{
 	        $(this).val('');
@@ -77,9 +87,7 @@ $(document).ready(function() {
 		if($('.imageContainer img').attr('src')){
             $('.sidenav').addClass('decreasWidth');
 			$('.rightPanel').addClass('rightShow');
-
-			//reset cropedimg position
-			// resetCroppedImg();
+            isMultipleUpload = false;
 		}
 		else{
             $('.sidenav').removeClass('decreasWidth');
@@ -90,8 +98,9 @@ $(document).ready(function() {
 	});
 
 	$('.nav-tabs > li:last-child').click(function() {
+        isMultipleUpload = true;
 		url = '/image/multipleUpload';
-		$('.submitBtnContainer > button').text('PROCESS MULTIPLE');		
+		$('.submitBtnContainer > button').text('PROCESS MULTIPLE');
         $('.sidenav').addClass('decreasWidth');
 		$('.rightPanel').addClass('rightShow');
 
@@ -106,7 +115,7 @@ $(document).ready(function() {
 		$("#fileNameDisplayBox").val(selectedFileName);
 		$('.uploadButton').slideDown(500);
 		$("#imageUploadForm").submit();
-	});	
+	});
 
 	$("#imageUploadForm").submit(function(e) {// single image upload
 		e.preventDefault();
@@ -154,83 +163,8 @@ $(document).ready(function() {
 						$('.progressBar').html('UPLOADED');
 						$('.progress, .progressBar').css('display', 'none');
 
-
-                        var imgWidth = img.width;
-                        var imgHeight = img.height;
-
-                        //set image layer's height and width according to image
-                        //if image is horizontal
-                        if(imgWidth > imgHeight){
-                            $(".layer").css({
-    							"width":imgWidth,
-    							"height":imgHeight,
-    							"display": "inline-block",
-    							"vertical-align": "middle",
-    							"margin": "0 auto",
-    							"top": $(img).position().top,
-                                "left":0
-    						});
-    						$(".croppedImg").css({
-    							"width":imgWidth,
-    							"height":imgHeight,
-    							"display": "inline-block",
-    							"vertical-align": "middle",
-    							"margin": "0 auto",
-                                'left':0,
-    							"top": Number($(img).position().top),
-    							'background': 'url('+path+') no-repeat -0px -0px',
-    							'background-size': imgWidth + 'px'
-    						});
-                        }
-                        //if image is Vertical
-                        else if(imgWidth < imgHeight){
-                            $(".layer").css({
-    							"width":imgWidth,
-    							"height":imgHeight,
-    							"display": "inline-block",
-    							"vertical-align": "middle",
-    							"margin": "0 auto",
-    							"left": Number($(img).position().left),
-                                "top":0
-    						});
-
-    						$(".croppedImg").css({
-    							"width":imgWidth,
-    							"height":imgHeight,
-    							"display": "inline-block",
-    							"vertical-align": "middle",
-    							"margin": "0 auto",
-                                "left": Number($(img).position().left),
-                                "top":0,
-    							'background': 'url('+path+') no-repeat -0px -0px',
-    							'background-size': imgWidth + 'px'
-    						});
-                        }
-                        //if image is square
-                        else {
-                            $(".layer").css({
-                                "width":imgWidth,
-                                "height":imgHeight,
-                                "display": "inline-block",
-                                "vertical-align": "middle",
-                                "margin": "0 auto",
-                                "left": Number($(img).position().left),
-                                "top":Number($(img).position().top)
-                            });
-
-                            $(".croppedImg").css({
-
-                                "width":imgWidth,
-                                "height":imgHeight,
-                                "display": "inline-block",
-                                "vertical-align": "middle",
-                                "margin": "0 auto",
-                                "left": Number($(img).position().left),
-                                "top":Number($(img).position().top),
-                                'background': 'url('+path+') no-repeat -0px -0px',
-                                'background-size': imgWidth + 'px'
-                            });
-                        }
+                        // render the crop image logic
+                        renderCropImage();
 					//	$('.sidenav').removeClass('sideNavFullWidth');
 					    $('.sidenav').addClass('decreasWidth');
 						$('.rightPanel').addClass('rightShow');
@@ -240,6 +174,87 @@ $(document).ready(function() {
 			}
 		}
 	});
+
+    function renderCropImage(){
+        var path = img.src;
+        var imgWidth = img.width;
+        var imgHeight = img.height;
+
+        //set image layer's height and width according to image
+        //if image is horizontal
+
+        if(imgWidth > imgHeight){
+            $(".layer").css({
+				"width":imgWidth,
+				"height":imgHeight,
+				"display": "inline-block",
+				"vertical-align": "middle",
+				"margin": "0 auto",
+				"top": $(img).position().top,
+                "left":0
+			});
+			$(".croppedImg").css({
+				"width":imgWidth,
+				"height":imgHeight,
+				"display": "inline-block",
+				"vertical-align": "middle",
+				"margin": "0 auto",
+                'left':0,
+				"top": Number($(img).position().top),
+				'background': 'url('+path+') no-repeat -0px -0px',
+				'background-size': imgWidth + 'px'
+			});
+        }
+        //if image is Vertical
+        else if(imgWidth < imgHeight){
+            $(".layer").css({
+				"width":imgWidth,
+				"height":imgHeight,
+				"display": "inline-block",
+				"vertical-align": "middle",
+				"margin": "0 auto",
+				"left": Number($(img).position().left),
+                "top":0
+			});
+
+			$(".croppedImg").css({
+				"width":imgWidth,
+				"height":imgHeight,
+				"display": "inline-block",
+				"vertical-align": "middle",
+				"margin": "0 auto",
+                "left": Number($(img).position().left),
+                "top":0,
+				'background': 'url('+path+') no-repeat -0px -0px',
+				'background-size': imgWidth + 'px'
+			});
+        }
+        //if image is square
+        else {
+            $(".layer").css({
+                "width":imgWidth,
+                "height":imgHeight,
+                "display": "inline-block",
+                "vertical-align": "middle",
+                "margin": "0 auto",
+                "left": Number($(img).position().left),
+                "top":Number($(img).position().top)
+            });
+
+            $(".croppedImg").css({
+
+                "width":imgWidth,
+                "height":imgHeight,
+                "display": "inline-block",
+                "vertical-align": "middle",
+                "margin": "0 auto",
+                "left": Number($(img).position().left),
+                "top":Number($(img).position().top),
+                'background': 'url('+path+') no-repeat -0px -0px',
+                'background-size': imgWidth + 'px'
+            });
+        }
+    }
 
 	// function resetCroppedImg (){
 	// 		var layerWidth = Number($(".layer")[0].clientWidth);
@@ -263,11 +278,13 @@ $(document).ready(function() {
 
 	// }
 
+
 	//crop logic
 
 	$(".labelsSection > label > input").change(function(){
 		var panelID = $(this).parent().parent().parent().attr('id');
 		var size = Number($(this).val());
+        var cropDimension = ($(this).parent()[0].innerText).trim();
 		var layerWidth = Number($(".layer")[0].clientWidth);
 		var layerHeight = Number($(".layer")[0].clientHeight);
 		var centerX = layerWidth/2;
@@ -292,17 +309,15 @@ $(document).ready(function() {
 
 		console.log('panelID', panelID);
 
-		switch(panelID) {			
+		switch(panelID) {
 			case 'cropSlider':
-				requestPayload.crop = {};
-				requestPayload.crop.size = size;
-				imageCropper();
+				requestPayload.crop = cropDimension;
+                if(!isMultipleUpload){imageCropper();};
 				break;
 
 			case 'resizeSlider':
 				var dimension = Number($(this).val());
-				requestPayload.resize = {};
-				requestPayload.resize.dimension = dimension;
+				requestPayload.resize = dimension+"x"+dimension;
 				break;
 
 			case 'formatSlider':
@@ -324,59 +339,90 @@ $(document).ready(function() {
 		}
 	});
 
-	$('.submitChanges').click(function() {
+    //---------------------------------------------
+    //Reset crop logic
+    //---------------------------------------------
 
-		$('.loaderLayer, .loader').css('display', 'block');
+    function resetCropLogic() {
+        var layerWidth = Number($(".layer")[0].clientWidth);
+		var layerHeight = Number($(".layer")[0].clientHeight);
+
+		var url = $('.imageContainer > img').attr('src');
+
+		var imageCropper = function () {
+			$('.croppedImg').css({
+                'width': layerWidth,
+                'height': layerHeight,
+                'left': Number($(img).position().left),
+				'top': Number($(img).position().top),
+				'border': '1px dashed #fff',
+                'background': 'url('+url+') no-repeat -1px -1px',
+				'background-size': layerWidth + 'px',
+			});
+		}
+    }
+
+	$('.submitChanges').click(function(event) {
+
+
 		requestPayload.operationOrder = reorder(); // sending operation order to server based on user's choice
-		requestPayload.sourcePath = $('input[name=sourceInput]').val();
+		requestPayload.sourcePath = (url == "/image/multipleUpload") ? $('input[name=sourceInput]').val() : true;
 		requestPayload.destPath = $('input[name=destInput]').val();
 
-		$.ajax({
-			type: 'POST',
-			url: url,
-			data: JSON.stringify(requestPayload),
-			contentType: 'application/json',
-			success: function(result) {
-				requestPayload = {}
-				console.log('Process Multiple result => ', result);
-				$('.loaderLayer, .loader').css('display', 'none');				
-	            swal("Congratulations!", "All images processed", "success")
-	            .then(function() {
-	            	window.location = '/home';
-	            });
+        if(requestPayload.operationOrder && JSON.parse(requestPayload.operationOrder).length && requestPayload.sourcePath){
+            $('.loaderLayer, .loader').css('display', 'block');
+            $.ajax({
+    			type: 'POST',
+    			url: url,
+    			data: JSON.stringify(requestPayload),
+    			contentType: 'application/json',
+    			success: function(result) {
+    				requestPayload = {}
+    				console.log('Process Multiple result => ', result);
+    				$('.loaderLayer, .loader').css('display', 'none');
+                    swal("Congratulations!", "All images processed", "success")
+    	            .then(function() {
+    	            	window.location = '/home';
+    	            });
+    			},
+    	        error: function(error){
+    	            console.log('Process Multiple Error => ', error);
+    	        }
+    		});
+        } else {
 
-	            // $('.swal-button').attr('href', '/home');
-			},
-	        error: function(error){
-	            console.log('Process Multiple Error => ', error);
-	        }
-		});
+            //TODO: Display info alert
+        }
 	});
 
 	$(".saveBtn").click(function () {
 
 		requestPayload.operationOrder = reorder(); // sending operation order to server based on user's choice
-		requestPayload.sourcePath = $('input[name=sourceInput]').val();
+		requestPayload.sourcePath = (url == "/image/multipleUpload") ? $('input[name=sourceInput]').val() : true;
 		requestPayload.destPath = $('input[name=destInput]').val();
-
-		$.ajax({
-			type: 'POST',
-			url: 'saveConfig',
-			data: JSON.stringify(requestPayload),
-			contentType: 'application/json',
-			success: function(result) {
-				requestPayload = {};				
-				console.log('Save config result', result);
-				swal("Configurations saved successfully!", "", "success")
-					.then(function() {
-						window.location = '/home';
-					});
-			},
-	        error: function(error){
-	        	requestPayload = {};
-	        	console.log('Save config Error => ', error);
-	        }
-		});
+        if(requestPayload.operationOrder && JSON.parse(requestPayload.operationOrder).length && requestPayload.sourcePath){
+    		$.ajax({
+    			type: 'POST',
+    			url: 'saveConfig',
+    			data: JSON.stringify(requestPayload),
+    			contentType: 'application/json',
+    			success: function(result) {
+    				requestPayload = {};
+    				console.log('Save config result', result);
+                    swal("Configurations saved successfully!", "", "success")
+    					.then(function() {
+    						window.location = '/home';
+    					});
+    			},
+    	        error: function(error){
+    	        	requestPayload = {};
+    	        	console.log('Save config Error => ', error);
+    	        }
+    		});
+        } else {
+            $('.loaderLayer, .loader').css('display', 'none');
+            //TODO: Display info alert
+        }
 	})
 
 	$('#cropCheck, #resizeCheck, #compositeCheck, #formatCheck, #invertCheckBoxInput, #flipCheckBoxInput, #greyScaleCheckBoxInput').on('change', function () {
@@ -405,7 +451,8 @@ $(document).ready(function() {
 					removeUncheckedOperation(this);
 					$('#cropDrag').remove();
 					$('input[name=cropRadio]').removeAttr('checked');
-
+                    //reset crop logic
+                    resetCropLogic();
 					requestPayload.crop = {}; //not sending operation data on uncheck of crop operation
 				}
 
@@ -563,5 +610,5 @@ $(document).ready(function() {
 		else {
 			$('.croppedImg').css('filter', '');
 		}
-	});	
+	});
 });

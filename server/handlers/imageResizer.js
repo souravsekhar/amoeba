@@ -9,8 +9,8 @@ const imageResizer = (req, callback) => {
 
 	let imageName = req && req.imageFileName,
 		dimensions = {
-			width: req && Number(req.resize.split('x')[0]),
-			height: req && Number(req.resize.split('x')[1])
+			width: req && req.resize && Number(req.resize.split('x')[0]),
+			height: req && req.resize && Number(req.resize.split('x')[1])
 		},
 		imagePath = req.imagePath;
 

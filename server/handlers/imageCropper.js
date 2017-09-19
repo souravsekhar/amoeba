@@ -8,8 +8,8 @@ const imageCropper = (req, callback) => {
 	console.log(chalk.yellow('---------- CROPPING INITIATED ----------'));
 
 	let size = { //TODO:Split an get h & w in case of rectangular images
-			height: req && Number(req.crop.split('x')[0]),
-			width: req && Number(req.crop.split('x')[1]),
+			height: req && req.crop && Number(req.crop.split('x')[0]),
+			width: req && req.crop && Number(req.crop.split('x')[1]),
 		},
 		imageName = req && req.imageFileName,
 		imagePath = req.imagePath;

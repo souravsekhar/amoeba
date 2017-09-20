@@ -131,7 +131,7 @@
 			<div class="destPath">
 				<i class="glyphicon glyphicon-folder-close"></i>
 			</div>
-			<input type="text" name="destInput" placeholder="Enter destination path">
+			<input type="text" name="destInput" value="/processed" disabled> 
 		</div>
 	</div>
 </div>
@@ -145,6 +145,10 @@
 	<h2>Please upload to begin...</h2>
 </div> -->
 <div class="row newConfigurations">
+	<div class="configCheckbox">
+		<input type="radio" name="configType" value="newConfig" id="newConfigId">
+		<label for="newConfigId"></label>
+	</div>
 	<h4>New Configuration</h4>
 </div>
 <div class="reorderSection">
@@ -281,7 +285,12 @@
 	<div class="panel panel-default" id="panel">
 		<div class="panel-heading" id="panel-heading">
 			<h4 class="panel-title">
+				<div class="configCheckbox">
+						<input type="radio" name="configType" value="savedConfigId" id="savedConfigId">
+						<label for="savedConfigId"></label>
+					</div>
 				<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+					
 					<span class="glyphicon glyphicon-cog">
 					</span>Saved configurations
 				</a>
@@ -297,7 +306,7 @@
 							<div class="col-md-12">
 								<span class="glyphicon glyphicon-folder-open"></span><span>{{this.folderName}}</span>
 								<div class="configCheckbox">
-									<input type="checkbox" name="qwe" value="{{this.configID}}" id="{{this.configID}}" data-config-id="{{this.configID}}">
+									<input type="radio" name="qwe" value="{{this.configID}}" id="{{this.configID}}" data-config-id="{{this.configID}}">
 									<label for="{{this.configID}}"></label>
 								</div>
 							</div>

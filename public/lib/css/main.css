@@ -259,6 +259,7 @@ div.container-fluid.sidePannel{
 .rightPanel{
   min-height: inherit;
   position: relative;
+  padding-top: 30px;
   display: none;
   transition: display 0.5s linear;
 }
@@ -491,6 +492,7 @@ li {
   position: absolute;
   bottom: 15px;
   left: 50%;
+  display: none;
 }
 
 .resetBtn {
@@ -589,6 +591,10 @@ input[name="sourceInput"], input[name="destInput"]{
   color: #1abc9c;
   font-size: 20px;
   text-align: center;
+}
+
+.dontShow{
+  display: none;
 }
 
 .opsPanel {

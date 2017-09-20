@@ -1,1 +1,16 @@
-{"users":[{"id":"surya.pratap@lowes.com","name":"sourav sahoo","password":"qwe123","config":[{"crop":"200 x 200","invert":true,"operationOrder":"[\"Crop\",\"Invert\"]","sourcePath":"sp","destPath":"","data":"surya.pratap@lowes.com","folderName":"sp","configID":"spfb0f8310-9d03-11e7-9de3-194af05cd90a"}]},{"id":"sourav.sahoo@lowes.com","name":"sourav sahoo","password":"qwe123","config":[]}]}
+{
+    "users": [
+        {
+            "id":"surya.pratap@lowes.com",
+            "name": "sourav sahoo",
+            "password": "qwe123",
+            "config":[]
+        },
+        {
+            "id":"sourav.sahoo@lowes.com",
+            "name": "sourav sahoo",
+            "password": "qwe123",
+            "config":[]
+        }
+    ]
+}

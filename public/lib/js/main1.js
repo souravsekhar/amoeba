@@ -47,11 +47,7 @@ $(document).ready(function() {
 	      		$(this).trigger('click');
 	      	}
 	      }
-	      else if(this.type == 'radio') {
-      		// console.log('inside radio', $(this).prop('checked'));
-      		// $(this).prop('checked', false);
-      		// console.log($(this).attr('checked'));
-      		// console.log('this', $(this));
+	      else if(this.type == 'radio') {      		
       		$(this)[0].checked = false;
 	      }
 	      else{
@@ -87,6 +83,7 @@ $(document).ready(function() {
 		if($('.imageContainer img').attr('src')){
             $('.sidenav').addClass('decreasWidth');
 			$('.rightPanel').addClass('rightShow');
+
             isMultipleUpload = false;
 		}
 		else{
@@ -95,6 +92,8 @@ $(document).ready(function() {
 		}
 		requestPayload = {};//on changing tabs resetting the request payload
 		clearAllInputs('.rightPanel');
+		$('.saveBtn').css('display', 'none');
+		$('#accordion').css('display', 'none');
 	});
 
 	$('.nav-tabs > li:last-child').click(function() {
@@ -103,9 +102,13 @@ $(document).ready(function() {
 		$('.submitBtnContainer > button').text('PROCESS MULTIPLE');
         $('.sidenav').addClass('decreasWidth');
 		$('.rightPanel').addClass('rightShow');
+		// $('.saveBtn').addClass('rightShow');
+
 
 		requestPayload = {};//on changing tabs resetting the request payload
 		clearAllInputs('.rightPanel');
+		$('#accordion').css('display', 'block');
+		$('.saveBtn').css('display', 'block');
 	});
 
 	$("#selectedImage").change(function () {
@@ -348,58 +351,92 @@ $(document).ready(function() {
 		var layerHeight = Number($(".layer")[0].clientHeight);
 
 		var url = $('.imageContainer > img').attr('src');
-
-		var imageCropper = function () {
-			$('.croppedImg').css({
-                'width': layerWidth,
-                'height': layerHeight,
-                'left': Number($(img).position().left),
-				'top': Number($(img).position().top),
-				'border': '1px dashed #fff',
-                'background': 'url('+url+') no-repeat -1px -1px',
-				'background-size': layerWidth + 'px',
-			});
-		}
+		$('.croppedImg').css({
+            'width': layerWidth,
+            'height': layerHeight,
+            'left': Number($(img).position().left),
+			'top': Number($(img).position().top),
+			'border': 0,
+            'background': 'url('+url+') no-repeat 0px 0px',
+			'background-size': layerWidth + 'px',
+		});
     }
 
 	$('.submitChanges').click(function(event) {
 
+		if($('input[name=configType]:checked').val() == "savedConfigId"){
+			if($(".configCheckbox input[name=qwe]:checked").val()){
+				requestPayload.configId = $(".configCheckbox input[name=qwe]:checked").val();
+				$('.loaderLayer, .loader').css('display', 'block');
+	            $.ajax({
+	    			type: 'POST',
+	    			url: url,
+	    			data: JSON.stringify(requestPayload),
+	    			contentType: 'application/json',
+	    			success: function(result) {
+	    				requestPayload = {}
+	    				console.log('Process Multiple result => ', result);
+	    				$('.loaderLayer, .loader').css('display', 'none');
+	                    swal("Congratulations!", "All images processed", "success")
+	    	            .then(function() {
+	    	            	window.location = '/home';
+	    	            });
+	    			},
+	    	        error: function(error){
+	    	            console.log('Process Multiple Error => ', error);
+	    	        }
+	    		});
+			}
+		} else {
+			requestPayload.operationOrder = reorder(); // sending operation order to server based on user's choice
+			requestPayload.sourcePath = (url == "/image/multipleUpload") ? $('input[name=sourceInput]').val() : true;
+			requestPayload.destPath = $('input[name=destInput]').val();
 
-		requestPayload.operationOrder = reorder(); // sending operation order to server based on user's choice
-		requestPayload.sourcePath = (url == "/image/multipleUpload") ? $('input[name=sourceInput]').val() : true;
-		requestPayload.destPath = $('input[name=destInput]').val();
+	        if(requestPayload.operationOrder && JSON.parse(requestPayload.operationOrder).length && requestPayload.sourcePath){
+	            $('.loaderLayer, .loader').css('display', 'block');
+	            $.ajax({
+	    			type: 'POST',
+	    			url: url,
+	    			data: JSON.stringify(requestPayload),
+	    			contentType: 'application/json',
+	    			success: function(result) {
+	    				requestPayload = {}
+	    				console.log('Process Multiple result => ', result);
+	    				$('.loaderLayer, .loader').css('display', 'none');
+	                    swal("Congratulations!", "All images processed", "success")
+	    	            .then(function() {
+	    	            	window.location = '/home';
+	    	            });
+	    			},
+	    	        error: function(error){
+	    	            console.log('Process Multiple Error => ', error);
+	    	        }
+	    		});
+	        } else {
 
-        if(requestPayload.operationOrder && JSON.parse(requestPayload.operationOrder).length && requestPayload.sourcePath){
-            $('.loaderLayer, .loader').css('display', 'block');
-            $.ajax({
-    			type: 'POST',
-    			url: url,
-    			data: JSON.stringify(requestPayload),
-    			contentType: 'application/json',
-    			success: function(result) {
-    				requestPayload = {}
-    				console.log('Process Multiple result => ', result);
-    				$('.loaderLayer, .loader').css('display', 'none');
-                    swal("Congratulations!", "All images processed", "success")
-    	            .then(function() {
-    	            	window.location = '/home';
-    	            });
-    			},
-    	        error: function(error){
-    	            console.log('Process Multiple Error => ', error);
-    	        }
-    		});
-        } else {
-
-            //TODO: Display info alert
-        }
+	            //TODO: Display info alert
+	        }
+	    }
 	});
+
+	$('input[name=sourceInput]').on('input',function (){
+		$(this).removeClass("required");
+	});
+
+	$('input[name=sourceInput]').focus(function(){
+        $(this).addClass("required");
+     });
+
 
 	$(".saveBtn").click(function () {
 
 		requestPayload.operationOrder = reorder(); // sending operation order to server based on user's choice
 		requestPayload.sourcePath = (url == "/image/multipleUpload") ? $('input[name=sourceInput]').val() : true;
 		requestPayload.destPath = $('input[name=destInput]').val();
+
+		// if($('input[name=sourceInput]').val() === '') {
+	 //        swal("Please provide source path", "", "error");	       
+		// }
         if(requestPayload.operationOrder && JSON.parse(requestPayload.operationOrder).length && requestPayload.sourcePath){
     		$.ajax({
     			type: 'POST',
@@ -420,6 +457,9 @@ $(document).ready(function() {
     	        }
     		});
         } else {
+        	if(!requestPayload.sourcePath){
+        		$('input[name=sourceInput]').trigger('focus');
+        	}
             $('.loaderLayer, .loader').css('display', 'none');
             //TODO: Display info alert
         }
@@ -611,4 +651,5 @@ $(document).ready(function() {
 			$('.croppedImg').css('filter', '');
 		}
 	});
+
 });

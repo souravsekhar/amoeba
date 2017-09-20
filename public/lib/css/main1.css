@@ -35,6 +35,10 @@
   overflow: hidden;
 }
 
+#accordion {
+  display: none;
+}
+
 /*dnd*/
 .dndForm {
   border: 1px dashed #1abc9c;
@@ -142,7 +146,9 @@ new configuration
     background: #1abc9c;
     color: #fff;
     padding: 10px 15px;
-    margin: 30px 0 0 0;
+    position: relative;
+    margin-left: 0;
+    margin-right: 0;
 }
 
 .newConfigurations > h4{
@@ -164,6 +170,16 @@ saved configuration accordion
 
 .panel-title a > .glyphicon {
      margin-right:10px;
+}
+
+.panel-title {
+  position: relative;
+}
+.panel-title >.configCheckbox, .newConfigurations > .configCheckbox {
+  top:-1px;
+}
+.newConfigurations > .configCheckbox {
+  top:7px;
 }
 
 .panel-body {
@@ -250,7 +266,7 @@ saved configuration accordion
 }
 
 
-.configCheckbox input[type=checkbox]{
+.configCheckbox input[type=radio]{
     visibility: hidden;
 }
 
@@ -305,7 +321,7 @@ saved configuration accordion
 /**
  * Create the checkbox state for the tick
  */
-.configCheckbox input[type=checkbox]:checked + label:after {
+.configCheckbox input[type=radio]:checked + label:after {
 	opacity: 1;
 }
 
@@ -337,6 +353,11 @@ saved configuration accordion
      margin-right:10px;
 }
 
+.required{
+    outline: 0;
+    border: 0;
+    box-shadow: 0 0 6px #ff0000;
+}
 /*---------------------------------
 saved configuration accordion end
 -----------------------------------

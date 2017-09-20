@@ -10,14 +10,20 @@ const multipleUploadsHandler = (request, cb) => {
 	let sourcePath = './uploads/batch_src/' + (request.payload && request.payload.sourcePath),
 		imagePathArr = [];
 
-
+	console.log("sourcePath", sourcePath);
 	const multipleProcessor = () => {
 		let files = fs.readdirSync(sourcePath);
 
-		files.splice(0, 2);
+		// files.splice(0, 1);
+		files.forEach((f) => {
+			if (f.indexOf('.') === 0) {				
+				files.splice(f.indexOf(f), 1);
+			}
+		});
+		
 		console.log(chalk.cyan('vvvvvvv FILES TO BE PROCESSED vvvvvv'));
 
-		files.forEach((file) => {
+		files.forEach((file) => {	
 			console.log(chalk.blue(file));
 			imagePathArr.push('/uploads/batch_src/' + request.payload.sourcePath + '/' + file);
 		});
@@ -29,8 +35,18 @@ const multipleUploadsHandler = (request, cb) => {
 		// item as first param to it. And waits until the iteratee resolves.
 		async.eachSeries(imagePathArr, operationsIteratee, (err) => {
 			if(err) return err;
+
+			if (request.payload && request.payload.batch) {
+				// removing all pasted files from source path
+				files.forEach((filePath) => {
+					fs.unlinkSync(sourcePath + '/' + filePath);
+				});
+
+				fs.unlinkSync(sourcePath + '/.done');
+			}
+
 			console.log(chalk.green(chalk.bold(chalk.magenta('✓') + " YAY !!!! YOU'RE ALL DONE :)")));
-			cb(null, true);
+			cb(null, true);	
 		});
 	}
 

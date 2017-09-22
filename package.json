@@ -1,5 +1,5 @@
 {
-  "name": "imageprocessingwrapper",
+  "name": "amoeba",
   "version": "1.0.0",
   "description": "A light weight image processing wrapper tool",
   "main": "index.js",

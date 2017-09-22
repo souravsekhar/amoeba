@@ -10,7 +10,7 @@ process.env.SECRET_KEY = 'hafha2F3RT3ET2FYGFKJhishgjueiuF5n5095202nfhas983rhb';
 
 // validate a user login
 function validateUser(request, reply) {
-    let userName = request.payload.userName,
+    let userName = (request.payload.userName)+"@lowes.com",
         userPassword = request.payload.password,
         userNameExists,
         passwordExists;

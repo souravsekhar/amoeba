@@ -46,6 +46,18 @@ header > div > h1 {
     margin: 0;
     line-height: 50px;
 }
+
+.logo{
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: -4px;
+  width: 100px;
+}
+
+.logo > img{
+  width: 100%;
+}
 /*------------------------
 logout
 --------------------------

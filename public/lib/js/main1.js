@@ -652,4 +652,16 @@ $(document).ready(function() {
 		}
 	});
 
+	 $('.configCheckbox > input[name=qwe]').change(function() {
+        $("#savedConfigId")[0].checked = true;
+    });
+    $('#newConfigId').change(function() {
+        console.log($('.configCheckbox > input[name=qwe]'));
+        $('.configCheckbox > input[name=qwe]').each(function() {
+            if($(this).is(":checked")){
+                $(this)[0].checked = false;
+            }
+        });
+    });
+
 });

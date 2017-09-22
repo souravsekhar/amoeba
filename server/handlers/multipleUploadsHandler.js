@@ -12,18 +12,36 @@ const multipleUploadsHandler = (request, cb) => {
 
 	console.log("sourcePath", sourcePath);
 	const multipleProcessor = () => {
-		let files = fs.readdirSync(sourcePath);
+		// let files = fs.readdirSync(sourcePath);
+		let allFiles = fs.readdirSync(sourcePath);
+		let files = [];
 
-		// files.splice(0, 1);
-		files.forEach((f) => {
-			if (f.indexOf('.') === 0) {				
-				files.splice(f.indexOf(f), 1);
+		// files.splice(0, 2);
+		// console.log('files', allFiles);
+		// console.log('done index -----------', allFiles[1]);
+		// files.forEach((f, i) => {
+		// 	console.log('f', f);
+		// 	console.log('index', i);
+		// 	// if (f.indexOf('.') === 0) {				
+		// 	// 	files.splice(f.indexOf(f), 1);
+		// 	// }
+
+		// 	// console.log('f.indexOf(f)', f.indexOf(f));
+		// 	if(f === '.done' || f === '.DS_Store'){
+		// 		// console.log('f.indexOf(f)', f.indexOf(f));
+		// 		files.splice(i, 1);
+		// 	}
+		// });
+
+		allFiles.forEach((f) => {
+			if (f !== '.done' && f !== '.DS_Store') {
+				files.push(f);
 			}
 		});
 		
 		console.log(chalk.cyan('vvvvvvv FILES TO BE PROCESSED vvvvvv'));
 
-		files.forEach((file) => {	
+		files.forEach((file) => {
 			console.log(chalk.blue(file));
 			imagePathArr.push('/uploads/batch_src/' + request.payload.sourcePath + '/' + file);
 		});

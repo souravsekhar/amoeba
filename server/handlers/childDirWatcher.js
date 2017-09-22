@@ -19,7 +19,7 @@ const childDirWatcher = (path) => {
  
     validConfig.payload.batch = true;
 
-    console.log(chalk.yellow('PROCESSING STARTED . . .'))
+    console.log(chalk.yellow('PROCESSING STARTED . . .'));
     MultipleUploadsHandler.multipleUploadsHandler(validConfig, (err) => {
     	if (err) return err;
     	console.log('DONE');

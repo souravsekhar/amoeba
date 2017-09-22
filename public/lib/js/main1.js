@@ -47,7 +47,7 @@ $(document).ready(function() {
 	      		$(this).trigger('click');
 	      	}
 	      }
-	      else if(this.type == 'radio') {      		
+	      else if(this.type == 'radio') {
       		$(this)[0].checked = false;
 	      }
 	      else{
@@ -435,7 +435,7 @@ $(document).ready(function() {
 		requestPayload.destPath = $('input[name=destInput]').val();
 
 		// if($('input[name=sourceInput]').val() === '') {
-	 //        swal("Please provide source path", "", "error");	       
+	 //        swal("Please provide source path", "", "error");
 		// }
         if(requestPayload.operationOrder && JSON.parse(requestPayload.operationOrder).length && requestPayload.sourcePath){
     		$.ajax({
@@ -651,5 +651,19 @@ $(document).ready(function() {
 			$('.croppedImg').css('filter', '');
 		}
 	});
+
+    $('.configCheckbox > input[name=qwe]').change(function() {
+        $("#savedConfigId")[0].checked = true;
+    });
+
+    $('#newConfigId').change(function() {
+        console.log($('.configCheckbox > input[name=qwe]'));
+        $('.configCheckbox > input[name=qwe]').each(function() {
+            if($(this).is(":checked")){
+                $(this)[0].checked = false;
+            }
+        });
+    });
+
 
 });

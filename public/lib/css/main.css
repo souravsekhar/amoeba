@@ -2,7 +2,7 @@
 /*@font-face {
   font-family: 'Batman';
   src: url('../fonts/batmfa__.eot');
-  src: local('☺'), url('../fonts/batmfa__.woff') format('woff'), 
+  src: local('☺'), url('../fonts/batmfa__.woff') format('woff'),
     url('../fonts/batmfa__.ttf') format('truetype'), url('../fonts/batmfa__.svg') format('svg');
   font-weight: normal;
   font-style: normal;
@@ -56,6 +56,18 @@ logout
     right: 0;
     top: 0;
     width: 40px;
+}
+
+.logo{
+    height: 100%;
+    position: absolute;
+    left: 0px;
+    top: -4px;
+    width: 100px;
+}
+
+.logo > img{
+    width: 100%;
 }
 
 .logout{

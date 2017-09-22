@@ -10,11 +10,20 @@
       <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap-theme.css">
       <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css">
 	  <link rel="stylesheet" type="text/css" href="/css/login.css">
+	  <link rel="stylesheet" type="text/css" href="/css/main.css">
+	  <link rel="stylesheet" type="text/css" href="/css/main1.css">
 
 	  <!-- <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css"> -->
 	</head>
 	<body>
-		<header>Amoeba <i></i></header>
+		<header>
+		<div class="logo">
+			<img src="./uploads/originals/lowes_logo_new.png" alt="">
+		</div>
+		<div class="headContainer">
+			<h1>Amoeba</h1>
+		</div>
+	</header>
                 <div id="loginContainer">
                     <section id="login">
                         <div class="container">
@@ -30,7 +39,7 @@
                                         <form role="form" action="/login" method="post" id="login-form" autocomplete="off">
                                             <div class="form-group">
                                                 <label for="email" class="sr-only">Email</label>
-                                                <input type="email" name="userName" id="email" class="form-control" placeholder="somebody@example.com">
+                                                <input type="text" name="userName" id="email" class="form-control" placeholder="somebody@example.com">
                                             </div>
                                             <div class="form-group">
                                                 <label for="key" class="sr-only">Password</label>
